@@ -2,6 +2,8 @@
 #include <string>
 #include <cstdio>
 
+#include "AAC.h"
+
 // library import for reading image format files
 
 // #define STBI_NO_PSD
@@ -25,6 +27,6 @@ int main(int argc, char *argv[]) {
     
     cout << x << "x" << y << "  " << n << endl;
 
-    cout << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << endl;
+    cout << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << "\n" << endl;
 
 }
