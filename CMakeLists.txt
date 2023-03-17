@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(ACC)
+project(AAC)
+
+set(CMAKE_BUILD_PATH ${CMAKE_BINARY_DIR})
+set(CMAKE_BIN_PATH ${CMAKE_BUILD_PATH}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BIN_PATH})
 
 add_executable(${PROJECT_NAME} main.cpp)
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
