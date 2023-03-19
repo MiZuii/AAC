@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 
+#define MAX_SIZE 4000
+
 using namespace std;
 
 
@@ -156,7 +158,15 @@ AAC_Pixel<AAC_Pixel_Type::EMPTY>::AAC_Pixel() {
 /* -------------------------------------------------------------------------- */
 
 
-AAC_Image::AAC_Image(string path, int size_x, int size_y, unsigned char *data, int n) : _path(path), _size_x(size_x), _size_y(size_y)
+AAC_Image::AAC_Image(string path, int size_x, int size_y, int n, unsigned char *data) : 
+    _path(path), _size_x(size_x), _size_y(size_y), _n(n), pixel_type(static_cast<AAC_Pixel_Type>(n))
 {
-    // todo
+    // check arguments validity
+    if(size_x > MAX_SIZE || size_y > MAX_SIZE || n < 1 || n > 4 || !data) {
+        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_ARGUMENTS));
+        throw get_AAC_error_code();
+    }
+
+    
+
 }

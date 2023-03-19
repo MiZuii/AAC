@@ -16,34 +16,6 @@
 /*                                 ERROR CODES                                */
 /* -------------------------------------------------------------------------- */
 
-// example usage of AAC library error codes
-/*
-
-FILE *open_file(const char *path) {
-    FILE *f = fopen(path, "r");
-    if(!f) {
-        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_PATH));
-        return NULL;
-    }
-    return f;
-}
-
-*/
-// The error code is accessed outside of library ass follows
-/*
-
-int main(int argc, char *argv[]){
-    FILE *new_file = open_file("new_file_path_invalid");
-    if(!new_file) {
-        std::cerr << get_AAC_error_code().message() << std::endl;
-    }
-    clear_AAC_error_code();
-    // if above line is not run the error code is gonna stay untill
-    // next error code overwrites it
-}
-
-*/
-
 static thread_local std::error_code AAC_error_code;
 
 
@@ -62,11 +34,13 @@ public:
     virtual std::string message(int ec) const override {
         switch (static_cast<AAC_error_codes>(ec)){
             case AAC_error_codes::INVALID_PIXEL:
-                return "Invalid pixel error";
+                return "[AAC] Invalid pixel";
             case AAC_error_codes::INVALID_PATH:
-                return "Invalid image path";
+                return "[AAC] Invalid path";
+            case AAC_error_codes::INVALID_ARGUMENTS:
+                return "[AAC] Invalid arguments";
             default:
-                return "Unknown error";
+                return "[AAC] Unknown error";
         }
     }
 };
@@ -100,11 +74,18 @@ private:
     const std::string _path;
     const int _size_x;
     const int _size_y;
+    const int _n;
 
     void *_data;
 
+    // helper for constructor
+    // convers raw data to an array of appropriet size and AAC pixel types
+    
+
 public:
-    AAC_Image(std::string path, int size_x, int size_y, unsigned char *data, int n);
+    const AAC_Pixel_Type pixel_type;
+
+    AAC_Image(std::string path, int size_x, int size_y, int n, unsigned char *data);
 
 };
 
