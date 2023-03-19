@@ -1,3 +1,2 @@
 # AAC
-----
-Ascii Art Creator
+Ascii Art Creator library

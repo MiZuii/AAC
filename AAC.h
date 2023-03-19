@@ -3,53 +3,84 @@
 //
 
 #include <iostream>
+#include <string>
+#include <system_error>
+#include <thread>
+#include "enums.h"
+#include "structs.h"
 
 #ifndef AAC_H
 #define AAC_H
 
+/* -------------------------------------------------------------------------- */
+/*                                 ERROR CODES                                */
+/* -------------------------------------------------------------------------- */
 
-// ENUMs
-enum AAC_Pixel_Type {
-    EMPTY,
-    G,
-    GA,
-    RGB,
-    RGBA,
-};
+// example usage of AAC library error codes
+/*
+
+FILE *open_file(const char *path) {
+    FILE *f = fopen(path, "r");
+    if(!f) {
+        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_PATH));
+        return NULL;
+    }
+    return f;
+}
+
+*/
+// The error code is accessed outside of library ass follows
+/*
+
+int main(int argc, char *argv[]){
+    FILE *new_file = open_file("new_file_path_invalid");
+    if(!new_file) {
+        std::cerr << get_AAC_error_code().message() << std::endl;
+    }
+    clear_AAC_error_code();
+    // if above line is not run the error code is gonna stay untill
+    // next error code overwrites it
+}
+
+*/
+
+static thread_local std::error_code AAC_error_code;
 
 
-// STRUCTs
-struct AAC_Pixel_G
+void set_AAC_error_code(std::error_code ec);
+std::error_code get_AAC_error_code();
+void clear_AAC_error_code();
+
+
+class AAC_error_category : public std::error_category 
 {
-    int grey;
+public:
+    virtual const char* name() const noexcept override {
+        return "AAC_error_category";
+    }
+
+    virtual std::string message(int ec) const override {
+        switch (static_cast<AAC_error_codes>(ec)){
+            case AAC_error_codes::INVALID_PIXEL:
+                return "Invalid pixel error";
+            case AAC_error_codes::INVALID_PATH:
+                return "Invalid image path";
+            default:
+                return "Unknown error";
+        }
+    }
 };
 
-struct AAC_Pixel_GA
-{
-    int grey;
-    int alpha;
-};
+const AAC_error_category AAC_category{};
 
-struct AAC_Pixel_RGB
-{
-    int red;
-    int green;
-    int blue;
-};
+std::error_code make_error_code(AAC_error_codes ec);
 
-struct AAC_Pixel_RGBA
-{
-    int red;
-    int green;
-    int blue;
-    int alpha;
-};
-
-struct AAC_Pixel_EMPTY {};
+/* ------------------------------------ - ----------------------------------- */
 
 
-
-// PIXEL CLASS DEFINITION
+/* -------------------------------------------------------------------------- */
+/*                                 PIXEL CLASS                                */
+/* -------------------------------------------------------------------------- */
 
 template <AAC_Pixel_Type E>
 class AAC_Pixel
@@ -59,96 +90,23 @@ private:
 
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                 IMAGE CLASS                                */
+/* -------------------------------------------------------------------------- */
 
-template<>
-class AAC_Pixel<G>
+class AAC_Image
 {
 private:
-    AAC_Pixel_G _pixel_values;
+    const std::string _path;
+    const int _size_x;
+    const int _size_y;
+
+    void *_data;
 
 public:
-    AAC_Pixel();
-    struct ACC_Pixel_G GetPixelValues();
-    void SetPixelValues();
+    AAC_Image(std::string path, int size_x, int size_y, unsigned char *data, int n);
 
 };
-
-AAC_Pixel<G>::AAC_Pixel() {
-    AAC_Pixel<G>::_pixel_values.grey = 0;
-}
-
-struct ACC_Pixel_G AAC_Pixel<G>::GetPixelValues()
-{
-    struct AAC_Pixel_G out_struct;
-    out_struct.grey = AAC_Pixel<G>::_pixel_values.grey;
-    return out_struct;
-}
-
-template<>
-class AAC_Pixel<GA>
-{
-private:
-    AAC_Pixel_GA _pixel_values;
-
-public:
-    AAC_Pixel();
-
-};
-
-AAC_Pixel<GA>::AAC_Pixel() {
-    AAC_Pixel<GA>::_pixel_values.grey = 0;
-    AAC_Pixel<GA>::_pixel_values.alpha = 0;
-}
-
-template<>
-class AAC_Pixel<RGB>
-{
-private:
-    AAC_Pixel_RGB _pixel_values;
-
-public:
-    AAC_Pixel();
-
-};
-
-AAC_Pixel<RGB>::AAC_Pixel() {
-    AAC_Pixel<RGB>::_pixel_values.red = 0;
-    AAC_Pixel<RGB>::_pixel_values.green = 0;
-    AAC_Pixel<RGB>::_pixel_values.blue = 0;
-}
-
-template<>
-class AAC_Pixel<RGBA>
-{
-private:
-    AAC_Pixel_RGBA _pixel_values;
-
-public:
-    AAC_Pixel();
-
-};
-
-AAC_Pixel<RGBA>::AAC_Pixel() {
-    AAC_Pixel<RGBA>::_pixel_values.red = 0;
-    AAC_Pixel<RGBA>::_pixel_values.green = 0;
-    AAC_Pixel<RGBA>::_pixel_values.blue = 0;
-    AAC_Pixel<RGBA>::_pixel_values.alpha = 0;
-}
-
-template<>
-class AAC_Pixel<EMPTY>
-{
-private:
-    AAC_Pixel_EMPTY _pixel_values;
-
-public:
-    AAC_Pixel();
-
-};
-
-AAC_Pixel<EMPTY>::AAC_Pixel() {
-    // empty for now
-}
 
 
 #endif //AAC_H
