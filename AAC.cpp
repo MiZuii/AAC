@@ -167,6 +167,15 @@ AAC_Image::AAC_Image(string path, int size_x, int size_y, int n, unsigned char *
         throw get_AAC_error_code();
     }
 
+    for (int y = 0; y < size_y; y++)
+    {
+        for (int x = 0; x < size_x; x++) 
+        {
+            uint8_t val;
+            snprintf((char *)&val, sizeof(uint8_t), "%hhd", *(data+y*size_x+x));
+            
+        }
+    }
     
 
 }
