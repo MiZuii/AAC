@@ -7,6 +7,7 @@ enum class AAC_error_codes {
   INVALID_ARGUMENTS,
   IMAGE_OPEN_FAIL,
   IMAGE_ALLOCATION_ERROR,
+  BRIGHTNESS_CALCULATION_FAIL,
 };
 
 enum class AAC_Pixel_Type {

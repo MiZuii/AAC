@@ -12,6 +12,9 @@
 #ifndef AAC_H
 #define AAC_H
 
+class AAC_Image;
+typedef uint8_t (*AAC_BrightnessFunction)(AAC_Image);
+
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
 /* -------------------------------------------------------------------------- */
@@ -43,6 +46,8 @@ public:
                 return "[AAC] Failed to open image";
             case AAC_error_codes::IMAGE_ALLOCATION_ERROR:
                 return "[AAC] Failed to allocate memory for piexels array";
+            case AAC_error_codes::BRIGHTNESS_CALCULATION_FAIL:
+                return "[AAC] Failed to calculate image brightness array";
             default:
                 return "[AAC] Unknown error";
         }
@@ -76,8 +81,6 @@ class AAC_Image
 {
 private:
     const std::string _path;
-    const unsigned int _size_x;
-    const unsigned int _size_y;
     const unsigned int _n;
 
     void **_pixels;
@@ -88,12 +91,48 @@ private:
 
 public:
     const AAC_Pixel_Type pixel_type;
+    const unsigned int size_x;
+    const unsigned int size_y;
 
     AAC_Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
     ~AAC_Image();
+    void *GetPixel(unsigned int x, unsigned int y);
 };
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
 AAC_Image *AAC_OpenImage(std::string path);
+
+/* -------------------------------------------------------------------------- */
+/*                               CONVERTER CLASS                              */
+/* -------------------------------------------------------------------------- */
+
+class AAC_Converter
+{
+private:
+    AAC_BrightnessFunction _brightness_function;
+    const unsigned int _chunk_xsize;
+    const unsigned int _chunk_ysize;
+
+public:
+    std::string convert(AAC_Image img);
+};
+
+/* -------------------------------------------------------------------------- */
+/*                            BRIGHTNESS FUNCTIONS                            */
+/* -------------------------------------------------------------------------- */
+/* 
+Template: uint8_t *brightnessfunction(AAC_Image) 
+
+Description: brightness function must take an Image and convert it into newly allocated
+2d array of uint8_t values representing brightness of pixels
+
+Nameing: All brightness function should start with AAC_bf_ and than have a function name
+example=AAC_bf_Simple
+
+Type: Brightness function should be passed to AAC_Converter. The type needed for that is
+at the beggining of the file.
+*/
+
+uint8_t *AAC_bf_SimpleAverage(AAC_Image img);
 
 #endif //AAC_H

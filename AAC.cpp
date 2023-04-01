@@ -299,7 +299,7 @@ AAC_Pixel<AAC_Pixel_Type::RGBA>** RefractorDataRGBA(unsigned int size_x, unsigne
 
 
 AAC_Image::AAC_Image(string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data) : 
-    _path(path), _size_x(size_x), _size_y(size_y), _n(n), pixel_type(static_cast<AAC_Pixel_Type>(n))
+    _path(path), size_x(size_x), size_y(size_y), _n(n), pixel_type(static_cast<AAC_Pixel_Type>(n))
 {
     // check arguments validity
     if(size_x > MAX_SIZE || size_y > MAX_SIZE || n < 1 || n > 4 || !data) {
@@ -329,7 +329,7 @@ AAC_Image::AAC_Image(string path, unsigned int size_x, unsigned int size_y, unsi
 }
 
 AAC_Image::~AAC_Image() {
-    for(unsigned long int i = 0; i<_size_x*_size_y; i++) {
+    for(unsigned long int i = 0; i<size_x*size_y; i++) {
         switch (pixel_type)
         {
         case AAC_Pixel_Type::G:
@@ -353,6 +353,10 @@ AAC_Image::~AAC_Image() {
     free(_pixels);
 }
 
+void *AAC_Image::GetPixel(unsigned int x, unsigned int y) {
+    return _pixels[y*size_x+x];
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             GLOBAL IMAGE OPENER                            */
 /* -------------------------------------------------------------------------- */
@@ -370,4 +374,48 @@ AAC_Image *AAC_OpenImage(std::string path) {
     {
         return new AAC_Image("test.jpg", x, y, n, data);
     }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            BRIGHTNESS FUNCTIONS                            */
+/* -------------------------------------------------------------------------- */
+
+uint8_t *AAC_bf_SimpleAverage(AAC_Image img) {
+    uint8_t *brightness_array = (uint8_t*)malloc(sizeof(uint8_t)*img.size_x*img.size_y);
+
+    struct AAC_Pixel_GA tmp_ga;
+    struct AAC_Pixel_RGB tmp_rgb;
+    struct AAC_Pixel_RGBA tmp_rgba;
+
+    for(unsigned long i=0; i<img.size_x*img.size_y; i++) 
+    {
+        switch (img.pixel_type)
+        {
+        case AAC_Pixel_Type::G:
+            brightness_array[i] = ((AAC_Pixel<AAC_Pixel_Type::G>*)img.GetPixel(i%img.size_x, i/img.size_y))->GetPixelValues().grey;
+            break;
+
+        case AAC_Pixel_Type::GA:
+            tmp_ga = ((AAC_Pixel<AAC_Pixel_Type::GA>*)img.GetPixel(i%img.size_x, i/img.size_y))->GetPixelValues();
+            brightness_array[i] = (tmp_ga.grey + tmp_ga.alpha)/2;
+            break;
+
+        case AAC_Pixel_Type::RGB:
+            tmp_rgb = ((AAC_Pixel<AAC_Pixel_Type::RGB>*)img.GetPixel(i%img.size_x, i/img.size_y))->GetPixelValues();
+            brightness_array[i] = (tmp_rgb.red + tmp_rgb.green + tmp_rgb.blue)/3;
+            break;
+
+        case AAC_Pixel_Type::RGBA:
+            tmp_rgba = ((AAC_Pixel<AAC_Pixel_Type::RGBA>*)img.GetPixel(i%img.size_x, i/img.size_y))->GetPixelValues();
+            brightness_array[i] = (tmp_rgba.red + tmp_rgba.green + tmp_rgba.blue + 3*tmp_rgba.alpha)/6;
+            break;
+        
+        default:
+            set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_PIXEL));
+            throw get_AAC_error_code();
+            break;
+        }
+    }
+
+    return brightness_array;
 }
