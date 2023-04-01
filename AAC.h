@@ -39,6 +39,10 @@ public:
                 return "[AAC] Invalid path";
             case AAC_error_codes::INVALID_ARGUMENTS:
                 return "[AAC] Invalid arguments";
+            case AAC_error_codes::IMAGE_OPEN_FAIL:
+                return "[AAC] Failed to open image";
+            case AAC_error_codes::IMAGE_ALLOCATION_ERROR:
+                return "[AAC] Failed to allocate memory for piexels array";
             default:
                 return "[AAC] Unknown error";
         }
@@ -72,11 +76,11 @@ class AAC_Image
 {
 private:
     const std::string _path;
-    const int _size_x;
-    const int _size_y;
-    const int _n;
+    const unsigned int _size_x;
+    const unsigned int _size_y;
+    const unsigned int _n;
 
-    void *_data;
+    void **_pixels;
 
     // helper for constructor
     // convers raw data to an array of appropriet size and AAC pixel types
@@ -85,9 +89,11 @@ private:
 public:
     const AAC_Pixel_Type pixel_type;
 
-    AAC_Image(std::string path, int size_x, int size_y, int n, unsigned char *data);
-
+    AAC_Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
+    ~AAC_Image();
 };
 
+/* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
+AAC_Image *AAC_OpenImage(std::string path);
 
 #endif //AAC_H

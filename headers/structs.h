@@ -3,28 +3,28 @@
 
 struct AAC_Pixel_G
 {
-    int grey;
+    uint8_t grey;
 };
 
 struct AAC_Pixel_GA
 {
-    int grey;
-    int alpha;
+    uint8_t grey;
+    uint8_t alpha;
 };
 
 struct AAC_Pixel_RGB
 {
-    int red;
-    int green;
-    int blue;
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
 };
 
 struct AAC_Pixel_RGBA
 {
-    int red;
-    int green;
-    int blue;
-    int alpha;
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+    uint8_t alpha;
 };
 
 struct AAC_Pixel_EMPTY {};
