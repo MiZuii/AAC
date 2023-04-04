@@ -299,7 +299,7 @@ AAC_Pixel<AAC_Pixel_Type::RGBA>** RefractorDataRGBA(unsigned int size_x, unsigne
 
 
 AAC_Image::AAC_Image(string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data) : 
-    _path(path), size_x(size_x), size_y(size_y), _n(n), pixel_type(static_cast<AAC_Pixel_Type>(n))
+    _path(path), _n(n), pixel_type(static_cast<AAC_Pixel_Type>(n)), size_x(size_x), size_y(size_y)
 {
     // check arguments validity
     if(size_x > MAX_SIZE || size_y > MAX_SIZE || n < 1 || n > 4 || !data) {
@@ -377,6 +377,105 @@ AAC_Image *AAC_OpenImage(std::string path) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 CHUNK CLASS                                */
+/* -------------------------------------------------------------------------- */
+
+AAC_Chunk::AAC_Chunk(unsigned int _X_start_index, unsigned int _X_end_index, unsigned int _Y_start_index, unsigned int _Y_end_index, uint8_t *data) :
+    _X_start_index(_X_start_index), _X_end_index(_X_end_index), _Y_start_index(_Y_start_index), _Y_end_index(_Y_end_index), _data(data) {}
+
+/* -------------------------------------------------------------------------- */
+/*                                MATRIX CLASS                                */
+/* -------------------------------------------------------------------------- */
+
+template<typename T>
+AAC_Matrix<T>::AAC_Matrix(unsigned int size_x, unsigned int size_y) : size_x(size_x), size_y(size_y)
+{
+    _matrix = (T**)malloc(sizeof(T*) * size_y);
+    if( NULL == _matrix )
+    {
+        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
+        throw get_AAC_error_code();
+    }
+
+    for(unsigned int i=0; i<size_y; i++)
+    {
+        _matrix[i] = (T*)malloc(sizeof(T) * size_x);
+
+        if( NULL == _matrix[i] )
+        {
+            set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
+            throw get_AAC_error_code();
+        }
+    }
+}
+
+template<typename T>
+AAC_Matrix<T>::~AAC_Matrix()
+{
+    for(unsigned int i=0; i<size_y; i++)
+    {
+        for(unsigned int j=0; j<size_x; j++)
+        {
+            try
+            {
+                delete _matrix[i][j];
+            }
+            catch(const std::exception& e)
+            {
+                continue;
+            }
+        }
+        free(_matrix[i]);
+    }
+    free(_matrix);
+}
+
+template<typename T>
+void AAC_Matrix<T>::SetElement(unsigned int x, unsigned int y, T element)
+{
+    _matrix[y][x] = element;
+}
+
+template<typename T>
+T AAC_Matrix<T>::GetElement(unsigned int x, unsigned int y){
+    return _matrix[y][x];
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               CONVERTER CLASS                              */
+/* -------------------------------------------------------------------------- */
+
+const float AAC_Converter::_ratio = 0.45;
+
+AAC_Converter::AAC_Converter(AAC_BrightnessFunction bf, AAC_ChunkConvertFunction cc) : 
+    _brightness_func(bf), _chunk_convertion_func(cc) {}
+
+AAC_Matrix<AAC_Chunk*> AAC_Converter::generateChunks(unsigned int img_x, unsigned int img_y, unsigned int chunk_size, uint8_t *data)
+{
+    unsigned int x_nof_chunks = img_x / chunk_size;
+    unsigned int lcols_to_cut = (img_x - chunk_size*x_nof_chunks)/2;
+
+    unsigned int y_chunk_size = (unsigned int)((float)chunk_size * _ratio);
+    unsigned int y_nof_chunks = img_y / y_chunk_size;
+    unsigned int urows_to_cut = (img_y - y_chunk_size*y_nof_chunks)/2;
+
+    AAC_Matrix<AAC_Chunk*> arr = AAC_Matrix<AAC_Chunk*>(x_nof_chunks, y_nof_chunks);
+
+    for(unsigned int i=0; i<y_nof_chunks; i++)
+    {
+        for(unsigned int j=0; j<x_nof_chunks; j++)
+        {
+            arr.SetElement(j, i, new AAC_Chunk(lcols_to_cut+j*chunk_size,
+                                               lcols_to_cut+(j+1)*chunk_size,
+                                               urows_to_cut+i*y_chunk_size,
+                                               urows_to_cut+(i+1)*y_chunk_size, data));
+        }
+    }
+
+    return arr;
+}
+
+/* -------------------------------------------------------------------------- */
 /*                            BRIGHTNESS FUNCTIONS                            */
 /* -------------------------------------------------------------------------- */
 
@@ -418,4 +517,13 @@ uint8_t *AAC_bf_SimpleAverage(AAC_Image img) {
     }
 
     return brightness_array;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         CHUNK CONVERSION FUNCTIONS                         */
+/* -------------------------------------------------------------------------- */
+
+char AAC_cc_Simple(AAC_Chunk chunk) {
+    // yet to be implemented
+    return 'X';
 }
