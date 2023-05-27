@@ -12,11 +12,23 @@ enum class AAC_error_codes {
 };
 
 enum class AAC_Pixel_Type {
-    EMPTY,
-    G,
-    GA,
-    RGB,
-    RGBA,
+  EMPTY,
+  G,
+  GA,
+  RGB,
+  RGBA,
 };
+
+enum class AAC_BrightnessConverter_Type {
+  SIGNLE_PIXEL,
+  NINE_PIXEL,
+  GRADIENT_PIXEL,      
+}
+
+enum class AAC_ChunkConverter_Type {
+  SINGLE_CHUNK,
+  NINE_CHUNK,
+  GRADIENT_CHUNK,
+}
 
 #endif // ENUMS_H
