@@ -2,6 +2,7 @@
 #define ENUMS_H
 
 enum class AAC_error_codes {
+  ALOCATION_ERROR,
   INVALID_PIXEL,
   INVALID_PATH,
   INVALID_ARGUMENTS,
@@ -9,6 +10,7 @@ enum class AAC_error_codes {
   IMAGE_ALLOCATION_ERROR,
   BRIGHTNESS_CALCULATION_FAIL,
   MATRIX_ALLOCATION_ERROR,
+  MATRIX_INDEX_OUT_OF_BOUNDS,
 };
 
 enum class AAC_Pixel_Type {
