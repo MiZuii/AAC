@@ -14,8 +14,11 @@
 
 class AAC_Image;
 class AAC_Chunk;
-typedef uint8_t (*AAC_BrightnessFunction)(AAC_Image);
-typedef char (*AAC_ChunkConvertFunction)(AAC_Chunk);
+template<typename T>
+class AAC_Matrix;
+
+typedef AAC_Matrix<uint8_t>* (*AAC_BrightnessFunction)(AAC_Image*);
+typedef std::string (*AAC_ChunkConvertFunction)(AAC_Matrix<AAC_Chunk>*, struct AAC_Conversion_Options);
 
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
@@ -38,8 +41,10 @@ public:
 
     virtual std::string message(int ec) const override {
         switch (static_cast<AAC_error_codes>(ec)){
+            case AAC_error_codes::ALOCATION_ERROR:
+                return "[AAC] Alocation error";
             case AAC_error_codes::INVALID_PIXEL:
-                return "[AAC] Invalid pixel";
+                return "[AAC] Invalid pixel type";
             case AAC_error_codes::INVALID_PATH:
                 return "[AAC] Invalid path";
             case AAC_error_codes::INVALID_ARGUMENTS:
@@ -52,6 +57,8 @@ public:
                 return "[AAC] Failed to calculate image brightness array";
             case AAC_error_codes::MATRIX_ALLOCATION_ERROR:
                 return "[AAC] Failed to allocate space for AAC_Matrix";
+            case AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
+                return "[AAC/MATRIX] Index out of range";
             default:
                 return "[AAC] Unknown error";
         }
@@ -79,8 +86,10 @@ private:
 public:
     AAC_Matrix(unsigned int size_x, unsigned int size_y);
     ~AAC_Matrix();
-    T GetElement(unsigned int x, unsigned int y);
-    void SetElement(unsigned int x, unsigned int y, T element);
+    const T GetElement(unsigned int x, unsigned int y);
+    T& GetElementReference(unsigned int x, unsigned int y);
+    unsigned int GetXSize();
+    unsigned int GetYSize();
 };
 
 /* -------------------------------------------------------------------------- */
@@ -92,7 +101,6 @@ class AAC_Pixel
 {
 private:
     const AAC_Pixel_Type _pixel_type = E;
-
 };
 
 /* -------------------------------------------------------------------------- */
@@ -105,7 +113,7 @@ private:
     const std::string _path;
     const unsigned int _n;
 
-    void **_pixels;
+    void* _pixels_matrix;
 
     // helper for constructor
     // convers raw data to an array of appropriet size and AAC pixel types
@@ -118,7 +126,7 @@ public:
 
     AAC_Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
     ~AAC_Image();
-    void *GetPixel(unsigned int x, unsigned int y);
+    void* GetMatrix();
 };
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
@@ -131,16 +139,23 @@ AAC_Image *AAC_OpenImage(std::string path);
 class AAC_Chunk
 {
 private:
-    const unsigned int _X_start_index; // inclusive
-    const unsigned int _X_end_index; // exclusive
-    const unsigned int _Y_start_index; // inclusive
-    const unsigned int _Y_end_index; // exclusive
+    unsigned int _X_start_index; // inclusive
+    unsigned int _X_end_index; // exclusive
+    unsigned int _Y_start_index; // inclusive
+    unsigned int _Y_end_index; // exclusive
 
     // pointer to external image brightness array(do not free on destroy)
-    uint8_t *_data;
+    AAC_Matrix<uint8_t> *_data;
 
 public:
-    AAC_Chunk(unsigned int _X_start_index, unsigned int _X_end_index, unsigned int _Y_start_index, unsigned int _Y_end_index, uint8_t *data);
+    AAC_Chunk();
+    AAC_Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, AAC_Matrix<uint8_t> *data);
+    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, AAC_Matrix<uint8_t> *data);
+    AAC_Matrix<uint8_t> *GetData();
+    unsigned int GetXStart();
+    unsigned int GetXEnd();
+    unsigned int GetYStart();
+    unsigned int GetYEnd();
 };
 
 /* -------------------------------------------------------------------------- */
@@ -155,21 +170,21 @@ private:
 
     AAC_BrightnessFunction _brightness_func;
     AAC_ChunkConvertFunction _chunk_convertion_func;
-    AAC_Matrix<AAC_Chunk*> generateChunks(unsigned int img_x, unsigned int img_y, unsigned int chunk_size, uint8_t *data);
+    AAC_Matrix<AAC_Chunk>* generateChunks(AAC_Image* img, unsigned int chunk_size, AAC_Matrix<uint8_t>* brightness_matrix);
 
 public:
     AAC_Converter(AAC_BrightnessFunction bf, AAC_ChunkConvertFunction cc);
-    std::string createArt(AAC_Image img, AAC_Conversion_Options options);
+    std::string CreateArt(AAC_Image* img, AAC_Conversion_Options options);
 };
 
 /* -------------------------------------------------------------------------- */
 /*                            BRIGHTNESS FUNCTIONS                            */
 /* -------------------------------------------------------------------------- */
 /* 
-Template: uint8_t *brightnessfunction(AAC_Image) 
+Template: AAC_Matrix<uint8_t> *brightnessfunction(AAC_Image*) 
 
 Description: brightness function must take an Image and convert it into newly allocated
-2d array of uint8_t values representing brightness of pixels
+AAC_Matrix<uint8_t> representing brightness of pixels
 
 Nameing: All brightness function should start with AAC_bf_ and than have a function name
 example=AAC_bf_Simple
@@ -178,22 +193,21 @@ Type: Brightness function should be passed to AAC_Converter. The type needed for
 at the beggining of the file.
 */
 
-uint8_t *AAC_bf_SimpleAverage(AAC_Image img);
+AAC_Matrix<uint8_t>* AAC_bf_SimpleAverage(AAC_Image* img);
 
 /* -------------------------------------------------------------------------- */
 /*                         CHUNK CONVERSION FUNCTIONS                         */
 /* -------------------------------------------------------------------------- */
 /*
-Template: char conversionfunction(AAC_Chunk chunk)
+Template: std::string conversionfunction(AAC_Matrix<AAC_Chunk> chunks, struct AAC_Conversion_Options options)
 
-Description: Conversion functions take a chunk and convert its set of brightness
-values into a single char displayed in final image
+Description:
 
 Nameing: Should start with AAC_cc_ and then have brief function name example: AAC_cc_Simple
 
 Type: Should be passed to AAC_Converter. Type is specified at the beggining of the file
 */
 
-char AAC_cc_Simple(AAC_Chunk chunk);
+std::string AAC_cc_Simple(AAC_Matrix<AAC_Chunk>* chunks, struct AAC_Conversion_Options options);
 
 #endif //AAC_H
