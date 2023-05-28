@@ -29,10 +29,4 @@ struct AAC_Pixel_RGBA
 
 struct AAC_Pixel_EMPTY {};
 
-struct AAC_Conversion_Options
-{
-    unsigned int chunk_size;
-    std::string alphabet;
-};
-
 #endif // STRUCTS_H

@@ -9,16 +9,10 @@
 #include "enums.h"
 #include "structs.h"
 
+#define MAX_SIZE 4000
+
 #ifndef AAC_H
 #define AAC_H
-
-class AAC_Image;
-class AAC_Chunk;
-template<typename T>
-class AAC_Matrix;
-
-typedef AAC_Matrix<uint8_t>* (*AAC_BrightnessFunction)(AAC_Image*);
-typedef std::string (*AAC_ChunkConvertFunction)(AAC_Matrix<AAC_Chunk>*, struct AAC_Conversion_Options);
 
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
@@ -26,50 +20,44 @@ typedef std::string (*AAC_ChunkConvertFunction)(AAC_Matrix<AAC_Chunk>*, struct A
 
 static thread_local std::error_code AAC_error_code;
 
-
 void set_AAC_error_code(std::error_code ec);
 std::error_code get_AAC_error_code();
 void clear_AAC_error_code();
 
-
-class AAC_error_category : public std::error_category 
+class AAC_error_category : public std::error_category
 {
 public:
-    virtual const char* name() const noexcept override {
-        return "AAC_error_category";
-    }
+    virtual const char* name() const noexcept override {return "AAC_error_category";}
 
     virtual std::string message(int ec) const override {
-        switch (static_cast<AAC_error_codes>(ec)){
-            case AAC_error_codes::ALOCATION_ERROR:
-                return "[AAC] Alocation error";
-            case AAC_error_codes::INVALID_PIXEL:
-                return "[AAC] Invalid pixel type";
-            case AAC_error_codes::INVALID_PATH:
-                return "[AAC] Invalid path";
-            case AAC_error_codes::INVALID_ARGUMENTS:
-                return "[AAC] Invalid arguments";
-            case AAC_error_codes::IMAGE_OPEN_FAIL:
-                return "[AAC] Failed to open image";
-            case AAC_error_codes::IMAGE_ALLOCATION_ERROR:
-                return "[AAC] Failed to allocate memory for piexels array";
-            case AAC_error_codes::BRIGHTNESS_CALCULATION_FAIL:
-                return "[AAC] Failed to calculate image brightness array";
-            case AAC_error_codes::MATRIX_ALLOCATION_ERROR:
-                return "[AAC] Failed to allocate space for AAC_Matrix";
-            case AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
-                return "[AAC/MATRIX] Index out of range";
-            default:
-                return "[AAC] Unknown error";
-        }
+    switch (static_cast<AAC_error_codes>(ec)){
+        case AAC_error_codes::ALOCATION_ERROR:
+            return "[AAC] Alocation error";
+        case AAC_error_codes::INVALID_PIXEL:
+            return "[AAC] Invalid pixel type";
+        case AAC_error_codes::INVALID_PATH:
+            return "[AAC] Invalid path";
+        case AAC_error_codes::INVALID_ARGUMENTS:
+            return "[AAC] Invalid arguments";
+        case AAC_error_codes::IMAGE_OPEN_FAIL:
+            return "[AAC] Failed to open image";
+        case AAC_error_codes::IMAGE_ALLOCATION_ERROR:
+            return "[AAC] Failed to allocate memory for piexels array";
+        case AAC_error_codes::BRIGHTNESS_CALCULATION_FAIL:
+            return "[AAC] Failed to calculate image brightness array";
+        case AAC_error_codes::MATRIX_ALLOCATION_ERROR:
+            return "[AAC] Failed to allocate space for AAC_Matrix";
+        case AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
+            return "[AAC] Index out of range";
+        default:
+            return "[AAC] Unknown error";
     }
+}
 };
 
 const AAC_error_category AAC_category{};
 
 std::error_code make_error_code(AAC_error_codes ec);
-
-/* ------------------------------------ - ----------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                                MATRIX CLASS                                */
@@ -103,6 +91,90 @@ private:
     const AAC_Pixel_Type _pixel_type = E;
 };
 
+/* -------------------------------- GREY TYPE ------------------------------- */
+
+template <>
+class AAC_Pixel<AAC_Pixel_Type::G>
+{
+private:
+    AAC_Pixel_G _pixel_values;
+
+public:
+    // constructors
+    AAC_Pixel();
+    AAC_Pixel(uint8_t grey);
+
+    // getters and setters
+    struct AAC_Pixel_G GetPixelValues();
+    void SetPixelValues(uint8_t grey);
+};
+
+/* ----------------------------- GREY ALPHA TYPE ---------------------------- */
+
+template <>
+class AAC_Pixel<AAC_Pixel_Type::GA>
+{
+private:
+    AAC_Pixel_GA _pixel_values;
+
+public:
+    // constructors
+    AAC_Pixel();
+    AAC_Pixel(uint8_t grey, uint8_t alpha);
+
+    // getters and setters
+    struct AAC_Pixel_GA GetPixelValues();
+    void SetPixelValues(uint8_t grey, uint8_t alpha);
+};
+
+/* --------------------------- RED GREEN BLUE TYPE -------------------------- */
+
+template <>
+class AAC_Pixel<AAC_Pixel_Type::RGB>
+{
+private:
+    AAC_Pixel_RGB _pixel_values;
+
+public:
+    // constructors
+    AAC_Pixel();
+    AAC_Pixel(uint8_t red, uint8_t green, uint8_t blue);
+
+    // getters and setters
+    struct AAC_Pixel_RGB GetPixelValues();
+    void SetPixelValues(uint8_t red, uint8_t green, uint8_t blue);
+};
+
+/* ------------------------ RED GREEN BLUE ALPHA TYPE ----------------------- */
+
+template <>
+class AAC_Pixel<AAC_Pixel_Type::RGBA>
+{
+private:
+    AAC_Pixel_RGBA _pixel_values;
+
+public:
+    // constructors
+    AAC_Pixel();
+    AAC_Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+
+    // getters and setters
+    struct AAC_Pixel_RGBA GetPixelValues();
+    void SetPixelValues(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+};
+
+/* ------------------------------- EMPTY TYPE ------------------------------- */
+
+template <>
+class AAC_Pixel<AAC_Pixel_Type::EMPTY>
+{
+private:
+    AAC_Pixel_EMPTY _pixel_values;
+
+public:
+    AAC_Pixel();
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                 IMAGE CLASS                                */
 /* -------------------------------------------------------------------------- */
@@ -130,7 +202,7 @@ public:
 };
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
-AAC_Image *AAC_OpenImage(std::string path);
+AAC_Image* AAC_OpenImage(std::string path);
 
 /* -------------------------------------------------------------------------- */
 /*                                 CHUNK CLASS                                */
@@ -145,13 +217,13 @@ private:
     unsigned int _Y_end_index; // exclusive
 
     // pointer to external image brightness array(do not free on destroy)
-    AAC_Matrix<uint8_t> *_data;
+    std::shared_ptr<AAC_Matrix<uint8_t>> _data;
 
 public:
     AAC_Chunk();
-    AAC_Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, AAC_Matrix<uint8_t> *data);
-    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, AAC_Matrix<uint8_t> *data);
-    AAC_Matrix<uint8_t> *GetData();
+    AAC_Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<AAC_Matrix<uint8_t>> data);
+    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<AAC_Matrix<uint8_t>> data);
+    std::shared_ptr<AAC_Matrix<uint8_t>> GetData();
     unsigned int GetXStart();
     unsigned int GetXEnd();
     unsigned int GetYStart();
@@ -159,14 +231,46 @@ public:
 };
 
 /* -------------------------------------------------------------------------- */
-/*                         BRIGHTNESS CONVERTER CLASS                         */
+/*                         RIGHTNESS CONVERTER CLASSES                        */
 /* -------------------------------------------------------------------------- */
 
 class AAC_BrightnessConverter
 {
+public:
+    virtual std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) = 0;
+};
+
+class AAC_BC_Simple : public AAC_BrightnessConverter
+{
 private:
-    virtual const AAC_BrightnessConverter_Type _converter_type;
-}
+    const float _red_weight, _green_weight, _blue_weight;
+
+public:
+    AAC_BC_Simple(float red_weight, float green_weight, float blue_weight);
+    AAC_BC_Simple();
+    std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) override;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                           CHUNK CONVERTER CLASSES                          */
+/* -------------------------------------------------------------------------- */
+
+class AAC_ChunkConverter
+{
+public:
+    virtual std::string convert(AAC_Matrix<AAC_Chunk>* chunks) = 0;
+};
+
+class AAC_CC_Simple : public AAC_ChunkConverter
+{
+private:
+    const std::string _alphabet;
+
+public:
+    AAC_CC_Simple(std::string alphabet);
+    std::string convert(AAC_Matrix<AAC_Chunk>* chunks) override;
+
+};
 
 /* -------------------------------------------------------------------------- */
 /*                               CONVERTER CLASS                              */
@@ -177,47 +281,14 @@ class AAC_Converter
 private:
 
     static const float _ratio;
-
-    AAC_BrightnessFunction _brightness_func;
-    AAC_ChunkConvertFunction _chunk_convertion_func;
-    AAC_Matrix<AAC_Chunk>* generateChunks(AAC_Image* img, unsigned int chunk_size, AAC_Matrix<uint8_t>* brightness_matrix);
+    AAC_BrightnessConverter* _brightness_conv;
+    AAC_ChunkConverter* _chunk_conv;
+    
+    AAC_Matrix<AAC_Chunk>* generateChunks(AAC_Image* img, size_t chunk_size, std::shared_ptr<AAC_Matrix<uint8_t>> brightness_matrix);
 
 public:
-    AAC_Converter(AAC_BrightnessFunction bf, AAC_ChunkConvertFunction cc);
-    std::string CreateArt(AAC_Image* img, AAC_Conversion_Options options);
+    AAC_Converter(AAC_BrightnessConverter* brightness_conv, AAC_ChunkConverter* chunk_conv);
+    std::string CreateArt(AAC_Image* img, size_t chunk_size);
 };
-
-/* -------------------------------------------------------------------------- */
-/*                            BRIGHTNESS FUNCTIONS                            */
-/* -------------------------------------------------------------------------- */
-/* 
-Template: AAC_Matrix<uint8_t> *brightnessfunction(AAC_Image*) 
-
-Description: brightness function must take an Image and convert it into newly allocated
-AAC_Matrix<uint8_t> representing brightness of pixels
-
-Nameing: All brightness function should start with AAC_bf_ and than have a function name
-example=AAC_bf_Simple
-
-Type: Brightness function should be passed to AAC_Converter. The type needed for that is
-at the beggining of the file.
-*/
-
-AAC_Matrix<uint8_t>* AAC_bf_SimpleAverage(AAC_Image* img);
-
-/* -------------------------------------------------------------------------- */
-/*                         CHUNK CONVERSION FUNCTIONS                         */
-/* -------------------------------------------------------------------------- */
-/*
-Template: std::string conversionfunction(AAC_Matrix<AAC_Chunk> chunks, struct AAC_Conversion_Options options)
-
-Description:
-
-Nameing: Should start with AAC_cc_ and then have brief function name example: AAC_cc_Simple
-
-Type: Should be passed to AAC_Converter. Type is specified at the beggining of the file
-*/
-
-std::string AAC_cc_Simple(AAC_Matrix<AAC_Chunk>* chunks, struct AAC_Conversion_Options options);
 
 #endif //AAC_H

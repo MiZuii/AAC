@@ -2,8 +2,7 @@
 #include <string>
 #include <cstdio>
 
-#include "AAC.h"
-#include "stb_image.h"
+#include "../AAC.h"
 
 using namespace std;
 
@@ -13,12 +12,13 @@ int main(int argc, char *argv[]) {
     
     // "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
     // ".-=*#@"
-    AAC_Conversion_Options convert_options = {3, ".-=*#@@"};
-    AAC_Converter converter = AAC_Converter(AAC_bf_SimpleAverage, AAC_cc_Simple);
+    AAC_BC_Simple bc;
+    AAC_CC_Simple cc(".-=*#@");
+    AAC_Converter converter = AAC_Converter(&bc, &cc);
     
-    std::string r = converter.CreateArt(img, convert_options);
+    string r = converter.CreateArt(img, 5);
 
-    std::cout << r << std::endl;
+    cout << r << endl;
 
     delete img;
     return 0;
