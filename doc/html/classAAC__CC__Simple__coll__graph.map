@@ -1,0 +1,4 @@
+<map id="AAC_CC_Simple" name="AAC_CC_Simple">
+<area shape="rect" id="node1" title="Simplest possible chunk converter." alt="" coords="23,80,149,107"/>
+<area shape="rect" id="node2" href="$classAAC__ChunkConverter.html" title="Converts chunks matrix into final string." alt="" coords="5,5,167,32"/>
+</map>
