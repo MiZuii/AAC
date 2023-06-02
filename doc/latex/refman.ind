@@ -6,26 +6,27 @@
     \subitem {AAC\_OpenImage}, \hyperpage{21}
   \item {AAC\_BC\_Simple}, \hyperpage{7}
   \item {AAC\_BrightnessConverter}, \hyperpage{8}
-  \item {AAC\_CC\_Simple}, \hyperpage{9}
-  \item {AAC\_Chunk}, \hyperpage{10}
-  \item {AAC\_ChunkConverter}, \hyperpage{10}
-  \item {AAC\_Converter}, \hyperpage{11}
-  \item {AAC\_error\_category}, \hyperpage{12}
-  \item {AAC\_Image}, \hyperpage{13}
-  \item {AAC\_Matrix$<$ T $>$}, \hyperpage{13}
+  \item {AAC\_CC\_Braile}, \hyperpage{9}
+  \item {AAC\_CC\_Simple}, \hyperpage{10}
+  \item {AAC\_Chunk}, \hyperpage{11}
+  \item {AAC\_ChunkConverter}, \hyperpage{11}
+  \item {AAC\_Converter}, \hyperpage{12}
+  \item {AAC\_error\_category}, \hyperpage{13}
+  \item {AAC\_Image}, \hyperpage{14}
+  \item {AAC\_Matrix$<$ T $>$}, \hyperpage{14}
   \item {AAC\_OpenImage}
     \subitem {AAC.cpp}, \hyperpage{19}
     \subitem {AAC.h}, \hyperpage{21}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}, \hyperpage{14}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}, \hyperpage{15}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}, \hyperpage{15}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}, \hyperpage{15}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}, \hyperpage{16}
-  \item {AAC\_Pixel$<$ E $>$}, \hyperpage{14}
-  \item {AAC\_Pixel\_EMPTY}, \hyperpage{16}
-  \item {AAC\_Pixel\_G}, \hyperpage{16}
-  \item {AAC\_Pixel\_GA}, \hyperpage{17}
-  \item {AAC\_Pixel\_RGB}, \hyperpage{17}
-  \item {AAC\_Pixel\_RGBA}, \hyperpage{17}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}, \hyperpage{15}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}, \hyperpage{16}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}, \hyperpage{16}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}, \hyperpage{16}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}, \hyperpage{17}
+  \item {AAC\_Pixel$<$ E $>$}, \hyperpage{15}
+  \item {AAC\_Pixel\_EMPTY}, \hyperpage{17}
+  \item {AAC\_Pixel\_G}, \hyperpage{17}
+  \item {AAC\_Pixel\_GA}, \hyperpage{18}
+  \item {AAC\_Pixel\_RGB}, \hyperpage{18}
+  \item {AAC\_Pixel\_RGBA}, \hyperpage{18}
 
 \end{theindex}

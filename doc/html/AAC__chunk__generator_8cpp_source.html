@@ -80,18 +80,18 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordflow">throw</span> get_AAC_error_code();</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x_nof_chunks = img-&gt;size_x / chunk_size;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lcols_to_cut = (img-&gt;size_x - chunk_size * x_nof_chunks) / 2;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">size_t</span> x_nof_chunks = img-&gt;size_x / chunk_size;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">size_t</span> lcols_to_cut = (img-&gt;size_x - chunk_size * x_nof_chunks) / 2;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y_chunk_size = (<span class="keywordtype">unsigned</span> int)((<span class="keywordtype">float</span>)chunk_size / _ratio);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y_nof_chunks = img-&gt;size_y / y_chunk_size;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> urows_to_cut = (img-&gt;size_y - y_chunk_size * y_nof_chunks) / 2;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">size_t</span> y_chunk_size = (size_t)((<span class="keywordtype">float</span>)chunk_size / _ratio);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">size_t</span> y_nof_chunks = img-&gt;size_y / y_chunk_size;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">size_t</span> urows_to_cut = (img-&gt;size_y - y_chunk_size * y_nof_chunks) / 2;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classAAC__Matrix.html">AAC_Matrix&lt;AAC_Chunk&gt;</a>* arr = <span class="keyword">new</span> <a class="code" href="classAAC__Matrix.html">AAC_Matrix&lt;AAC_Chunk&gt;</a>(x_nof_chunks, y_nof_chunks);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; y_nof_chunks; i++)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; y_nof_chunks; i++)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; x_nof_chunks; j++)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; x_nof_chunks; j++)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            arr-&gt;GetElementReference(j, i).SetChunk(lcols_to_cut + j * chunk_size,</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                                   lcols_to_cut + (j + 1) * chunk_size,</div>
@@ -118,10 +118,10 @@ $(function() {
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> art;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassAAC__ChunkConverter_html"><div class="ttname"><a href="classAAC__ChunkConverter.html">AAC_ChunkConverter</a></div><div class="ttdoc">Converts chunks matrix into final string.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00382">AAC.h:382</a></div></div>
-<div class="ttc" id="aclassAAC__BrightnessConverter_html"><div class="ttname"><a href="classAAC__BrightnessConverter.html">AAC_BrightnessConverter</a></div><div class="ttdoc">Specifies group off classes converting AAC_Image to brightness matrix.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00349">AAC.h:349</a></div></div>
-<div class="ttc" id="aclassAAC__Image_html"><div class="ttname"><a href="classAAC__Image.html">AAC_Image</a></div><div class="ttdoc">Contains full image as pixels matrix.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00277">AAC.h:277</a></div></div>
-<div class="ttc" id="aclassAAC__Matrix_html"><div class="ttname"><a href="classAAC__Matrix.html">AAC_Matrix</a></div><div class="ttdoc">Multipurpose matrix class.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00086">AAC.h:86</a></div></div>
+<div class="ttc" id="aclassAAC__ChunkConverter_html"><div class="ttname"><a href="classAAC__ChunkConverter.html">AAC_ChunkConverter</a></div><div class="ttdoc">Converts chunks matrix into final string.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00385">AAC.h:385</a></div></div>
+<div class="ttc" id="aclassAAC__BrightnessConverter_html"><div class="ttname"><a href="classAAC__BrightnessConverter.html">AAC_BrightnessConverter</a></div><div class="ttdoc">Specifies group off classes converting AAC_Image to brightness matrix.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00351">AAC.h:351</a></div></div>
+<div class="ttc" id="aclassAAC__Image_html"><div class="ttname"><a href="classAAC__Image.html">AAC_Image</a></div><div class="ttdoc">Contains full image as pixels matrix.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00279">AAC.h:279</a></div></div>
+<div class="ttc" id="aclassAAC__Matrix_html"><div class="ttname"><a href="classAAC__Matrix.html">AAC_Matrix</a></div><div class="ttdoc">Multipurpose matrix class.</div><div class="ttdef"><b>Definition:</b> <a href="AAC_8h_source.html#l00088">AAC.h:88</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
