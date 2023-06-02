@@ -1,35 +1,31 @@
 \begin{theindex}
 
-  \item {AAC.cpp}, \hyperpage{21}
+  \item {AAC.cpp}, \hyperpage{19}
+    \subitem {AAC\_OpenImage}, \hyperpage{19}
+  \item {AAC.h}, \hyperpage{20}
     \subitem {AAC\_OpenImage}, \hyperpage{21}
-  \item {AAC.h}, \hyperpage{22}
-    \subitem {AAC\_OpenImage}, \hyperpage{23}
-  \item {AAC\_BC\_Simple}, \hyperpage{9}
-  \item {AAC\_BrightnessConverter}, \hyperpage{10}
-  \item {AAC\_CC\_Simple}, \hyperpage{11}
-  \item {AAC\_Chunk}, \hyperpage{12}
-  \item {AAC\_ChunkConverter}, \hyperpage{12}
-  \item {AAC\_Converter}, \hyperpage{13}
-  \item {AAC\_error\_category}, \hyperpage{14}
-  \item {AAC\_Image}, \hyperpage{15}
-  \item {AAC\_Matrix$<$ T $>$}, \hyperpage{15}
+  \item {AAC\_BC\_Simple}, \hyperpage{7}
+  \item {AAC\_BrightnessConverter}, \hyperpage{8}
+  \item {AAC\_CC\_Simple}, \hyperpage{9}
+  \item {AAC\_Chunk}, \hyperpage{10}
+  \item {AAC\_ChunkConverter}, \hyperpage{10}
+  \item {AAC\_Converter}, \hyperpage{11}
+  \item {AAC\_error\_category}, \hyperpage{12}
+  \item {AAC\_Image}, \hyperpage{13}
+  \item {AAC\_Matrix$<$ T $>$}, \hyperpage{13}
   \item {AAC\_OpenImage}
-    \subitem {AAC.cpp}, \hyperpage{21}
-    \subitem {AAC.h}, \hyperpage{23}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}, \hyperpage{16}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}, \hyperpage{17}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}, \hyperpage{17}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}, \hyperpage{17}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}, \hyperpage{18}
-  \item {AAC\_Pixel$<$ E $>$}, \hyperpage{16}
-  \item {AAC\_Pixel\_EMPTY}, \hyperpage{18}
-  \item {AAC\_Pixel\_G}, \hyperpage{18}
-  \item {AAC\_Pixel\_GA}, \hyperpage{19}
-  \item {AAC\_Pixel\_RGB}, \hyperpage{19}
-  \item {AAC\_Pixel\_RGBA}, \hyperpage{19}
-
-  \indexspace
-
-  \item {stbi\_io\_callbacks}, \hyperpage{20}
+    \subitem {AAC.cpp}, \hyperpage{19}
+    \subitem {AAC.h}, \hyperpage{21}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}, \hyperpage{14}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}, \hyperpage{15}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}, \hyperpage{15}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}, \hyperpage{15}
+  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}, \hyperpage{16}
+  \item {AAC\_Pixel$<$ E $>$}, \hyperpage{14}
+  \item {AAC\_Pixel\_EMPTY}, \hyperpage{16}
+  \item {AAC\_Pixel\_G}, \hyperpage{16}
+  \item {AAC\_Pixel\_GA}, \hyperpage{17}
+  \item {AAC\_Pixel\_RGB}, \hyperpage{17}
+  \item {AAC\_Pixel\_RGBA}, \hyperpage{17}
 
 \end{theindex}

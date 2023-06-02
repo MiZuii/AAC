@@ -4,6 +4,9 @@ project(AAC LANGUAGES CXX)
 set(LIBRARY_NAME "AAClib")
 set(AAC_VERSION 1.0)
 
+# include headers globaly
+include_directories(headers/)
+
 # Find Doxygen
 find_program(DOXYGEN NAMES doxygen)
 
@@ -46,7 +49,6 @@ foreach(header IN LISTS HEADERS_FILTERED)
     message(" +  - ${header}")
     
 endforeach()
-
 
 target_sources(${LIBRARY_NAME} PRIVATE ${SOURCES})
 target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -pedantic)
