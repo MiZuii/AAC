@@ -2,6 +2,13 @@
 // Created by Pedro on 13.03.2023.
 //
 
+/**
+ * @file AAC.h
+ *
+ * @brief Main library header file
+ *
+ */
+
 #include <iostream>
 #include <string>
 #include <system_error>
@@ -24,6 +31,12 @@ void set_AAC_error_code(std::error_code ec);
 std::error_code get_AAC_error_code();
 void clear_AAC_error_code();
 
+/**
+ * @class AAC_error_category
+ *
+ * @brief Class provideing error messages for AAC library
+ *
+ */
 class AAC_error_category : public std::error_category
 {
 public:
@@ -53,8 +66,8 @@ public:
             return "[AAC] To small chunks for conversion";
         default:
             return "[AAC] Unknown error";
+        }
     }
-}
 };
 
 const AAC_error_category AAC_category{};
@@ -65,6 +78,12 @@ std::error_code make_error_code(AAC_error_codes ec);
 /*                                MATRIX CLASS                                */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_Matrix
+ *
+ * @brief Multipurpose matrix class
+ *
+ */
 template<typename T>
 class AAC_Matrix
 {
@@ -82,12 +101,80 @@ public:
     unsigned int GetYSize();
 };
 
-#include "sources/AAC_matrix.tpp"
+template <typename T>
+AAC_Matrix<T>::AAC_Matrix(unsigned int size_x, unsigned int size_y) : size_x(size_x), size_y(size_y)
+{
+    _matrix = new T *[size_y];
+    if (NULL == _matrix)
+    {
+        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
+        throw get_AAC_error_code();
+    }
+
+    for (unsigned int i = 0; i < size_y; i++)
+    {
+        _matrix[i] = new T[size_x];
+
+        if (NULL == _matrix[i])
+        {
+            set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
+            throw get_AAC_error_code();
+        }
+    }
+}
+
+template <typename T>
+AAC_Matrix<T>::~AAC_Matrix()
+{
+    for (unsigned int i = 0; i < size_y; i++)
+    {
+        delete[] _matrix[i];
+    }
+    delete[] _matrix;
+}
+
+template <typename T>
+const T AAC_Matrix<T>::GetElement(unsigned int x, unsigned int y)
+{
+    if (x >= size_x || y >= size_y)
+    {
+        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
+        throw get_AAC_error_code();
+    }
+    return _matrix[y][x];
+}
+
+template <typename T>
+T &AAC_Matrix<T>::GetElementReference(unsigned int x, unsigned int y)
+{
+    if (x >= size_x || y >= size_y)
+    {
+        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
+        throw get_AAC_error_code();
+    }
+    return _matrix[y][x];
+}
+
+template <typename T>
+unsigned int AAC_Matrix<T>::GetXSize() {
+    return size_x;
+}
+
+template <typename T>
+unsigned int AAC_Matrix<T>::GetYSize() {
+    return size_y;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 PIXEL CLASS                                */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_Pixel
+ *
+ * @brief Pixel class for storing AAC_Image pixels in more organised way
+ *
+ */
 template <AAC_Pixel_Type E>
 class AAC_Pixel
 {
@@ -183,6 +270,12 @@ public:
 /*                                 IMAGE CLASS                                */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_Image
+ *
+ * @brief Contains full image as pixels matrix
+ *
+ */
 class AAC_Image
 {
 private:
@@ -206,12 +299,23 @@ public:
 };
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
+/**
+ *  AAC_OpenImage
+ *
+ * @brief Global image opener
+ */
 AAC_Image* AAC_OpenImage(std::string path);
 
 /* -------------------------------------------------------------------------- */
 /*                                 CHUNK CLASS                                */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_Chunk
+ *
+ * @brief Representation of groups of pixels which are going to be replaced by single char
+ *
+ */
 class AAC_Chunk
 {
 private:
@@ -238,12 +342,24 @@ public:
 /*                         RIGHTNESS CONVERTER CLASSES                        */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_BrightnessConverter
+ *
+ * @brief Specifies group off classes converting AAC_Image to brightness matrix
+ *
+ */
 class AAC_BrightnessConverter
 {
 public:
     virtual std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) = 0;
 };
 
+/**
+ * @class AAC_BC_Simple
+ *
+ * @brief Simplest possible brightness converter
+ *
+ */
 class AAC_BC_Simple : public AAC_BrightnessConverter
 {
 private:
@@ -260,12 +376,24 @@ public:
 /*                           CHUNK CONVERTER CLASSES                          */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_ChunkConverter
+ *
+ * @brief Converts chunks matrix into final string
+ *
+ */
 class AAC_ChunkConverter
 {
 public:
     virtual std::string convert(AAC_Matrix<AAC_Chunk>* chunks) = 0;
 };
 
+/**
+ * @class AAC_CC_Simple
+ *
+ * @brief Simplest possible chunk converter
+ *
+ */
 class AAC_CC_Simple : public AAC_ChunkConverter
 {
 private:
@@ -293,6 +421,12 @@ public:
 /*                               CONVERTER CLASS                              */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @class AAC_Converter
+ *
+ * @brief Creates main converter combining all other steps to create art
+ *
+ */
 class AAC_Converter
 {
 private:

@@ -4,20 +4,46 @@ project(AAC LANGUAGES CXX)
 set(LIBRARY_NAME "AAClib")
 set(AAC_VERSION 1.0)
 
-# include headers
-include_directories(headers/)
+# Find Doxygen
+find_program(DOXYGEN NAMES doxygen)
 
-# AAC library target
+# Check if Doxygen is found
+if (DOXYGEN)
+    message(" + Doxygen found: ${DOXYGEN_EXECUTABLE}")
+
+    # configure doxygen
+    set(DOXYGEN_FILES_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
+    set(DOXYGEN_GENERATE_HTML YES)
+    set(DOXYGEN_GENERATE_MAN NO)
+else ()
+    message(" + Doxygen not found. Documentation will not be generated.")
+endif ()
+
+
+# ------------------ AAC library target
 add_library(${LIBRARY_NAME} STATIC)
 
 
 message(" + Project dir: ${AAC_SOURCE_DIR}")
 
 # find source files
-file(GLOB SOURCES *.cpp sources/*.cpp)
-message(" + Searching for source files:")
+file(GLOB SOURCES *.cpp sources/*.cpp sources/*.tpp)
+file(GLOB HEADERS *.h headers/*.h)
+file(GLOB STBI_DIR headers/stb_image.h)
+set(HEADERS_FILTERED ${HEADERS})
+list(REMOVE_ITEM HEADERS_FILTERED ${STBI_DIR})
+
+# prep them for doxygen
+string(REPLACE ";" " " DOXYGEN_DIRS_STR "${SOURCES} ${HEADERS_FILTERED}")  
+set(DOXYGEN_INPUT ${DOXYGEN_DIRS_STR})
+
 foreach(source IN LISTS SOURCES)
-    message(" +  - found: ${source}")
+    message(" +  - ${source}")
+    
+endforeach()
+
+foreach(header IN LISTS HEADERS_FILTERED)
+    message(" +  - ${header}")
     
 endforeach()
 
@@ -25,22 +51,28 @@ endforeach()
 target_sources(${LIBRARY_NAME} PRIVATE ${SOURCES})
 target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -pedantic)
 
-
+# -------------- test target
 set(TEST_FILE test)
 set(TEST_DIR "testdir")
 
 add_executable(${TEST_FILE} "${TEST_DIR}/main.cpp")
 target_link_libraries(${TEST_FILE} PRIVATE ${LIBRARY_NAME})
 
-
 set_target_properties(${TEST_FILE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 
-# export dependencies into .vscode if work is done in vscode
-if (DEFINED ENV{VSCODE_CWD})
-    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-    set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
 
-    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
-                    ${CMAKE_BINARY_DIR}/compile_commands.json
-                    ${AAC_SOURCE_DIR}/.vscode/compile_commands.json)
-endif()
+if (DOXYGEN)
+    # Configure doxfile
+    configure_file(${DOXYGEN_FILES_DIRECTORY}/Doxyfile.in ${DOXYGEN_FILES_DIRECTORY}/Doxyfile @ONLY)
+
+    # Add target to generate Doxygen documentation
+    add_custom_target(doc
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_FILES_DIRECTORY}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+    # Add target to make pdf manual
+    add_custom_target(man
+        COMMAND make
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc/latex)
+    
+endif ()

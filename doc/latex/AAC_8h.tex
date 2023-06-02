@@ -1,0 +1,112 @@
+\hypertarget{AAC_8h}{}\doxysection{A\+A\+C.\+h File Reference}
+\label{AAC_8h}\index{AAC.h@{AAC.h}}
+
+
+Main library header file.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$system\+\_\+error$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include \char`\"{}enums.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structs.\+h\char`\"{}}\newline
+Include dependency graph for A\+A\+C.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AAC_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AAC_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classAAC__error__category}{A\+A\+C\+\_\+error\+\_\+category}}
+\begin{DoxyCompactList}\small\item\em Class provideing error messages for A\+AC library. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__Matrix}{A\+A\+C\+\_\+\+Matrix$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Multipurpose matrix class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__Pixel}{A\+A\+C\+\_\+\+Pixel$<$ E $>$}}
+\begin{DoxyCompactList}\small\item\em Pixel class for storing \mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} pixels in more organised way. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__Pixel_3_01AAC__Pixel__Type_1_1G_01_4}{A\+A\+C\+\_\+\+Pixel$<$ A\+A\+C\+\_\+\+Pixel\+\_\+\+Type\+::\+G $>$}}
+\item 
+class \mbox{\hyperlink{classAAC__Pixel_3_01AAC__Pixel__Type_1_1GA_01_4}{A\+A\+C\+\_\+\+Pixel$<$ A\+A\+C\+\_\+\+Pixel\+\_\+\+Type\+::\+G\+A $>$}}
+\item 
+class \mbox{\hyperlink{classAAC__Pixel_3_01AAC__Pixel__Type_1_1RGB_01_4}{A\+A\+C\+\_\+\+Pixel$<$ A\+A\+C\+\_\+\+Pixel\+\_\+\+Type\+::\+R\+G\+B $>$}}
+\item 
+class \mbox{\hyperlink{classAAC__Pixel_3_01AAC__Pixel__Type_1_1RGBA_01_4}{A\+A\+C\+\_\+\+Pixel$<$ A\+A\+C\+\_\+\+Pixel\+\_\+\+Type\+::\+R\+G\+B\+A $>$}}
+\item 
+class \mbox{\hyperlink{classAAC__Pixel_3_01AAC__Pixel__Type_1_1EMPTY_01_4}{A\+A\+C\+\_\+\+Pixel$<$ A\+A\+C\+\_\+\+Pixel\+\_\+\+Type\+::\+E\+M\+P\+T\+Y $>$}}
+\item 
+class \mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}}
+\begin{DoxyCompactList}\small\item\em Contains full image as pixels matrix. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__Chunk}{A\+A\+C\+\_\+\+Chunk}}
+\begin{DoxyCompactList}\small\item\em Representation of groups of pixels which are going to be replaced by single char. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__BrightnessConverter}{A\+A\+C\+\_\+\+Brightness\+Converter}}
+\begin{DoxyCompactList}\small\item\em Specifies group off classes converting \mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} to brightness matrix. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__BC__Simple}{A\+A\+C\+\_\+\+B\+C\+\_\+\+Simple}}
+\begin{DoxyCompactList}\small\item\em Simplest possible brightness converter. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__ChunkConverter}{A\+A\+C\+\_\+\+Chunk\+Converter}}
+\begin{DoxyCompactList}\small\item\em Converts chunks matrix into final string. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__CC__Simple}{A\+A\+C\+\_\+\+C\+C\+\_\+\+Simple}}
+\begin{DoxyCompactList}\small\item\em Simplest possible chunk converter. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAAC__Converter}{A\+A\+C\+\_\+\+Converter}}
+\begin{DoxyCompactList}\small\item\em Creates main converter combining all other steps to create art. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{AAC_8h_a0592dba56693fad79136250c11e5a7fe}\label{AAC_8h_a0592dba56693fad79136250c11e5a7fe}} 
+\#define {\bfseries M\+A\+X\+\_\+\+S\+I\+ZE}~4000
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{AAC_8h_aaf39e158885acc22dc040743824a70d1}\label{AAC_8h_aaf39e158885acc22dc040743824a70d1}} 
+void {\bfseries set\+\_\+\+A\+A\+C\+\_\+error\+\_\+code} (std\+::error\+\_\+code ec)
+\item 
+\mbox{\Hypertarget{AAC_8h_aa3453e64cb6e90240d69be700d7c353b}\label{AAC_8h_aa3453e64cb6e90240d69be700d7c353b}} 
+std\+::error\+\_\+code {\bfseries get\+\_\+\+A\+A\+C\+\_\+error\+\_\+code} ()
+\item 
+\mbox{\Hypertarget{AAC_8h_a5e332e90787dd7fd3707b1e72a7c123d}\label{AAC_8h_a5e332e90787dd7fd3707b1e72a7c123d}} 
+void {\bfseries clear\+\_\+\+A\+A\+C\+\_\+error\+\_\+code} ()
+\item 
+\mbox{\Hypertarget{AAC_8h_ade74df13315d60367ceaa06e409457d6}\label{AAC_8h_ade74df13315d60367ceaa06e409457d6}} 
+std\+::error\+\_\+code {\bfseries make\+\_\+error\+\_\+code} (A\+A\+C\+\_\+error\+\_\+codes ec)
+\item 
+\mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} $\ast$ \mbox{\hyperlink{AAC_8h_a728aa678a50792e7efb77472bed9fa1e}{A\+A\+C\+\_\+\+Open\+Image}} (std\+::string path)
+\begin{DoxyCompactList}\small\item\em Global image opener. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{AAC_8h_aba586a40f6a3e0603a958ec2c11e8d8c}\label{AAC_8h_aba586a40f6a3e0603a958ec2c11e8d8c}} 
+const \mbox{\hyperlink{classAAC__error__category}{A\+A\+C\+\_\+error\+\_\+category}} {\bfseries A\+A\+C\+\_\+category} \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main library header file. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{AAC_8h_a728aa678a50792e7efb77472bed9fa1e}\label{AAC_8h_a728aa678a50792e7efb77472bed9fa1e}} 
+\index{AAC.h@{AAC.h}!AAC\_OpenImage@{AAC\_OpenImage}}
+\index{AAC\_OpenImage@{AAC\_OpenImage}!AAC.h@{AAC.h}}
+\doxysubsubsection{\texorpdfstring{AAC\_OpenImage()}{AAC\_OpenImage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}}$\ast$ A\+A\+C\+\_\+\+Open\+Image (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+
+
+Global image opener. 
+
+A\+A\+C\+\_\+\+Open\+Image 
+
+Definition at line 25 of file A\+A\+C.\+cpp.
+
