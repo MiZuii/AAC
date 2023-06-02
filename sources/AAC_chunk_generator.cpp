@@ -9,18 +9,18 @@ AAC_Matrix<AAC_Chunk>* AAC_Converter::generateChunks(AAC_Image *img, size_t chun
         throw get_AAC_error_code();
     }
 
-    unsigned int x_nof_chunks = img->size_x / chunk_size;
-    unsigned int lcols_to_cut = (img->size_x - chunk_size * x_nof_chunks) / 2;
+    size_t x_nof_chunks = img->size_x / chunk_size;
+    size_t lcols_to_cut = (img->size_x - chunk_size * x_nof_chunks) / 2;
 
-    unsigned int y_chunk_size = (unsigned int)((float)chunk_size / _ratio);
-    unsigned int y_nof_chunks = img->size_y / y_chunk_size;
-    unsigned int urows_to_cut = (img->size_y - y_chunk_size * y_nof_chunks) / 2;
+    size_t y_chunk_size = (size_t)((float)chunk_size / _ratio);
+    size_t y_nof_chunks = img->size_y / y_chunk_size;
+    size_t urows_to_cut = (img->size_y - y_chunk_size * y_nof_chunks) / 2;
 
     AAC_Matrix<AAC_Chunk>* arr = new AAC_Matrix<AAC_Chunk>(x_nof_chunks, y_nof_chunks);
 
-    for (unsigned int i = 0; i < y_nof_chunks; i++)
+    for (size_t i = 0; i < y_nof_chunks; i++)
     {
-        for (unsigned int j = 0; j < x_nof_chunks; j++)
+        for (size_t j = 0; j < x_nof_chunks; j++)
         {
             arr->GetElementReference(j, i).SetChunk(lcols_to_cut + j * chunk_size,
                                                    lcols_to_cut + (j + 1) * chunk_size,

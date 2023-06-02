@@ -49,6 +49,8 @@ public:
             return "[AAC] Failed to allocate space for AAC_Matrix";
         case AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
             return "[AAC] Index out of range";
+        case AAC_error_codes::CHUNK_SIZE_ERROR:
+            return "[AAC] To small chunks for conversion";
         default:
             return "[AAC] Unknown error";
     }
@@ -79,6 +81,8 @@ public:
     unsigned int GetXSize();
     unsigned int GetYSize();
 };
+
+#include "sources/AAC_matrix.tpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 PIXEL CLASS                                */
@@ -244,9 +248,10 @@ class AAC_BC_Simple : public AAC_BrightnessConverter
 {
 private:
     const float _red_weight, _green_weight, _blue_weight;
+    const uint8_t _negate;
 
 public:
-    AAC_BC_Simple(float red_weight, float green_weight, float blue_weight);
+    AAC_BC_Simple(float red_weight, float green_weight, float blue_weight, uint8_t negate = 0);
     AAC_BC_Simple();
     std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) override;
 };
@@ -268,6 +273,18 @@ private:
 
 public:
     AAC_CC_Simple(std::string alphabet);
+    std::string convert(AAC_Matrix<AAC_Chunk>* chunks) override;
+
+};
+
+class AAC_CC_Braile : public AAC_ChunkConverter
+{
+private:
+    static wchar_t get_braile_char(uint8_t char_val);
+    const uint8_t _bk_brightness;
+
+public:
+    AAC_CC_Braile(uint8_t break_point_brightness);
     std::string convert(AAC_Matrix<AAC_Chunk>* chunks) override;
 
 };

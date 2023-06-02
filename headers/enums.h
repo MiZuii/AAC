@@ -11,6 +11,7 @@ enum class AAC_error_codes {
   BRIGHTNESS_CALCULATION_FAIL,
   MATRIX_ALLOCATION_ERROR,
   MATRIX_INDEX_OUT_OF_BOUNDS,
+  CHUNK_SIZE_ERROR,
 };
 
 enum class AAC_Pixel_Type {
