@@ -4,6 +4,9 @@ project(AAC LANGUAGES CXX)
 set(LIBRARY_NAME "AAClib")
 set(AAC_VERSION 1.0)
 
+# for verbose make output
+# set(CMAKE_VERBOSE_MAKEFILE TRUE)
+
 # include headers globaly
 include_directories(headers/)
 
@@ -12,7 +15,7 @@ find_program(DOXYGEN NAMES doxygen)
 
 # Check if Doxygen is found
 if (DOXYGEN)
-    message(" + Doxygen found: ${DOXYGEN_EXECUTABLE}")
+    message(" + Doxygen found")
 
     # configure doxygen
     set(DOXYGEN_FILES_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
@@ -39,6 +42,8 @@ list(REMOVE_ITEM HEADERS_FILTERED ${STBI_DIR})
 # prep them for doxygen
 string(REPLACE ";" " " DOXYGEN_DIRS_STR "${SOURCES} ${HEADERS_FILTERED}")  
 set(DOXYGEN_INPUT ${DOXYGEN_DIRS_STR})
+
+message(" + Project headers and source files:")
 
 foreach(source IN LISTS SOURCES)
     message(" +  - ${source}")
@@ -76,5 +81,7 @@ if (DOXYGEN)
     add_custom_target(man
         COMMAND make
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc/latex)
+
+    message(" + Doxygen targets configured")
     
 endif ()
