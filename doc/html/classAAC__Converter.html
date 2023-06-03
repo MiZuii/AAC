@@ -63,6 +63,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classAAC__Converter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AAC_Converter Class Reference</div>  </div>
@@ -73,6 +76,16 @@ $(function() {
  <a href="classAAC__Converter.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="AAC_8h_source.html">AAC.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for AAC_Converter:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAAC__Converter__coll__graph.png" border="0" usemap="#AAC__Converter_coll__map" alt="Collaboration graph"/></div>
+<map name="AAC__Converter_coll__map" id="AAC__Converter_coll__map">
+<area shape="rect" title="Creates main converter combining all other steps to create art." alt="" coords="140,95,260,121"/>
+<area shape="rect" href="classAAC__BrightnessConverter.html" title="Specifies group off classes converting AAC_Image to brightness matrix." alt="" coords="5,5,195,32"/>
+<area shape="rect" href="classAAC__ChunkConverter.html" title="Converts chunks matrix into final string." alt="" coords="219,5,381,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -82,15 +95,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b6b86caa7e27473c6a64bfa51ef5768"><td class="memItemLeft" align="right" valign="top"><a id="a7b6b86caa7e27473c6a64bfa51ef5768"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>CreateArt</b> (<a class="el" href="classAAC__Image.html">AAC_Image</a> *img, size_t chunk_size)</td></tr>
 <tr class="separator:a7b6b86caa7e27473c6a64bfa51ef5768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad2579d8bf2ae3347d89a32744123a8dc"><td class="memItemLeft" align="right" valign="top"><a id="ad2579d8bf2ae3347d89a32744123a8dc"></a>
+<a class="el" href="classAAC__Matrix.html">AAC_Matrix</a>&lt; <a class="el" href="classAAC__Chunk.html">AAC_Chunk</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>generateChunks</b> (<a class="el" href="classAAC__Image.html">AAC_Image</a> *img, size_t chunk_size, std::shared_ptr&lt; <a class="el" href="classAAC__Matrix.html">AAC_Matrix</a>&lt; uint8_t &gt;&gt; brightness_matrix)</td></tr>
+<tr class="separator:ad2579d8bf2ae3347d89a32744123a8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0e138a97b5975f5cc82afb45ca45efe1"><td class="memItemLeft" align="right" valign="top"><a id="a0e138a97b5975f5cc82afb45ca45efe1"></a>
+<a class="el" href="classAAC__BrightnessConverter.html">AAC_BrightnessConverter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_brightness_conv</b></td></tr>
+<tr class="separator:a0e138a97b5975f5cc82afb45ca45efe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a29191ef5419c67c4eb5dad5e9fefb"><td class="memItemLeft" align="right" valign="top"><a id="a71a29191ef5419c67c4eb5dad5e9fefb"></a>
+<a class="el" href="classAAC__ChunkConverter.html">AAC_ChunkConverter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_chunk_conv</b></td></tr>
+<tr class="separator:a71a29191ef5419c67c4eb5dad5e9fefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:ab4427aa8ba1bea0f9b711a7a39411579"><td class="memItemLeft" align="right" valign="top"><a id="ab4427aa8ba1bea0f9b711a7a39411579"></a>
+static const float&#160;</td><td class="memItemRight" valign="bottom"><b>_ratio</b> = 0.45</td></tr>
+<tr class="separator:ab4427aa8ba1bea0f9b711a7a39411579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Creates main converter combining all other steps to create art. </p>
 
 <p class="definition">Definition at line <a class="el" href="AAC_8h_source.html#l00430">430</a> of file <a class="el" href="AAC_8h_source.html">AAC.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="AAC_8h_source.html">AAC.h</a></li>
-<li><a class="el" href="AAC_8cpp_source.html">AAC.cpp</a></li>
-<li>sources/<a class="el" href="AAC__chunk__generator_8cpp_source.html">AAC_chunk_generator.cpp</a></li>
+<li>/home/piotr/stdia/AAC/<a class="el" href="AAC_8h_source.html">AAC.h</a></li>
+<li>/home/piotr/stdia/AAC/<a class="el" href="AAC_8cpp_source.html">AAC.cpp</a></li>
+<li>/home/piotr/stdia/AAC/sources/<a class="el" href="AAC__chunk__generator_8cpp_source.html">AAC_chunk_generator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

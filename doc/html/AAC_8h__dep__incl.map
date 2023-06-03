@@ -1,11 +1,11 @@
-<map id="AAC.h" name="AAC.h">
-<area shape="rect" id="node1" title="Main library header file." alt="" coords="735,5,797,32"/>
-<area shape="rect" id="node2" href="$AAC_8cpp.html" title="This file contains shiet." alt="" coords="5,87,81,114"/>
-<area shape="rect" id="node3" href="$AAC__brightness__converter_8cpp_source.html" title=" " alt="" coords="106,80,285,121"/>
-<area shape="rect" id="node4" href="$AAC__chunk_8cpp_source.html" title=" " alt="" coords="309,87,485,114"/>
-<area shape="rect" id="node5" href="$AAC__chunk__converter_8cpp_source.html" title=" " alt="" coords="509,87,753,114"/>
-<area shape="rect" id="node6" href="$AAC__chunk__generator_8cpp_source.html" title=" " alt="" coords="778,87,1023,114"/>
-<area shape="rect" id="node7" href="$AAC__error_8cpp_source.html" title=" " alt="" coords="1048,87,1215,114"/>
-<area shape="rect" id="node8" href="$AAC__image_8cpp_source.html" title=" " alt="" coords="1239,87,1418,114"/>
-<area shape="rect" id="node9" href="$AAC__pixel_8cpp_source.html" title=" " alt="" coords="1442,87,1610,114"/>
+<map id="/home/piotr/stdia/AAC/AAC.h" name="/home/piotr/stdia/AAC/AAC.h">
+<area shape="rect" id="node1" title="Main library header file." alt="" coords="783,5,947,47"/>
+<area shape="rect" id="node2" href="$AAC_8cpp.html" title="This file contains shiet." alt="" coords="5,102,169,143"/>
+<area shape="rect" id="node3" href="$AAC__brightness__converter_8cpp_source.html" title=" " alt="" coords="193,95,376,151"/>
+<area shape="rect" id="node4" href="$AAC__chunk_8cpp_source.html" title=" " alt="" coords="400,102,580,143"/>
+<area shape="rect" id="node5" href="$AAC__chunk__converter_8cpp_source.html" title=" " alt="" coords="605,102,853,143"/>
+<area shape="rect" id="node6" href="$AAC__chunk__generator_8cpp_source.html" title=" " alt="" coords="876,102,1125,143"/>
+<area shape="rect" id="node7" href="$AAC__error_8cpp_source.html" title=" " alt="" coords="1150,102,1321,143"/>
+<area shape="rect" id="node8" href="$AAC__image_8cpp_source.html" title=" " alt="" coords="1345,102,1528,143"/>
+<area shape="rect" id="node9" href="$AAC__pixel_8cpp_source.html" title=" " alt="" coords="1552,102,1724,143"/>
 </map>

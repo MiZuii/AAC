@@ -74,8 +74,8 @@ if (DOXYGEN)
 
     # Add target to generate Doxygen documentation
     add_custom_target(doc
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_FILES_DIRECTORY}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+        COMMAND ${DOXYGEN} ${DOXYGEN_FILES_DIRECTORY}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
 
     # Add target to make pdf manual
     add_custom_target(man

@@ -1,9 +1,9 @@
-<map id="AAC.h" name="AAC.h">
-<area shape="rect" id="node1" title="Main library header file." alt="" coords="271,5,332,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,85,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="109,80,168,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="193,80,301,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="325,80,389,107"/>
-<area shape="rect" id="node6" href="$enums_8h_source.html" title=" " alt="" coords="414,80,493,107"/>
-<area shape="rect" id="node7" href="$structs_8h_source.html" title=" " alt="" coords="517,80,595,107"/>
+<map id="/home/piotr/stdia/AAC/AAC.h" name="/home/piotr/stdia/AAC/AAC.h">
+<area shape="rect" id="node1" title="Main library header file." alt="" coords="219,5,383,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,85,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="109,95,168,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="193,95,301,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="325,95,389,121"/>
+<area shape="rect" id="node6" href="$enums_8h_source.html" title=" " alt="" coords="414,95,493,121"/>
+<area shape="rect" id="node7" href="$structs_8h_source.html" title=" " alt="" coords="517,95,595,121"/>
 </map>
