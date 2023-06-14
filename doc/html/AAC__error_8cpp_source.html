@@ -69,28 +69,32 @@ $(function() {
 <div class="title">AAC_error.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../AAC.h&quot;</span></div>
+<a href="AAC__error_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../AAC.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keywordtype">void</span> set_AAC_error_code(std::error_code ec)</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceAAC.html#a6631de65c2525a370eee22e1c0d3d360">AAC::set_error_code</a>(std::error_code ec)</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    AAC_error_code = ec;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    AAC::error_code = ec;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;}</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;std::error_code get_AAC_error_code()</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;std::error_code <a class="code" href="namespaceAAC.html#ab168d98d0b97ca57e48f421b32d9f5e1">AAC::get_error_code</a>()</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">return</span> AAC_error_code;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">return</span> AAC::error_code;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> clear_AAC_error_code()</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceAAC.html#a5c840f9f1b930e6c3d5c746f848e5c2a">AAC::clear_error_code</a>()</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    AAC_error_code = std::error_code{};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    AAC::error_code = std::error_code{};</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;std::error_code make_error_code(AAC_error_codes ec)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;std::error_code <a class="code" href="namespaceAAC.html#a1dff0e67028072b5d89595754f0d091a">AAC::make_error_code</a>(AAC::error_codes ec)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">return</span> std::error_code{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(ec), AAC_category};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">return</span> std::error_code{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(ec), AAC::category};</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespaceAAC_html_a1dff0e67028072b5d89595754f0d091a"><div class="ttname"><a href="namespaceAAC.html#a1dff0e67028072b5d89595754f0d091a">AAC::make_error_code</a></div><div class="ttdeci">std::error_code make_error_code(error_codes ec)</div><div class="ttdoc">Creates the AAC error code from the error_codes enumerator.</div></div>
+<div class="ttc" id="anamespaceAAC_html_a5c840f9f1b930e6c3d5c746f848e5c2a"><div class="ttname"><a href="namespaceAAC.html#a5c840f9f1b930e6c3d5c746f848e5c2a">AAC::clear_error_code</a></div><div class="ttdeci">void clear_error_code()</div><div class="ttdoc">Clears the AAC error code.</div></div>
+<div class="ttc" id="anamespaceAAC_html_ab168d98d0b97ca57e48f421b32d9f5e1"><div class="ttname"><a href="namespaceAAC.html#ab168d98d0b97ca57e48f421b32d9f5e1">AAC::get_error_code</a></div><div class="ttdeci">std::error_code get_error_code()</div><div class="ttdoc">Get the AAC error code variable.</div></div>
+<div class="ttc" id="anamespaceAAC_html_a6631de65c2525a370eee22e1c0d3d360"><div class="ttname"><a href="namespaceAAC.html#a6631de65c2525a370eee22e1c0d3d360">AAC::set_error_code</a></div><div class="ttdeci">void set_error_code(std::error_code ec)</div><div class="ttdoc">Set the AAC error code variable.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

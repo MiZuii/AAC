@@ -1,12 +1,12 @@
 #include "../AAC.h"
 
-AAC_Converter::AAC_Converter(AAC_BrightnessConverter* brightness_conv, AAC_ChunkConverter* chunk_conv) : _brightness_conv(brightness_conv), _chunk_conv(chunk_conv) {}
+AAC::Converter::Converter(AAC::BrightnessConverter* brightness_conv, AAC::ChunkConverter* chunk_conv) : _brightness_conv(brightness_conv), _chunk_conv(chunk_conv) {}
 
-AAC_Matrix<AAC_Chunk>* AAC_Converter::generateChunks(AAC_Image *img, size_t chunk_size, std::shared_ptr<AAC_Matrix<uint8_t>> brightness_matrix) {
+AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t chunk_size, std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix) {
 
     if( NULL == brightness_matrix || NULL == img ) {
-        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_ARGUMENTS));
-        throw get_AAC_error_code();
+        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
+        throw AAC::get_error_code();
     }
 
     size_t x_nof_chunks = img->size_x / chunk_size;
@@ -16,7 +16,7 @@ AAC_Matrix<AAC_Chunk>* AAC_Converter::generateChunks(AAC_Image *img, size_t chun
     size_t y_nof_chunks = img->size_y / y_chunk_size;
     size_t urows_to_cut = (img->size_y - y_chunk_size * y_nof_chunks) / 2;
 
-    AAC_Matrix<AAC_Chunk>* arr = new AAC_Matrix<AAC_Chunk>(x_nof_chunks, y_nof_chunks);
+    AAC::Matrix<AAC::Chunk>* arr = new AAC::Matrix<AAC::Chunk>(x_nof_chunks, y_nof_chunks);
 
     for (size_t i = 0; i < y_nof_chunks; i++)
     {
@@ -33,15 +33,15 @@ AAC_Matrix<AAC_Chunk>* AAC_Converter::generateChunks(AAC_Image *img, size_t chun
     return arr;
 }
 
-std::string AAC_Converter::CreateArt(AAC_Image* img, size_t chunk_size) {
+std::string AAC::Converter::CreateArt(AAC::Image* img, size_t chunk_size) {
 
     if( NULL == img ) {
-        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_ARGUMENTS));
-        throw get_AAC_error_code();
+        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
+        throw AAC::get_error_code();
     }
 
-    std::shared_ptr<AAC_Matrix<uint8_t>> brightness_m = _brightness_conv->convert(img);
-    AAC_Matrix<AAC_Chunk>* chunked_image = generateChunks(img, chunk_size, brightness_m);
+    std::shared_ptr<AAC::Matrix<uint8_t>> brightness_m = _brightness_conv->convert(img);
+    AAC::Matrix<AAC::Chunk>* chunked_image = generateChunks(img, chunk_size, brightness_m);
     std::string art = _chunk_conv->convert(chunked_image);
     delete chunked_image;
     return art;

@@ -15,30 +15,30 @@ uint8_t get_char_index(size_t interval_length, uint8_t brightness) {
     return brightness / interval_length;
 }
 
-AAC_CC_Simple::AAC_CC_Simple(std::string alphabet) : _alphabet(alphabet) {}
+AAC::CC_Simple::CC_Simple(std::string alphabet) : _alphabet(alphabet) {}
 
-std::string AAC_CC_Simple::convert(AAC_Matrix<AAC_Chunk>* chunks) {
+std::string AAC::CC_Simple::convert(AAC::Matrix<AAC::Chunk>* chunks) {
 
     // find the interval of the alphabet
     size_t alphabet_len = _alphabet.length();
 
     if( alphabet_len < 2 || alphabet_len > 255 ) {
-        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_ARGUMENTS));
-        throw get_AAC_error_code();
+        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
+        throw AAC::get_error_code();
     }
 
     uint8_t interval_len = 255 / alphabet_len;
 
 
     // make resulting char matrix and gather chunk data
-    AAC_Matrix<char> art_result = AAC_Matrix<char>(chunks->GetXSize(), chunks->GetYSize());
-    std::shared_ptr<AAC_Matrix<uint8_t>> brightness_matrix = chunks->GetElementReference(0, 0).GetData();
+    AAC::Matrix<char> art_result = AAC::Matrix<char>(chunks->GetXSize(), chunks->GetYSize());
+    std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix = chunks->GetElementReference(0, 0).GetData();
 
     // iterate through chunks and generate result
     for(size_t y = 0; y < chunks->GetYSize(); y++) {
         for(size_t x = 0; x < chunks->GetXSize(); x++) {
 
-            AAC_Chunk cchunk = chunks->GetElement(x, y);
+            AAC::Chunk cchunk = chunks->GetElement(x, y);
 
             unsigned long sum = 0;
             unsigned long quantity = (cchunk.GetYEnd() - cchunk.GetYStart())*(cchunk.GetYEnd() - cchunk.GetYStart());
@@ -71,28 +71,28 @@ std::string AAC_CC_Simple::convert(AAC_Matrix<AAC_Chunk>* chunks) {
 /*                                AAC_CC_Braile                               */
 /* -------------------------------------------------------------------------- */
 
-wchar_t AAC_CC_Braile::get_braile_char(uint8_t char_val) {
+wchar_t AAC::CC_Braile::get_braile_char(uint8_t char_val) {
     return static_cast<wchar_t>(0x2800 + char_val);
 }
 
-AAC_CC_Braile::AAC_CC_Braile(uint8_t break_point_brightness) : _bk_brightness(break_point_brightness) {}
+AAC::CC_Braile::CC_Braile(uint8_t break_point_brightness) : _bk_brightness(break_point_brightness) {}
 
-std::string AAC_CC_Braile::convert(AAC_Matrix<AAC_Chunk>* chunks) {
+std::string AAC::CC_Braile::convert(AAC::Matrix<AAC::Chunk>* chunks) {
 
     // check if necessery chunk size is provided
     if( (chunks->GetElementReference(0, 0).GetXEnd() - chunks->GetElementReference(0, 0).GetXStart()) < BRAILE_CHUNKX_DIVISOR ||
       (chunks->GetElementReference(0, 0).GetYEnd() - chunks->GetElementReference(0, 0).GetYStart()) < BRAILE_CHUNKY_DIVISOR ) {
-        set_AAC_error_code(make_error_code(AAC_error_codes::CHUNK_SIZE_ERROR));
-        throw get_AAC_error_code();
+        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::CHUNK_SIZE_ERROR));
+        throw AAC::get_error_code();
     }
 
     // make resulting char matrix and gather chunk data
-    AAC_Matrix<wchar_t> art_result = AAC_Matrix<wchar_t>(chunks->GetXSize(), chunks->GetYSize());
-    std::shared_ptr<AAC_Matrix<uint8_t>> brightness_matrix = chunks->GetElementReference(0, 0).GetData();
-    AAC_Matrix<uint8_t> mini_matrix(BRAILE_CHUNKX_DIVISOR, BRAILE_CHUNKY_DIVISOR);
+    AAC::Matrix<wchar_t> art_result = AAC::Matrix<wchar_t>(chunks->GetXSize(), chunks->GetYSize());
+    std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix = chunks->GetElementReference(0, 0).GetData();
+    AAC::Matrix<uint8_t> mini_matrix(BRAILE_CHUNKX_DIVISOR, BRAILE_CHUNKY_DIVISOR);
 
     // calculate columns and rows divide
-    AAC_Chunk tchunk = chunks->GetElement(0, 0);
+    AAC::Chunk tchunk = chunks->GetElement(0, 0);
     unsigned int column_sizes[BRAILE_CHUNKX_DIVISOR + 1];
     unsigned int row_sizes[BRAILE_CHUNKY_DIVISOR + 1];
 
@@ -117,7 +117,7 @@ std::string AAC_CC_Braile::convert(AAC_Matrix<AAC_Chunk>* chunks) {
     for(size_t y = 1; y < chunks->GetYSize() - 1; y++) {
         for(size_t x = 1; x < chunks->GetXSize() - 1; x++) {
 
-            AAC_Chunk cchunk = chunks->GetElement(x, y);
+            AAC::Chunk cchunk = chunks->GetElement(x, y);
 
             // calculate chunk average brightness values for mini matrix
             for( uint8_t cell_row = 0; cell_row < BRAILE_CHUNKY_DIVISOR; cell_row++) {

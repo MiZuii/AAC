@@ -1,7 +1,9 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-enum class AAC_error_codes {
+namespace AAC {
+
+enum class error_codes {
   ALOCATION_ERROR,
   INVALID_PIXEL,
   INVALID_PATH,
@@ -14,12 +16,14 @@ enum class AAC_error_codes {
   CHUNK_SIZE_ERROR,
 };
 
-enum class AAC_Pixel_Type {
+enum class Pixel_Type {
   EMPTY,
   G,
   GA,
   RGB,
   RGBA,
 };
+
+} // namespace AAC
 
 #endif // ENUMS_H

@@ -9,51 +9,45 @@ Creates main converter combining all other steps to create art.
 
 {\ttfamily \#include $<$A\+A\+C.\+h$>$}
 
-
-
-Collaboration diagram for A\+A\+C\+\_\+\+Converter\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classAAC__Converter__coll__graph}
-\end{center}
-\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classAAC__Converter_a64f725a6edeed64b16e9be98ffc680bf}\label{classAAC__Converter_a64f725a6edeed64b16e9be98ffc680bf}} 
-{\bfseries A\+A\+C\+\_\+\+Converter} (\mbox{\hyperlink{classAAC__BrightnessConverter}{A\+A\+C\+\_\+\+Brightness\+Converter}} $\ast$brightness\+\_\+conv, \mbox{\hyperlink{classAAC__ChunkConverter}{A\+A\+C\+\_\+\+Chunk\+Converter}} $\ast$chunk\+\_\+conv)
+\mbox{\hyperlink{classAAC__Converter_a64f725a6edeed64b16e9be98ffc680bf}{A\+A\+C\+\_\+\+Converter}} (\mbox{\hyperlink{classAAC__BrightnessConverter}{A\+A\+C\+\_\+\+Brightness\+Converter}} $\ast$brightness\+\_\+conv, \mbox{\hyperlink{classAAC__ChunkConverter}{A\+A\+C\+\_\+\+Chunk\+Converter}} $\ast$chunk\+\_\+conv)
 \item 
-\mbox{\Hypertarget{classAAC__Converter_a7b6b86caa7e27473c6a64bfa51ef5768}\label{classAAC__Converter_a7b6b86caa7e27473c6a64bfa51ef5768}} 
-std\+::string {\bfseries Create\+Art} (\mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} $\ast$img, size\+\_\+t chunk\+\_\+size)
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classAAC__Converter_ad2579d8bf2ae3347d89a32744123a8dc}\label{classAAC__Converter_ad2579d8bf2ae3347d89a32744123a8dc}} 
-\mbox{\hyperlink{classAAC__Matrix}{A\+A\+C\+\_\+\+Matrix}}$<$ \mbox{\hyperlink{classAAC__Chunk}{A\+A\+C\+\_\+\+Chunk}} $>$ $\ast$ {\bfseries generate\+Chunks} (\mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} $\ast$img, size\+\_\+t chunk\+\_\+size, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classAAC__Matrix}{A\+A\+C\+\_\+\+Matrix}}$<$ uint8\+\_\+t $>$$>$ brightness\+\_\+matrix)
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classAAC__Converter_a0e138a97b5975f5cc82afb45ca45efe1}\label{classAAC__Converter_a0e138a97b5975f5cc82afb45ca45efe1}} 
-\mbox{\hyperlink{classAAC__BrightnessConverter}{A\+A\+C\+\_\+\+Brightness\+Converter}} $\ast$ {\bfseries \+\_\+brightness\+\_\+conv}
-\item 
-\mbox{\Hypertarget{classAAC__Converter_a71a29191ef5419c67c4eb5dad5e9fefb}\label{classAAC__Converter_a71a29191ef5419c67c4eb5dad5e9fefb}} 
-\mbox{\hyperlink{classAAC__ChunkConverter}{A\+A\+C\+\_\+\+Chunk\+Converter}} $\ast$ {\bfseries \+\_\+chunk\+\_\+conv}
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classAAC__Converter_ab4427aa8ba1bea0f9b711a7a39411579}\label{classAAC__Converter_ab4427aa8ba1bea0f9b711a7a39411579}} 
-static const float {\bfseries \+\_\+ratio} = 0.\+45
+std\+::string \mbox{\hyperlink{classAAC__Converter_a7b6b86caa7e27473c6a64bfa51ef5768}{Create\+Art}} (\mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} $\ast$img, size\+\_\+t chunk\+\_\+size)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Creates main converter combining all other steps to create art. 
 
-Definition at line 430 of file A\+A\+C.\+h.
+Definition at line 393 of file A\+A\+C.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAAC__Converter_a64f725a6edeed64b16e9be98ffc680bf}\label{classAAC__Converter_a64f725a6edeed64b16e9be98ffc680bf}} 
+\index{AAC\_Converter@{AAC\_Converter}!AAC\_Converter@{AAC\_Converter}}
+\index{AAC\_Converter@{AAC\_Converter}!AAC\_Converter@{AAC\_Converter}}
+\doxysubsubsection{\texorpdfstring{AAC\_Converter()}{AAC\_Converter()}}
+{\footnotesize\ttfamily A\+A\+C\+\_\+\+Converter\+::\+A\+A\+C\+\_\+\+Converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAAC__BrightnessConverter}{A\+A\+C\+\_\+\+Brightness\+Converter}} $\ast$}]{brightness\+\_\+conv,  }\item[{\mbox{\hyperlink{classAAC__ChunkConverter}{A\+A\+C\+\_\+\+Chunk\+Converter}} $\ast$}]{chunk\+\_\+conv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file A\+A\+C\+\_\+chunk\+\_\+generator.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAAC__Converter_a7b6b86caa7e27473c6a64bfa51ef5768}\label{classAAC__Converter_a7b6b86caa7e27473c6a64bfa51ef5768}} 
+\index{AAC\_Converter@{AAC\_Converter}!CreateArt@{CreateArt}}
+\index{CreateArt@{CreateArt}!AAC\_Converter@{AAC\_Converter}}
+\doxysubsubsection{\texorpdfstring{CreateArt()}{CreateArt()}}
+{\footnotesize\ttfamily std\+::string A\+A\+C\+\_\+\+Converter\+::\+Create\+Art (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAAC__Image}{A\+A\+C\+\_\+\+Image}} $\ast$}]{img,  }\item[{size\+\_\+t}]{chunk\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 36 of file A\+A\+C\+\_\+chunk\+\_\+generator.\+cpp.
 
 
 
@@ -61,4 +55,4 @@ The documentation for this class was generated from the following files\+:\begin
 \item 
 /home/piotr/stdia/\+A\+A\+C/\mbox{\hyperlink{AAC_8h}{A\+A\+C.\+h}}\item 
 /home/piotr/stdia/\+A\+A\+C/\mbox{\hyperlink{AAC_8cpp}{A\+A\+C.\+cpp}}\item 
-/home/piotr/stdia/\+A\+A\+C/sources/A\+A\+C\+\_\+chunk\+\_\+generator.\+cpp\end{DoxyCompactItemize}
+/home/piotr/stdia/\+A\+A\+C/sources/\mbox{\hyperlink{AAC__chunk__generator_8cpp}{A\+A\+C\+\_\+chunk\+\_\+generator.\+cpp}}\end{DoxyCompactItemize}

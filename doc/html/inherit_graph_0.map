@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classAAC__BrightnessConverter.html" title="Specifies group off classes converting AAC_Image to brightness matrix." alt="" coords="5,5,195,32"/>
-<area shape="rect" id="node2" href="$classAAC__BC__Simple.html" title="Simplest possible brightness converter." alt="" coords="243,5,369,32"/>
+<area shape="rect" id="node1" href="$classAAC_1_1BrightnessConverter.html" title="Specifies group off classes converting Image to brightness matrix." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$classAAC_1_1BC__Simple.html" title="Simplest possible brightness converter." alt="" coords="244,5,371,32"/>
 </map>

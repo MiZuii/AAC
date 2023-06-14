@@ -5,7 +5,7 @@
 /**
  * @file AAC.cpp
  * 
- * @brief This file contains shiet
+ * @brief Global functions and static variables for AAC.h
  */
 
 #include "AAC.h"
@@ -22,22 +22,34 @@ using namespace std;
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
 
-AAC_Image *AAC_OpenImage(std::string path) {
+/**
+ * 
+ * @brief Global image opener
+ * 
+ * @param path Path of the image to open
+ * @return Image* An pointer to Image instance of the given image
+ */
+AAC::Image *AAC::OpenImage(std::string path) {
 
     int x, y, n;
     unsigned char *data = stbi_load(path.c_str(), &x, &y, &n, 0);
 
     if (!data)
     {
-        set_AAC_error_code(make_error_code(AAC_error_codes::INVALID_PIXEL));
-        throw get_AAC_error_code();
+        AAC::set_error_code(make_error_code(AAC::error_codes::INVALID_PIXEL));
+        throw AAC::get_error_code();
     }
     else {
-        AAC_Image* opened_image = new AAC_Image(path, x, y, n, data);
+        AAC::Image* opened_image = new AAC::Image(path, x, y, n, data);
         free(data);
         return opened_image;
     }
 }
 
 /* ----------------------- FONT WIDTH TO HEIGHT RATIO ----------------------- */
-const float AAC_Converter::_ratio = 0.45;
+
+/**
+ * @brief Ratio of font width to height used for proper chunks division
+ * 
+ */
+const float AAC::Converter::_ratio = 0.45;

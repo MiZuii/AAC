@@ -6,7 +6,6 @@
  * @file AAC.h
  *
  * @brief Main library header file
- *
  */
 
 #include <iostream>
@@ -21,48 +20,76 @@
 #ifndef AAC_H
 #define AAC_H
 
+/**
+ * @namespace AAC
+ * 
+ * @brief Main library namespace
+ * 
+ */
+namespace AAC {
+
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
 /* -------------------------------------------------------------------------- */
 
-static thread_local std::error_code AAC_error_code;
-
-void set_AAC_error_code(std::error_code ec);
-std::error_code get_AAC_error_code();
-void clear_AAC_error_code();
+/**
+ * @brief Variable containing library defined error code
+ * 
+ */
+static thread_local std::error_code error_code;
 
 /**
- * @class AAC_error_category
+ * @brief Set the AAC error code variable
+ * 
+ * @param ec The error code value
+ */
+void set_error_code(std::error_code ec);
+
+/**
+ * @brief Get the AAC error code variable
+ * 
+ * @return std::error_code The AAC error code
+ */
+std::error_code get_error_code();
+
+/**
+ * @brief Clears the AAC error code
+ * 
+ */
+void clear_error_code();
+
+/**
+ * @class error_category
  *
  * @brief Class provideing error messages for AAC library
  *
  */
-class AAC_error_category : public std::error_category
+class error_category : public std::error_category
 {
 public:
-    virtual const char* name() const noexcept override {return "AAC_error_category";}
+    virtual const char* name() const noexcept override {return "error_category";}
 
     virtual std::string message(int ec) const override {
-    switch (static_cast<AAC_error_codes>(ec)){
-        case AAC_error_codes::ALOCATION_ERROR:
+    switch (static_cast<error_codes>(ec)){
+        case error_codes::ALOCATION_ERROR:
             return "[AAC] Alocation error";
-        case AAC_error_codes::INVALID_PIXEL:
+        case error_codes::INVALID_PIXEL:
             return "[AAC] Invalid pixel type";
-        case AAC_error_codes::INVALID_PATH:
+        case error_codes::INVALID_PATH:
             return "[AAC] Invalid path";
-        case AAC_error_codes::INVALID_ARGUMENTS:
+        case error_codes::INVALID_ARGUMENTS:
             return "[AAC] Invalid arguments";
-        case AAC_error_codes::IMAGE_OPEN_FAIL:
+        case error_codes::IMAGE_OPEN_FAIL:
             return "[AAC] Failed to open image";
-        case AAC_error_codes::IMAGE_ALLOCATION_ERROR:
+        case error_codes::IMAGE_ALLOCATION_ERROR:
             return "[AAC] Failed to allocate memory for piexels array";
-        case AAC_error_codes::BRIGHTNESS_CALCULATION_FAIL:
+        case error_codes::BRIGHTNESS_CALCULATION_FAIL:
             return "[AAC] Failed to calculate image brightness array";
-        case AAC_error_codes::MATRIX_ALLOCATION_ERROR:
-            return "[AAC] Failed to allocate space for AAC_Matrix";
-        case AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
+        case error_codes::MATRIX_ALLOCATION_ERROR:
+            return "[AAC] Failed to allocate space for Matrix";
+        case error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
             return "[AAC] Index out of range";
-        case AAC_error_codes::CHUNK_SIZE_ERROR:
+        case error_codes::CHUNK_SIZE_ERROR:
             return "[AAC] To small chunks for conversion";
         default:
             return "[AAC] Unknown error";
@@ -70,22 +97,28 @@ public:
     }
 };
 
-const AAC_error_category AAC_category{};
+const error_category category{};
 
-std::error_code make_error_code(AAC_error_codes ec);
+/**
+ * @brief Creates the AAC error code from the error_codes enumerator
+ * 
+ * @param ec 
+ * @return std::error_code 
+ */
+std::error_code make_error_code(error_codes ec);
 
 /* -------------------------------------------------------------------------- */
 /*                                MATRIX CLASS                                */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_Matrix
+ * @class Matrix
  *
  * @brief Multipurpose matrix class
  *
  */
 template<typename T>
-class AAC_Matrix
+class Matrix
 {
 private:
     const unsigned int size_x;
@@ -93,177 +126,174 @@ private:
     T **_matrix;
 
 public:
-    AAC_Matrix(unsigned int size_x, unsigned int size_y);
-    ~AAC_Matrix();
-    const T GetElement(unsigned int x, unsigned int y);
+
+    /**
+     * @brief Construct a new aac matrix object
+     * 
+     * @param size_x Width of matrix
+     * @param size_y Height of matrix
+     */
+    Matrix(unsigned int size_x, unsigned int size_y);
+
+    /**
+     * @brief Destroy the aac matrix object
+     * 
+     */
+    ~Matrix();
+
+    /**
+     * @brief Get the matrix element.
+     * 
+     * @param x Element x index
+     * @param y Element y index
+     * @return T The element
+     */
+    T GetElement(unsigned int x, unsigned int y) const;
+
+    /**
+     * @brief Get the matrix element reference.
+     * 
+     * @param x Element x index
+     * @param y Element y index
+     * @return T& The element
+     */
     T& GetElementReference(unsigned int x, unsigned int y);
-    unsigned int GetXSize();
-    unsigned int GetYSize();
+
+    /**
+     * @brief Get matrix width
+     * 
+     * @return unsigned int Matrix width
+     */
+    unsigned int GetXSize() const;
+
+    /**
+     * @brief Get matrix height
+     * 
+     * @return unsigned int Matrix height
+     */
+    unsigned int GetYSize() const;
 };
 
-template <typename T>
-AAC_Matrix<T>::AAC_Matrix(unsigned int size_x, unsigned int size_y) : size_x(size_x), size_y(size_y)
-{
-    _matrix = new T *[size_y];
-    if (NULL == _matrix)
-    {
-        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
-        throw get_AAC_error_code();
-    }
-
-    for (unsigned int i = 0; i < size_y; i++)
-    {
-        _matrix[i] = new T[size_x];
-
-        if (NULL == _matrix[i])
-        {
-            set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_ALLOCATION_ERROR));
-            throw get_AAC_error_code();
-        }
-    }
-}
-
-template <typename T>
-AAC_Matrix<T>::~AAC_Matrix()
-{
-    for (unsigned int i = 0; i < size_y; i++)
-    {
-        delete[] _matrix[i];
-    }
-    delete[] _matrix;
-}
-
-template <typename T>
-const T AAC_Matrix<T>::GetElement(unsigned int x, unsigned int y)
-{
-    if (x >= size_x || y >= size_y)
-    {
-        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
-        throw get_AAC_error_code();
-    }
-    return _matrix[y][x];
-}
-
-template <typename T>
-T &AAC_Matrix<T>::GetElementReference(unsigned int x, unsigned int y)
-{
-    if (x >= size_x || y >= size_y)
-    {
-        set_AAC_error_code(make_error_code(AAC_error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
-        throw get_AAC_error_code();
-    }
-    return _matrix[y][x];
-}
-
-template <typename T>
-unsigned int AAC_Matrix<T>::GetXSize() {
-    return size_x;
-}
-
-template <typename T>
-unsigned int AAC_Matrix<T>::GetYSize() {
-    return size_y;
-}
+#include "sources/AAC_matrix.tpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 PIXEL CLASS                                */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_Pixel
+ * @class Pixel
  *
- * @brief Pixel class for storing AAC_Image pixels in more organised way
- *
+ * @brief Pixel class for storing Image pixels in more organised way
  */
-template <AAC_Pixel_Type E>
-class AAC_Pixel
+template <Pixel_Type E>
+class Pixel
 {
 private:
-    const AAC_Pixel_Type _pixel_type = E;
+    const Pixel_Type _pixel_type = E;
 };
 
 /* -------------------------------- GREY TYPE ------------------------------- */
 
 template <>
-class AAC_Pixel<AAC_Pixel_Type::G>
+class Pixel<Pixel_Type::G>
 {
 private:
-    AAC_Pixel_G _pixel_values;
+    Pixel_G _pixel_values;
 
 public:
-    // constructors
-    AAC_Pixel();
-    AAC_Pixel(uint8_t grey);
 
-    // getters and setters
-    struct AAC_Pixel_G GetPixelValues();
+    /**
+     * @brief Construct a new aac pixel object
+     * 
+     */
+    Pixel();
+
+    /**
+     * @brief Construct a new Pixel object
+     * 
+     * @param grey The initial grey value of the pixel
+     */
+    Pixel(uint8_t grey);
+
+    /**
+     * @brief Get the Pixel values
+     * 
+     * @return struct Pixel_G the pixel values struct
+     */
+    struct Pixel_G GetPixelValues();
+
+    /**
+     * @brief Set the Pixel values
+     * 
+     * @param grey Value to be set
+     */
     void SetPixelValues(uint8_t grey);
 };
 
 /* ----------------------------- GREY ALPHA TYPE ---------------------------- */
 
 template <>
-class AAC_Pixel<AAC_Pixel_Type::GA>
+class Pixel<Pixel_Type::GA>
 {
 private:
-    AAC_Pixel_GA _pixel_values;
+    Pixel_GA _pixel_values;
 
 public:
     // constructors
-    AAC_Pixel();
-    AAC_Pixel(uint8_t grey, uint8_t alpha);
+    Pixel();
+    Pixel(uint8_t grey, uint8_t alpha);
 
     // getters and setters
-    struct AAC_Pixel_GA GetPixelValues();
+    struct Pixel_GA GetPixelValues();
     void SetPixelValues(uint8_t grey, uint8_t alpha);
 };
 
 /* --------------------------- RED GREEN BLUE TYPE -------------------------- */
 
 template <>
-class AAC_Pixel<AAC_Pixel_Type::RGB>
+class Pixel<Pixel_Type::RGB>
 {
 private:
-    AAC_Pixel_RGB _pixel_values;
+    Pixel_RGB _pixel_values;
 
 public:
     // constructors
-    AAC_Pixel();
-    AAC_Pixel(uint8_t red, uint8_t green, uint8_t blue);
+    Pixel();
+    Pixel(uint8_t red, uint8_t green, uint8_t blue);
 
     // getters and setters
-    struct AAC_Pixel_RGB GetPixelValues();
+    struct Pixel_RGB GetPixelValues();
     void SetPixelValues(uint8_t red, uint8_t green, uint8_t blue);
 };
 
 /* ------------------------ RED GREEN BLUE ALPHA TYPE ----------------------- */
 
 template <>
-class AAC_Pixel<AAC_Pixel_Type::RGBA>
+class Pixel<Pixel_Type::RGBA>
 {
 private:
-    AAC_Pixel_RGBA _pixel_values;
+    Pixel_RGBA _pixel_values;
 
 public:
     // constructors
-    AAC_Pixel();
-    AAC_Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+    Pixel();
+    Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 
     // getters and setters
-    struct AAC_Pixel_RGBA GetPixelValues();
+    struct Pixel_RGBA GetPixelValues();
     void SetPixelValues(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 };
 
 /* ------------------------------- EMPTY TYPE ------------------------------- */
 
 template <>
-class AAC_Pixel<AAC_Pixel_Type::EMPTY>
+class Pixel<Pixel_Type::EMPTY>
 {
 private:
-    AAC_Pixel_EMPTY _pixel_values;
+    Pixel_EMPTY _pixel_values;
 
 public:
-    AAC_Pixel();
+    Pixel();
 };
 
 /* -------------------------------------------------------------------------- */
@@ -271,12 +301,12 @@ public:
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_Image
+ * @class Image
  *
  * @brief Contains full image as pixels matrix
  *
  */
-class AAC_Image
+class Image
 {
 private:
     const std::string _path;
@@ -289,34 +319,32 @@ private:
     
 
 public:
-    const AAC_Pixel_Type pixel_type;
+    const Pixel_Type pixel_type;
     const unsigned int size_x;
     const unsigned int size_y;
 
-    AAC_Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
-    ~AAC_Image();
+    Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
+    ~Image();
     void* GetMatrix();
 };
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
 /**
- *  AAC_OpenImage
- *
  * @brief Global image opener
  */
-AAC_Image* AAC_OpenImage(std::string path);
+Image* OpenImage(std::string path);
 
 /* -------------------------------------------------------------------------- */
 /*                                 CHUNK CLASS                                */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_Chunk
+ * @class Chunk
  *
  * @brief Representation of groups of pixels which are going to be replaced by single char
  *
  */
-class AAC_Chunk
+class Chunk
 {
 private:
     unsigned int _X_start_index; // inclusive
@@ -325,17 +353,17 @@ private:
     unsigned int _Y_end_index; // exclusive
 
     // pointer to external image brightness array(do not free on destroy)
-    std::shared_ptr<AAC_Matrix<uint8_t>> _data;
+    std::shared_ptr<Matrix<uint8_t>> _data;
 
 public:
-    AAC_Chunk();
-    AAC_Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<AAC_Matrix<uint8_t>> data);
-    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<AAC_Matrix<uint8_t>> data);
-    std::shared_ptr<AAC_Matrix<uint8_t>> GetData();
-    unsigned int GetXStart();
-    unsigned int GetXEnd();
-    unsigned int GetYStart();
-    unsigned int GetYEnd();
+    Chunk();
+    Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
+    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
+    std::shared_ptr<Matrix<uint8_t>> GetData() const;
+    unsigned int GetXStart() const;
+    unsigned int GetXEnd() const;
+    unsigned int GetYStart() const;
+    unsigned int GetYEnd() const;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -343,33 +371,33 @@ public:
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_BrightnessConverter
+ * @class BrightnessConverter
  *
- * @brief Specifies group off classes converting AAC_Image to brightness matrix
+ * @brief Specifies group off classes converting Image to brightness matrix
  *
  */
-class AAC_BrightnessConverter
+class BrightnessConverter
 {
 public:
-    virtual std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) = 0;
+    virtual std::shared_ptr<Matrix<uint8_t>> convert(Image* img) = 0;
 };
 
 /**
- * @class AAC_BC_Simple
+ * @class BC_Simple
  *
  * @brief Simplest possible brightness converter
  *
  */
-class AAC_BC_Simple : public AAC_BrightnessConverter
+class BC_Simple : public BrightnessConverter
 {
 private:
     const float _red_weight, _green_weight, _blue_weight;
     const uint8_t _negate;
 
 public:
-    AAC_BC_Simple(float red_weight, float green_weight, float blue_weight, uint8_t negate = 0);
-    AAC_BC_Simple();
-    std::shared_ptr<AAC_Matrix<uint8_t>> convert(AAC_Image* img) override;
+    BC_Simple(float red_weight, float green_weight, float blue_weight, uint8_t negate = 0);
+    BC_Simple();
+    std::shared_ptr<Matrix<uint8_t>> convert(Image* img) override;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -377,43 +405,43 @@ public:
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_ChunkConverter
+ * @class ChunkConverter
  *
  * @brief Converts chunks matrix into final string
  *
  */
-class AAC_ChunkConverter
+class ChunkConverter
 {
 public:
-    virtual std::string convert(AAC_Matrix<AAC_Chunk>* chunks) = 0;
+    virtual std::string convert(Matrix<Chunk>* chunks) = 0;
 };
 
 /**
- * @class AAC_CC_Simple
+ * @class CC_Simple
  *
  * @brief Simplest possible chunk converter
  *
  */
-class AAC_CC_Simple : public AAC_ChunkConverter
+class CC_Simple : public ChunkConverter
 {
 private:
     const std::string _alphabet;
 
 public:
-    AAC_CC_Simple(std::string alphabet);
-    std::string convert(AAC_Matrix<AAC_Chunk>* chunks) override;
+    CC_Simple(std::string alphabet);
+    std::string convert(Matrix<Chunk>* chunks) override;
 
 };
 
-class AAC_CC_Braile : public AAC_ChunkConverter
+class CC_Braile : public ChunkConverter
 {
 private:
     static wchar_t get_braile_char(uint8_t char_val);
     const uint8_t _bk_brightness;
 
 public:
-    AAC_CC_Braile(uint8_t break_point_brightness);
-    std::string convert(AAC_Matrix<AAC_Chunk>* chunks) override;
+    CC_Braile(uint8_t break_point_brightness);
+    std::string convert(Matrix<Chunk>* chunks) override;
 
 };
 
@@ -422,24 +450,26 @@ public:
 /* -------------------------------------------------------------------------- */
 
 /**
- * @class AAC_Converter
+ * @class Converter
  *
  * @brief Creates main converter combining all other steps to create art
  *
  */
-class AAC_Converter
+class Converter
 {
 private:
 
     static const float _ratio;
-    AAC_BrightnessConverter* _brightness_conv;
-    AAC_ChunkConverter* _chunk_conv;
+    BrightnessConverter* _brightness_conv;
+    ChunkConverter* _chunk_conv;
     
-    AAC_Matrix<AAC_Chunk>* generateChunks(AAC_Image* img, size_t chunk_size, std::shared_ptr<AAC_Matrix<uint8_t>> brightness_matrix);
+    Matrix<Chunk>* generateChunks(Image* img, size_t chunk_size, std::shared_ptr<Matrix<uint8_t>> brightness_matrix);
 
 public:
-    AAC_Converter(AAC_BrightnessConverter* brightness_conv, AAC_ChunkConverter* chunk_conv);
-    std::string CreateArt(AAC_Image* img, size_t chunk_size);
+    Converter(BrightnessConverter* brightness_conv, ChunkConverter* chunk_conv);
+    std::string CreateArt(Image* img, size_t chunk_size);
 };
+
+} // namespace AAC
 
 #endif //AAC_H

@@ -1,11 +1,12 @@
 <map id="/home/piotr/stdia/AAC/AAC.cpp" name="/home/piotr/stdia/AAC/AAC.cpp">
-<area shape="rect" id="node1" title="This file contains shiet." alt="" coords="97,5,261,47"/>
-<area shape="rect" id="node2" href="$AAC_8h.html" title="Main library header file." alt="" coords="195,95,256,121"/>
+<area shape="rect" id="node1" title="Global functions and static variables for AAC.h." alt="" coords="107,5,271,47"/>
+<area shape="rect" id="node2" href="$AAC_8h.html" title="Main library header file." alt="" coords="193,95,255,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,85,196"/>
 <area shape="rect" id="node4" title=" " alt="" coords="109,169,168,196"/>
-<area shape="rect" id="node9" title=" " alt="" coords="281,95,383,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="398,169,506,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="531,169,595,196"/>
-<area shape="rect" id="node7" href="$enums_8h_source.html" title=" " alt="" coords="193,169,271,196"/>
-<area shape="rect" id="node8" href="$structs_8h_source.html" title=" " alt="" coords="295,169,374,196"/>
+<area shape="rect" id="node10" title=" " alt="" coords="279,95,382,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="690,169,798,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="192,169,256,196"/>
+<area shape="rect" id="node7" href="$enums_8h.html" title=" " alt="" coords="281,169,359,196"/>
+<area shape="rect" id="node8" href="$structs_8h.html" title=" " alt="" coords="383,169,462,196"/>
+<area shape="rect" id="node9" href="$AAC__matrix_8tpp.html" title=" " alt="" coords="487,169,665,196"/>
 </map>

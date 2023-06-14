@@ -4,23 +4,23 @@
 
 #include "../AAC.h"
 
-using namespace std;
+using namespace AAC;
 
 int main(int argc, char *argv[]) {
 
-    AAC_Image *img = AAC_OpenImage("test.png");
+    Image *img = OpenImage("test.png");
     
     // "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
     // ".-=*#@"
     
     try
     {
-        AAC_BC_Simple bc;
-        AAC_CC_Braile cc(128);
-        AAC_Converter converter = AAC_Converter(&bc, &cc);
+        BC_Simple bc;
+        CC_Braile cc(128);
+        Converter converter = Converter(&bc, &cc);
 
-        string r = converter.CreateArt(img, 2);
-        cout << r << endl;
+        std::string r = converter.CreateArt(img, 2);
+        std::cout << r << std::endl;
     }
     catch(const std::error_code& e)
     {

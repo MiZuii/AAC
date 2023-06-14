@@ -1,27 +1,4 @@
 var searchData=
 [
-  ['aac_2ecpp_0',['AAC.cpp',['../AAC_8cpp.html',1,'']]],
-  ['aac_2eh_1',['AAC.h',['../AAC_8h.html',1,'']]],
-  ['aac_5fbc_5fsimple_2',['AAC_BC_Simple',['../classAAC__BC__Simple.html',1,'']]],
-  ['aac_5fbrightnessconverter_3',['AAC_BrightnessConverter',['../classAAC__BrightnessConverter.html',1,'']]],
-  ['aac_5fcc_5fbraile_4',['AAC_CC_Braile',['../classAAC__CC__Braile.html',1,'']]],
-  ['aac_5fcc_5fsimple_5',['AAC_CC_Simple',['../classAAC__CC__Simple.html',1,'']]],
-  ['aac_5fchunk_6',['AAC_Chunk',['../classAAC__Chunk.html',1,'']]],
-  ['aac_5fchunkconverter_7',['AAC_ChunkConverter',['../classAAC__ChunkConverter.html',1,'']]],
-  ['aac_5fconverter_8',['AAC_Converter',['../classAAC__Converter.html',1,'']]],
-  ['aac_5ferror_5fcategory_9',['AAC_error_category',['../classAAC__error__category.html',1,'']]],
-  ['aac_5fimage_10',['AAC_Image',['../classAAC__Image.html',1,'']]],
-  ['aac_5fmatrix_11',['AAC_Matrix',['../classAAC__Matrix.html',1,'']]],
-  ['aac_5fopenimage_12',['AAC_OpenImage',['../AAC_8cpp.html#a728aa678a50792e7efb77472bed9fa1e',1,'AAC_OpenImage(std::string path):&#160;AAC.cpp'],['../AAC_8h.html#a728aa678a50792e7efb77472bed9fa1e',1,'AAC_OpenImage(std::string path):&#160;AAC.cpp']]],
-  ['aac_5fpixel_13',['AAC_Pixel',['../classAAC__Pixel.html',1,'']]],
-  ['aac_5fpixel_3c_20aac_5fpixel_5ftype_3a_3aempty_20_3e_14',['AAC_Pixel&lt; AAC_Pixel_Type::EMPTY &gt;',['../classAAC__Pixel_3_01AAC__Pixel__Type_1_1EMPTY_01_4.html',1,'']]],
-  ['aac_5fpixel_3c_20aac_5fpixel_5ftype_3a_3ag_20_3e_15',['AAC_Pixel&lt; AAC_Pixel_Type::G &gt;',['../classAAC__Pixel_3_01AAC__Pixel__Type_1_1G_01_4.html',1,'']]],
-  ['aac_5fpixel_3c_20aac_5fpixel_5ftype_3a_3aga_20_3e_16',['AAC_Pixel&lt; AAC_Pixel_Type::GA &gt;',['../classAAC__Pixel_3_01AAC__Pixel__Type_1_1GA_01_4.html',1,'']]],
-  ['aac_5fpixel_3c_20aac_5fpixel_5ftype_3a_3argb_20_3e_17',['AAC_Pixel&lt; AAC_Pixel_Type::RGB &gt;',['../classAAC__Pixel_3_01AAC__Pixel__Type_1_1RGB_01_4.html',1,'']]],
-  ['aac_5fpixel_3c_20aac_5fpixel_5ftype_3a_3argba_20_3e_18',['AAC_Pixel&lt; AAC_Pixel_Type::RGBA &gt;',['../classAAC__Pixel_3_01AAC__Pixel__Type_1_1RGBA_01_4.html',1,'']]],
-  ['aac_5fpixel_5fempty_19',['AAC_Pixel_EMPTY',['../structAAC__Pixel__EMPTY.html',1,'']]],
-  ['aac_5fpixel_5fg_20',['AAC_Pixel_G',['../structAAC__Pixel__G.html',1,'']]],
-  ['aac_5fpixel_5fga_21',['AAC_Pixel_GA',['../structAAC__Pixel__GA.html',1,'']]],
-  ['aac_5fpixel_5frgb_22',['AAC_Pixel_RGB',['../structAAC__Pixel__RGB.html',1,'']]],
-  ['aac_5fpixel_5frgba_23',['AAC_Pixel_RGBA',['../structAAC__Pixel__RGBA.html',1,'']]]
+  ['_5fpixel_5fvalues_0',['_pixel_values',['../AAC__pixel_8cpp.html#aa67f28e592629912d4f44cb54fc49f3c',1,'AAC_pixel.cpp']]]
 ];
