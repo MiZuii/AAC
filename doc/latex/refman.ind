@@ -1,32 +1,276 @@
 \begin{theindex}
 
-  \item {AAC.cpp}, \hyperpage{19}
-    \subitem {AAC\_OpenImage}, \hyperpage{19}
-  \item {AAC.h}, \hyperpage{20}
-    \subitem {AAC\_OpenImage}, \hyperpage{21}
-  \item {AAC\_BC\_Simple}, \hyperpage{7}
-  \item {AAC\_BrightnessConverter}, \hyperpage{8}
-  \item {AAC\_CC\_Braile}, \hyperpage{9}
-  \item {AAC\_CC\_Simple}, \hyperpage{10}
-  \item {AAC\_Chunk}, \hyperpage{11}
-  \item {AAC\_ChunkConverter}, \hyperpage{11}
-  \item {AAC\_Converter}, \hyperpage{12}
-  \item {AAC\_error\_category}, \hyperpage{13}
-  \item {AAC\_Image}, \hyperpage{14}
-  \item {AAC\_Matrix$<$ T $>$}, \hyperpage{14}
-  \item {AAC\_OpenImage}
-    \subitem {AAC.cpp}, \hyperpage{19}
-    \subitem {AAC.h}, \hyperpage{21}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}, \hyperpage{15}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}, \hyperpage{16}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}, \hyperpage{16}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}, \hyperpage{16}
-  \item {AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}, \hyperpage{17}
-  \item {AAC\_Pixel$<$ E $>$}, \hyperpage{15}
-  \item {AAC\_Pixel\_EMPTY}, \hyperpage{17}
-  \item {AAC\_Pixel\_G}, \hyperpage{17}
-  \item {AAC\_Pixel\_GA}, \hyperpage{18}
-  \item {AAC\_Pixel\_RGB}, \hyperpage{18}
-  \item {AAC\_Pixel\_RGBA}, \hyperpage{18}
+  \item {/home/piotr/stdia/AAC/AAC.cpp}, \hyperpage{41}
+  \item {/home/piotr/stdia/AAC/AAC.h}, \hyperpage{42}
+  \item {/home/piotr/stdia/AAC/README.md}, \hyperpage{45}
+  \item {/home/piotr/stdia/AAC/headers/enums.h}, \hyperpage{44}
+  \item {/home/piotr/stdia/AAC/headers/structs.h}, \hyperpage{44}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_brightness\_converter.cpp}, 
+		\hyperpage{45}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_chunk.cpp}, \hyperpage{45}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_chunk\_converter.cpp}, 
+		\hyperpage{46}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_converter.cpp}, 
+		\hyperpage{47}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_error.cpp}, \hyperpage{48}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_image.cpp}, \hyperpage{48}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_matrix.tpp}, \hyperpage{52}
+  \item {/home/piotr/stdia/AAC/sources/AAC\_pixel.cpp}, \hyperpage{52}
+  \item {\_pixel\_values}
+    \subitem {AAC\_pixel.cpp}, \hyperpage{54}
+  \item {$\sim$Image}
+    \subitem {AAC::Image}, \hyperpage{28}
+  \item {$\sim$Matrix}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{30}
+
+  \indexspace
+
+  \item {AAC}, \hyperpage{11}
+    \subitem {clear\_error\_code}, \hyperpage{11}
+    \subitem {get\_error\_code}, \hyperpage{11}
+    \subitem {make\_error\_code}, \hyperpage{11}
+    \subitem {OpenImage}, \hyperpage{12}
+    \subitem {set\_error\_code}, \hyperpage{12}
+  \item {AAC.cpp}
+    \subitem {CUSTOM\_FOPEN\_LOAD}, \hyperpage{41}
+    \subitem {STB\_IMAGE\_IMPLEMENTATION}, \hyperpage{42}
+    \subitem {STBI\_FAILURE\_USERMSG}, \hyperpage{42}
+  \item {AAC.h}
+    \subitem {MAX\_SIZE}, \hyperpage{44}
+  \item {AAC::BC\_Simple}, \hyperpage{13}
+    \subitem {BC\_Simple}, \hyperpage{14}
+    \subitem {convert}, \hyperpage{15}
+  \item {AAC::BrightnessConverter}, \hyperpage{15}
+    \subitem {convert}, \hyperpage{16}
+  \item {AAC::CC\_Braile}, \hyperpage{16}
+    \subitem {CC\_Braile}, \hyperpage{17}
+    \subitem {convert}, \hyperpage{17}
+  \item {AAC::CC\_Simple}, \hyperpage{18}
+    \subitem {CC\_Simple}, \hyperpage{19}
+    \subitem {convert}, \hyperpage{19}
+  \item {AAC::Chunk}, \hyperpage{20}
+    \subitem {Chunk}, \hyperpage{21}
+    \subitem {GetData}, \hyperpage{21}
+    \subitem {GetXEnd}, \hyperpage{21}
+    \subitem {GetXStart}, \hyperpage{22}
+    \subitem {GetYEnd}, \hyperpage{22}
+    \subitem {GetYStart}, \hyperpage{22}
+    \subitem {SetChunk}, \hyperpage{22}
+  \item {AAC::ChunkConverter}, \hyperpage{23}
+    \subitem {convert}, \hyperpage{24}
+  \item {AAC::Converter}, \hyperpage{24}
+    \subitem {Converter}, \hyperpage{24}
+    \subitem {CreateArt}, \hyperpage{25}
+  \item {AAC::error\_category}, \hyperpage{25}
+    \subitem {message}, \hyperpage{26}
+    \subitem {name}, \hyperpage{27}
+  \item {AAC::Image}, \hyperpage{27}
+    \subitem {$\sim$Image}, \hyperpage{28}
+    \subitem {GetMatrix}, \hyperpage{28}
+    \subitem {Image}, \hyperpage{28}
+    \subitem {pixel\_type}, \hyperpage{29}
+    \subitem {size\_x}, \hyperpage{29}
+    \subitem {size\_y}, \hyperpage{29}
+  \item {AAC::Matrix$<$ T $>$}, \hyperpage{29}
+    \subitem {$\sim$Matrix}, \hyperpage{30}
+    \subitem {GetElement}, \hyperpage{30}
+    \subitem {GetElementReference}, \hyperpage{30}
+    \subitem {GetXSize}, \hyperpage{30}
+    \subitem {GetYSize}, \hyperpage{31}
+    \subitem {Matrix}, \hyperpage{30}
+  \item {AAC::Pixel$<$ E $>$}, \hyperpage{31}
+  \item {AAC::Pixel$<$ Pixel\_Type::EMPTY $>$}, \hyperpage{31}
+    \subitem {Pixel}, \hyperpage{32}
+  \item {AAC::Pixel$<$ Pixel\_Type::G $>$}, \hyperpage{32}
+    \subitem {GetPixelValues}, \hyperpage{33}
+    \subitem {Pixel}, \hyperpage{32}
+    \subitem {SetPixelValues}, \hyperpage{33}
+  \item {AAC::Pixel$<$ Pixel\_Type::GA $>$}, \hyperpage{33}
+    \subitem {GetPixelValues}, \hyperpage{34}
+    \subitem {Pixel}, \hyperpage{33, 34}
+    \subitem {SetPixelValues}, \hyperpage{34}
+  \item {AAC::Pixel$<$ Pixel\_Type::RGB $>$}, \hyperpage{34}
+    \subitem {GetPixelValues}, \hyperpage{35}
+    \subitem {Pixel}, \hyperpage{35}
+    \subitem {SetPixelValues}, \hyperpage{35}
+  \item {AAC::Pixel$<$ Pixel\_Type::RGBA $>$}, \hyperpage{35}
+    \subitem {GetPixelValues}, \hyperpage{36}
+    \subitem {Pixel}, \hyperpage{36}
+    \subitem {SetPixelValues}, \hyperpage{36}
+  \item {AAC::Pixel\_EMPTY}, \hyperpage{37}
+  \item {AAC::Pixel\_G}, \hyperpage{37}
+    \subitem {grey}, \hyperpage{37}
+  \item {AAC::Pixel\_GA}, \hyperpage{37}
+    \subitem {alpha}, \hyperpage{38}
+    \subitem {grey}, \hyperpage{38}
+  \item {AAC::Pixel\_RGB}, \hyperpage{38}
+    \subitem {blue}, \hyperpage{39}
+    \subitem {green}, \hyperpage{39}
+    \subitem {red}, \hyperpage{39}
+  \item {AAC::Pixel\_RGBA}, \hyperpage{39}
+    \subitem {alpha}, \hyperpage{40}
+    \subitem {blue}, \hyperpage{40}
+    \subitem {green}, \hyperpage{40}
+    \subitem {red}, \hyperpage{40}
+  \item {AAC\_chunk\_converter.cpp}
+    \subitem {BRAILE\_CHUNKX\_DIVISOR}, \hyperpage{46}
+    \subitem {BRAILE\_CHUNKY\_DIVISOR}, \hyperpage{47}
+    \subitem {get\_char\_index}, \hyperpage{47}
+  \item {AAC\_image.cpp}
+    \subitem {RefractorDataG}, \hyperpage{49}
+    \subitem {RefractorDataGA}, \hyperpage{50}
+    \subitem {RefractorDataRGB}, \hyperpage{50}
+    \subitem {RefractorDataRGBA}, \hyperpage{51}
+  \item {AAC\_pixel.cpp}
+    \subitem {\_pixel\_values}, \hyperpage{54}
+    \subitem {SetPixelValues}, \hyperpage{53, 54}
+  \item {alpha}
+    \subitem {AAC::Pixel\_GA}, \hyperpage{38}
+    \subitem {AAC::Pixel\_RGBA}, \hyperpage{40}
+
+  \indexspace
+
+  \item {BC\_Simple}
+    \subitem {AAC::BC\_Simple}, \hyperpage{14}
+  \item {blue}
+    \subitem {AAC::Pixel\_RGB}, \hyperpage{39}
+    \subitem {AAC::Pixel\_RGBA}, \hyperpage{40}
+  \item {BRAILE\_CHUNKX\_DIVISOR}
+    \subitem {AAC\_chunk\_converter.cpp}, \hyperpage{46}
+  \item {BRAILE\_CHUNKY\_DIVISOR}
+    \subitem {AAC\_chunk\_converter.cpp}, \hyperpage{47}
+
+  \indexspace
+
+  \item {CC\_Braile}
+    \subitem {AAC::CC\_Braile}, \hyperpage{17}
+  \item {CC\_Simple}
+    \subitem {AAC::CC\_Simple}, \hyperpage{19}
+  \item {Chunk}
+    \subitem {AAC::Chunk}, \hyperpage{21}
+  \item {clear\_error\_code}
+    \subitem {AAC}, \hyperpage{11}
+  \item {convert}
+    \subitem {AAC::BC\_Simple}, \hyperpage{15}
+    \subitem {AAC::BrightnessConverter}, \hyperpage{16}
+    \subitem {AAC::CC\_Braile}, \hyperpage{17}
+    \subitem {AAC::CC\_Simple}, \hyperpage{19}
+    \subitem {AAC::ChunkConverter}, \hyperpage{24}
+  \item {Converter}
+    \subitem {AAC::Converter}, \hyperpage{24}
+  \item {CreateArt}
+    \subitem {AAC::Converter}, \hyperpage{25}
+  \item {CUSTOM\_FOPEN\_LOAD}
+    \subitem {AAC.cpp}, \hyperpage{41}
+
+  \indexspace
+
+  \item {get\_char\_index}
+    \subitem {AAC\_chunk\_converter.cpp}, \hyperpage{47}
+  \item {get\_error\_code}
+    \subitem {AAC}, \hyperpage{11}
+  \item {GetData}
+    \subitem {AAC::Chunk}, \hyperpage{21}
+  \item {GetElement}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{30}
+  \item {GetElementReference}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{30}
+  \item {GetMatrix}
+    \subitem {AAC::Image}, \hyperpage{28}
+  \item {GetPixelValues}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::G $>$}, \hyperpage{33}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::GA $>$}, \hyperpage{34}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGB $>$}, \hyperpage{35}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGBA $>$}, \hyperpage{36}
+  \item {GetXEnd}
+    \subitem {AAC::Chunk}, \hyperpage{21}
+  \item {GetXSize}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{30}
+  \item {GetXStart}
+    \subitem {AAC::Chunk}, \hyperpage{22}
+  \item {GetYEnd}
+    \subitem {AAC::Chunk}, \hyperpage{22}
+  \item {GetYSize}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{31}
+  \item {GetYStart}
+    \subitem {AAC::Chunk}, \hyperpage{22}
+  \item {green}
+    \subitem {AAC::Pixel\_RGB}, \hyperpage{39}
+    \subitem {AAC::Pixel\_RGBA}, \hyperpage{40}
+  \item {grey}
+    \subitem {AAC::Pixel\_G}, \hyperpage{37}
+    \subitem {AAC::Pixel\_GA}, \hyperpage{38}
+
+  \indexspace
+
+  \item {Image}
+    \subitem {AAC::Image}, \hyperpage{28}
+
+  \indexspace
+
+  \item {make\_error\_code}
+    \subitem {AAC}, \hyperpage{11}
+  \item {Matrix}
+    \subitem {AAC::Matrix$<$ T $>$}, \hyperpage{30}
+  \item {MAX\_SIZE}
+    \subitem {AAC.h}, \hyperpage{44}
+  \item {message}
+    \subitem {AAC::error\_category}, \hyperpage{26}
+
+  \indexspace
+
+  \item {name}
+    \subitem {AAC::error\_category}, \hyperpage{27}
+
+  \indexspace
+
+  \item {OpenImage}
+    \subitem {AAC}, \hyperpage{12}
+
+  \indexspace
+
+  \item {Pixel}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::EMPTY $>$}, \hyperpage{32}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::G $>$}, \hyperpage{32}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::GA $>$}, \hyperpage{33, 34}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGB $>$}, \hyperpage{35}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGBA $>$}, \hyperpage{36}
+  \item {pixel\_type}
+    \subitem {AAC::Image}, \hyperpage{29}
+
+  \indexspace
+
+  \item {red}
+    \subitem {AAC::Pixel\_RGB}, \hyperpage{39}
+    \subitem {AAC::Pixel\_RGBA}, \hyperpage{40}
+  \item {RefractorDataG}
+    \subitem {AAC\_image.cpp}, \hyperpage{49}
+  \item {RefractorDataGA}
+    \subitem {AAC\_image.cpp}, \hyperpage{50}
+  \item {RefractorDataRGB}
+    \subitem {AAC\_image.cpp}, \hyperpage{50}
+  \item {RefractorDataRGBA}
+    \subitem {AAC\_image.cpp}, \hyperpage{51}
+
+  \indexspace
+
+  \item {set\_error\_code}
+    \subitem {AAC}, \hyperpage{12}
+  \item {SetChunk}
+    \subitem {AAC::Chunk}, \hyperpage{22}
+  \item {SetPixelValues}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::G $>$}, \hyperpage{33}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::GA $>$}, \hyperpage{34}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGB $>$}, \hyperpage{35}
+    \subitem {AAC::Pixel$<$ Pixel\_Type::RGBA $>$}, \hyperpage{36}
+    \subitem {AAC\_pixel.cpp}, \hyperpage{53, 54}
+  \item {size\_x}
+    \subitem {AAC::Image}, \hyperpage{29}
+  \item {size\_y}
+    \subitem {AAC::Image}, \hyperpage{29}
+  \item {STB\_IMAGE\_IMPLEMENTATION}
+    \subitem {AAC.cpp}, \hyperpage{42}
+  \item {STBI\_FAILURE\_USERMSG}
+    \subitem {AAC.cpp}, \hyperpage{42}
 
 \end{theindex}

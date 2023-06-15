@@ -1,6 +1,11 @@
 #include "../AAC.h"
 
 /**
+ * @file AAC_chunk.cpp
+ * @brief Contains the implementation of the AAC::Chunk class.
+ */
+
+/**
  * @brief Constructs a Chunk object with the specified parameters.
  *
  * @param X_start_index The starting index of the X-axis.

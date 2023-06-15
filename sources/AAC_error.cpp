@@ -1,6 +1,11 @@
 #include "../AAC.h"
 
 /**
+ * @file AAC_error.cpp
+ * @brief Contains the implementation of errors system functions for the library
+ */
+
+/**
  * @brief Sets the error code for AAC.
  * @param ec The error code to set.
  */

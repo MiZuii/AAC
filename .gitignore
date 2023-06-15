@@ -1,6 +1,5 @@
 build
 .vscode
 doxygen/Doxyfile
-doc/*
 doc
 

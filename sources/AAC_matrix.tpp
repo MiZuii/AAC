@@ -1,3 +1,8 @@
+/**
+ * @file AAC_matrix.tpp
+ * @brief Contains the implementation of the AAC::Matrix class.
+ */
+
 template <typename T>
 /**
  * @brief Constructs a Matrix object with the specified size.

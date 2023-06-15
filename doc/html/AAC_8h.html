@@ -100,15 +100,15 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="AAC_8h__dep__incl.png" border="0" usemap="#_2home_2piotr_2stdia_2AAC_2AAC_8hdep" alt=""/></div>
 <map name="_2home_2piotr_2stdia_2AAC_2AAC_8hdep" id="_2home_2piotr_2stdia_2AAC_2AAC_8hdep">
-<area shape="rect" title="Main library header file." alt="" coords="783,5,947,47"/>
+<area shape="rect" title="Main library header file." alt="" coords="771,5,935,47"/>
 <area shape="rect" href="AAC_8cpp.html" title="Global functions and static variables for AAC.h." alt="" coords="5,102,169,143"/>
 <area shape="rect" href="AAC__brightness__converter_8cpp.html" title=" " alt="" coords="193,95,376,151"/>
-<area shape="rect" href="AAC__chunk_8cpp.html" title=" " alt="" coords="400,102,580,143"/>
-<area shape="rect" href="AAC__chunk__converter_8cpp.html" title=" " alt="" coords="605,102,853,143"/>
-<area shape="rect" href="AAC__chunk__generator_8cpp.html" title=" " alt="" coords="876,102,1125,143"/>
-<area shape="rect" href="AAC__error_8cpp.html" title=" " alt="" coords="1150,102,1321,143"/>
-<area shape="rect" href="AAC__image_8cpp.html" title=" " alt="" coords="1345,102,1528,143"/>
-<area shape="rect" href="AAC__pixel_8cpp.html" title=" " alt="" coords="1552,102,1724,143"/>
+<area shape="rect" href="AAC__chunk_8cpp.html" title="Contains the implementation of the AAC::Chunk class." alt="" coords="400,102,580,143"/>
+<area shape="rect" href="AAC__chunk__converter_8cpp.html" title="Contains the implementation of the AAC chunk converter classes." alt="" coords="605,102,853,143"/>
+<area shape="rect" href="AAC__converter_8cpp.html" title="Contains the implementation of the AAC::Converter class." alt="" coords="877,102,1079,143"/>
+<area shape="rect" href="AAC__error_8cpp.html" title="Contains the implementation of errors system functions for the library." alt="" coords="1103,102,1274,143"/>
+<area shape="rect" href="AAC__image_8cpp.html" title="Contains the implementation of the AAC::Image class." alt="" coords="1299,102,1481,143"/>
+<area shape="rect" href="AAC__pixel_8cpp.html" title="Contains the implementation of the AAC::Pixel class." alt="" coords="1505,102,1677,143"/>
 </map>
 </div>
 </div>
@@ -154,6 +154,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simplest possible chunk converter.  <a href="classAAC_1_1CC__Simple.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAC_1_1CC__Braile.html">AAC::CC_Braile</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classAAC_1_1Converter.html" title="Creates main converter combining all other steps to create art.">Converter</a> that uses Braile characters (not soo ascii anymore)  <a href="classAAC_1_1CC__Braile.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAC_1_1Converter.html">AAC::Converter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates main converter combining all other steps to create art.  <a href="classAAC_1_1Converter.html#details">More...</a><br /></td></tr>
@@ -173,16 +174,12 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6631de65c2525a370eee22e1c0d3d360"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAAC.html#a6631de65c2525a370eee22e1c0d3d360">AAC::set_error_code</a> (std::error_code ec)</td></tr>
-<tr class="memdesc:a6631de65c2525a370eee22e1c0d3d360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the AAC error code variable.  <a href="namespaceAAC.html#a6631de65c2525a370eee22e1c0d3d360">More...</a><br /></td></tr>
 <tr class="separator:a6631de65c2525a370eee22e1c0d3d360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab168d98d0b97ca57e48f421b32d9f5e1"><td class="memItemLeft" align="right" valign="top">std::error_code&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAAC.html#ab168d98d0b97ca57e48f421b32d9f5e1">AAC::get_error_code</a> ()</td></tr>
-<tr class="memdesc:ab168d98d0b97ca57e48f421b32d9f5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the AAC error code variable.  <a href="namespaceAAC.html#ab168d98d0b97ca57e48f421b32d9f5e1">More...</a><br /></td></tr>
 <tr class="separator:ab168d98d0b97ca57e48f421b32d9f5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c840f9f1b930e6c3d5c746f848e5c2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAAC.html#a5c840f9f1b930e6c3d5c746f848e5c2a">AAC::clear_error_code</a> ()</td></tr>
-<tr class="memdesc:a5c840f9f1b930e6c3d5c746f848e5c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the AAC error code.  <a href="namespaceAAC.html#a5c840f9f1b930e6c3d5c746f848e5c2a">More...</a><br /></td></tr>
 <tr class="separator:a5c840f9f1b930e6c3d5c746f848e5c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dff0e67028072b5d89595754f0d091a"><td class="memItemLeft" align="right" valign="top">std::error_code&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAAC.html#a1dff0e67028072b5d89595754f0d091a">AAC::make_error_code</a> (error_codes ec)</td></tr>
-<tr class="memdesc:a1dff0e67028072b5d89595754f0d091a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the AAC error code from the error_codes enumerator.  <a href="namespaceAAC.html#a1dff0e67028072b5d89595754f0d091a">More...</a><br /></td></tr>
 <tr class="separator:a1dff0e67028072b5d89595754f0d091a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13ae619c9a8b8e24491c5772a565991f"><td class="memItemLeft" align="right" valign="top">Image *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAAC.html#a13ae619c9a8b8e24491c5772a565991f">AAC::OpenImage</a> (std::string path)</td></tr>
 <tr class="memdesc:a13ae619c9a8b8e24491c5772a565991f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global image opener.  <a href="namespaceAAC.html#a13ae619c9a8b8e24491c5772a565991f">More...</a><br /></td></tr>

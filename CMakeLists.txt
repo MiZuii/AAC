@@ -50,6 +50,12 @@ foreach(header IN LISTS HEADERS_FILTERED)
     message(" +  - ${header}")
 endforeach()
 
+message(" + Example programs found")
+
+foreach(example_program IN LISTS EXAMPLE_PROGRAMS)
+    message(" +  - ${example_program}")
+endforeach()
+
 # -------------------------------------------------------------------------- #
 #                            LIBRARY TARGET SETUP                            #
 # -------------------------------------------------------------------------- #
@@ -61,20 +67,6 @@ add_library(${LIBRARY_NAME} STATIC)
 
 target_sources(${LIBRARY_NAME} PRIVATE ${LIBRARY_SOURCES})
 target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -pedantic)
-
-
-# -------------------------------------------------------------------------- */
-#                                 TEST TARGET                                */
-# -------------------------------------------------------------------------- */
-
-set(TEST_FILE test)
-set(TEST_DIR "testdir")
-
-add_executable(${TEST_FILE} "${TEST_DIR}/main.cpp")
-target_link_libraries(${TEST_FILE} PRIVATE ${LIBRARY_NAME})
-
-set_target_properties(${TEST_FILE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
-
 
 # -------------------------------------------------------------------------- #
 #                               EXAMPLES TARGET                              #

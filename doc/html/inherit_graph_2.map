@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classAAC_1_1ChunkConverter.html" title="Converts chunks matrix into final string." alt="" coords="5,31,168,57"/>
-<area shape="rect" id="node2" href="$classAAC_1_1CC__Braile.html" title=" " alt="" coords="219,5,339,32"/>
+<area shape="rect" id="node2" href="$classAAC_1_1CC__Braile.html" title="Converter that uses Braile characters (not soo ascii anymore)" alt="" coords="219,5,339,32"/>
 <area shape="rect" id="node3" href="$classAAC_1_1CC__Simple.html" title="Simplest possible chunk converter." alt="" coords="216,56,343,83"/>
 </map>

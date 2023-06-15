@@ -37,25 +37,8 @@ namespace AAC {
  * 
  */
 static thread_local std::error_code error_code;
-
-/**
- * @brief Set the AAC error code variable
- * 
- * @param ec The error code value
- */
 void set_error_code(std::error_code ec);
-
-/**
- * @brief Get the AAC error code variable
- * 
- * @return std::error_code The AAC error code
- */
 std::error_code get_error_code();
-
-/**
- * @brief Clears the AAC error code
- * 
- */
 void clear_error_code();
 
 /**
@@ -98,13 +81,6 @@ public:
 };
 
 const error_category category{};
-
-/**
- * @brief Creates the AAC error code from the error_codes enumerator
- * 
- * @param ec 
- * @return std::error_code 
- */
 std::error_code make_error_code(error_codes ec);
 
 /* -------------------------------------------------------------------------- */
@@ -127,50 +103,11 @@ private:
 
 public:
 
-    /**
-     * @brief Construct a new aac matrix object
-     * 
-     * @param size_x Width of matrix
-     * @param size_y Height of matrix
-     */
     Matrix(unsigned int size_x, unsigned int size_y);
-
-    /**
-     * @brief Destroy the aac matrix object
-     * 
-     */
     ~Matrix();
-
-    /**
-     * @brief Get the matrix element.
-     * 
-     * @param x Element x index
-     * @param y Element y index
-     * @return T The element
-     */
     T GetElement(unsigned int x, unsigned int y) const;
-
-    /**
-     * @brief Get the matrix element reference.
-     * 
-     * @param x Element x index
-     * @param y Element y index
-     * @return T& The element
-     */
     T& GetElementReference(unsigned int x, unsigned int y);
-
-    /**
-     * @brief Get matrix width
-     * 
-     * @return unsigned int Matrix width
-     */
     unsigned int GetXSize() const;
-
-    /**
-     * @brief Get matrix height
-     * 
-     * @return unsigned int Matrix height
-     */
     unsigned int GetYSize() const;
 };
 
@@ -201,32 +138,12 @@ private:
     Pixel_G _pixel_values;
 
 public:
-
-    /**
-     * @brief Construct a new aac pixel object
-     * 
-     */
+    // constructors
     Pixel();
-
-    /**
-     * @brief Construct a new Pixel object
-     * 
-     * @param grey The initial grey value of the pixel
-     */
     Pixel(uint8_t grey);
 
-    /**
-     * @brief Get the Pixel values
-     * 
-     * @return struct Pixel_G the pixel values struct
-     */
+    // getters and setters
     struct Pixel_G GetPixelValues();
-
-    /**
-     * @brief Set the Pixel values
-     * 
-     * @param grey Value to be set
-     */
     void SetPixelValues(uint8_t grey);
 };
 
@@ -311,12 +228,7 @@ class Image
 private:
     const std::string _path;
     const unsigned int _n;
-
     void* _pixels_matrix;
-
-    // helper for constructor
-    // convers raw data to an array of appropriet size and AAC pixel types
-    
 
 public:
     const Pixel_Type pixel_type;
@@ -433,6 +345,12 @@ public:
 
 };
 
+/**
+ * @class CC_Braile
+ *
+ * @brief Converter that uses Braile characters (not soo ascii anymore)
+ *
+ */
 class CC_Braile : public ChunkConverter
 {
 private:

@@ -1,14 +1,39 @@
 #include "../AAC.h"
 
+/**
+ * @file AAC_BC_Simple.cpp
+ * @brief Contains the implementation of the AAC::BC_Simple class.
+ */
+
 /* -------------------------------------------------------------------------- */
 /*                                AAC_BC_Simple                               */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * @brief Constructs a new AAC::BC_Simple object with the specified weights and negate flag.
+ *
+ * @param red_weight The weight for the red channel.
+ * @param green_weight The weight for the green channel.
+ * @param blue_weight The weight for the blue channel.
+ * @param negate Flag indicating whether to negate the brightness values.
+ */
 AAC::BC_Simple::BC_Simple(float red_weight, float green_weight, float blue_weight, uint8_t negate) :
     _red_weight(red_weight), _green_weight(green_weight), _blue_weight(blue_weight), _negate(negate) {}
 
+/**
+ * @brief Constructs a new AAC::BC_Simple object with default weights and negate flag.
+ *        The default weights are 1 for all channels.
+ */
 AAC::BC_Simple::BC_Simple() : AAC::BC_Simple::BC_Simple(1, 1, 1) {}
 
+/**
+ * @brief Converts the given image to a brightness matrix using the specified weights and negate flag.
+ *
+ * @param img A pointer to the image to be converted.
+ * @return A shared pointer to the resulting brightness matrix.
+ *
+ * @throws AAC::error_code An exception is thrown if the pixel type is invalid.
+ */
 std::shared_ptr<AAC::Matrix<uint8_t>> AAC::BC_Simple::convert(AAC::Image* img) {
     std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix(new AAC::Matrix<uint8_t>(img->size_x, img->size_y));
     void *raw_pixels_matrix = img->GetMatrix();

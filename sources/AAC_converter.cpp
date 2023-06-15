@@ -1,6 +1,11 @@
 #include "../AAC.h"
 
 /**
+ * @file AAC_converter.cpp
+ * @brief Contains the implementation of the AAC::Converter class.
+ */
+
+/**
  * @brief Constructs a Converter object with the specified brightness converter and chunk converter.
  *
  * @param brightness_conv The brightness converter.

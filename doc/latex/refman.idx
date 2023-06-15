@@ -1,27 +1,197 @@
-\indexentry{AAC\_BC\_Simple@{AAC\_BC\_Simple}|hyperpage}{7}
-\indexentry{AAC\_BrightnessConverter@{AAC\_BrightnessConverter}|hyperpage}{8}
-\indexentry{AAC\_CC\_Braile@{AAC\_CC\_Braile}|hyperpage}{9}
-\indexentry{AAC\_CC\_Simple@{AAC\_CC\_Simple}|hyperpage}{10}
-\indexentry{AAC\_Chunk@{AAC\_Chunk}|hyperpage}{11}
-\indexentry{AAC\_ChunkConverter@{AAC\_ChunkConverter}|hyperpage}{11}
-\indexentry{AAC\_Converter@{AAC\_Converter}|hyperpage}{12}
-\indexentry{AAC\_error\_category@{AAC\_error\_category}|hyperpage}{13}
-\indexentry{AAC\_Image@{AAC\_Image}|hyperpage}{14}
-\indexentry{AAC\_Matrix$<$ T $>$@{AAC\_Matrix$<$ T $>$}|hyperpage}{14}
-\indexentry{AAC\_Pixel$<$ E $>$@{AAC\_Pixel$<$ E $>$}|hyperpage}{15}
-\indexentry{AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$@{AAC\_Pixel$<$ AAC\_Pixel\_Type::EMPTY $>$}|hyperpage}{15}
-\indexentry{AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$@{AAC\_Pixel$<$ AAC\_Pixel\_Type::G $>$}|hyperpage}{16}
-\indexentry{AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$@{AAC\_Pixel$<$ AAC\_Pixel\_Type::GA $>$}|hyperpage}{16}
-\indexentry{AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$@{AAC\_Pixel$<$ AAC\_Pixel\_Type::RGB $>$}|hyperpage}{16}
-\indexentry{AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$@{AAC\_Pixel$<$ AAC\_Pixel\_Type::RGBA $>$}|hyperpage}{17}
-\indexentry{AAC\_Pixel\_EMPTY@{AAC\_Pixel\_EMPTY}|hyperpage}{17}
-\indexentry{AAC\_Pixel\_G@{AAC\_Pixel\_G}|hyperpage}{17}
-\indexentry{AAC\_Pixel\_GA@{AAC\_Pixel\_GA}|hyperpage}{18}
-\indexentry{AAC\_Pixel\_RGB@{AAC\_Pixel\_RGB}|hyperpage}{18}
-\indexentry{AAC\_Pixel\_RGBA@{AAC\_Pixel\_RGBA}|hyperpage}{18}
-\indexentry{AAC.cpp@{AAC.cpp}|hyperpage}{19}
-\indexentry{AAC.cpp@{AAC.cpp}!AAC\_OpenImage@{AAC\_OpenImage}|hyperpage}{19}
-\indexentry{AAC\_OpenImage@{AAC\_OpenImage}!AAC.cpp@{AAC.cpp}|hyperpage}{19}
-\indexentry{AAC.h@{AAC.h}|hyperpage}{20}
-\indexentry{AAC.h@{AAC.h}!AAC\_OpenImage@{AAC\_OpenImage}|hyperpage}{21}
-\indexentry{AAC\_OpenImage@{AAC\_OpenImage}!AAC.h@{AAC.h}|hyperpage}{21}
+\indexentry{AAC@{AAC}|hyperpage}{11}
+\indexentry{AAC@{AAC}!clear\_error\_code@{clear\_error\_code}|hyperpage}{11}
+\indexentry{clear\_error\_code@{clear\_error\_code}!AAC@{AAC}|hyperpage}{11}
+\indexentry{AAC@{AAC}!get\_error\_code@{get\_error\_code}|hyperpage}{11}
+\indexentry{get\_error\_code@{get\_error\_code}!AAC@{AAC}|hyperpage}{11}
+\indexentry{AAC@{AAC}!make\_error\_code@{make\_error\_code}|hyperpage}{11}
+\indexentry{make\_error\_code@{make\_error\_code}!AAC@{AAC}|hyperpage}{11}
+\indexentry{AAC@{AAC}!OpenImage@{OpenImage}|hyperpage}{12}
+\indexentry{OpenImage@{OpenImage}!AAC@{AAC}|hyperpage}{12}
+\indexentry{AAC@{AAC}!set\_error\_code@{set\_error\_code}|hyperpage}{12}
+\indexentry{set\_error\_code@{set\_error\_code}!AAC@{AAC}|hyperpage}{12}
+\indexentry{AAC::BC\_Simple@{AAC::BC\_Simple}|hyperpage}{13}
+\indexentry{AAC::BC\_Simple@{AAC::BC\_Simple}!BC\_Simple@{BC\_Simple}|hyperpage}{14}
+\indexentry{BC\_Simple@{BC\_Simple}!AAC::BC\_Simple@{AAC::BC\_Simple}|hyperpage}{14}
+\indexentry{AAC::BC\_Simple@{AAC::BC\_Simple}!BC\_Simple@{BC\_Simple}|hyperpage}{14}
+\indexentry{BC\_Simple@{BC\_Simple}!AAC::BC\_Simple@{AAC::BC\_Simple}|hyperpage}{14}
+\indexentry{AAC::BC\_Simple@{AAC::BC\_Simple}!convert@{convert}|hyperpage}{15}
+\indexentry{convert@{convert}!AAC::BC\_Simple@{AAC::BC\_Simple}|hyperpage}{15}
+\indexentry{AAC::BrightnessConverter@{AAC::BrightnessConverter}|hyperpage}{15}
+\indexentry{AAC::BrightnessConverter@{AAC::BrightnessConverter}!convert@{convert}|hyperpage}{16}
+\indexentry{convert@{convert}!AAC::BrightnessConverter@{AAC::BrightnessConverter}|hyperpage}{16}
+\indexentry{AAC::CC\_Braile@{AAC::CC\_Braile}|hyperpage}{16}
+\indexentry{AAC::CC\_Braile@{AAC::CC\_Braile}!CC\_Braile@{CC\_Braile}|hyperpage}{17}
+\indexentry{CC\_Braile@{CC\_Braile}!AAC::CC\_Braile@{AAC::CC\_Braile}|hyperpage}{17}
+\indexentry{AAC::CC\_Braile@{AAC::CC\_Braile}!convert@{convert}|hyperpage}{17}
+\indexentry{convert@{convert}!AAC::CC\_Braile@{AAC::CC\_Braile}|hyperpage}{17}
+\indexentry{AAC::CC\_Simple@{AAC::CC\_Simple}|hyperpage}{18}
+\indexentry{AAC::CC\_Simple@{AAC::CC\_Simple}!CC\_Simple@{CC\_Simple}|hyperpage}{19}
+\indexentry{CC\_Simple@{CC\_Simple}!AAC::CC\_Simple@{AAC::CC\_Simple}|hyperpage}{19}
+\indexentry{AAC::CC\_Simple@{AAC::CC\_Simple}!convert@{convert}|hyperpage}{19}
+\indexentry{convert@{convert}!AAC::CC\_Simple@{AAC::CC\_Simple}|hyperpage}{19}
+\indexentry{AAC::Chunk@{AAC::Chunk}|hyperpage}{20}
+\indexentry{AAC::Chunk@{AAC::Chunk}!Chunk@{Chunk}|hyperpage}{21}
+\indexentry{Chunk@{Chunk}!AAC::Chunk@{AAC::Chunk}|hyperpage}{21}
+\indexentry{AAC::Chunk@{AAC::Chunk}!Chunk@{Chunk}|hyperpage}{21}
+\indexentry{Chunk@{Chunk}!AAC::Chunk@{AAC::Chunk}|hyperpage}{21}
+\indexentry{AAC::Chunk@{AAC::Chunk}!GetData@{GetData}|hyperpage}{21}
+\indexentry{GetData@{GetData}!AAC::Chunk@{AAC::Chunk}|hyperpage}{21}
+\indexentry{AAC::Chunk@{AAC::Chunk}!GetXEnd@{GetXEnd}|hyperpage}{21}
+\indexentry{GetXEnd@{GetXEnd}!AAC::Chunk@{AAC::Chunk}|hyperpage}{21}
+\indexentry{AAC::Chunk@{AAC::Chunk}!GetXStart@{GetXStart}|hyperpage}{22}
+\indexentry{GetXStart@{GetXStart}!AAC::Chunk@{AAC::Chunk}|hyperpage}{22}
+\indexentry{AAC::Chunk@{AAC::Chunk}!GetYEnd@{GetYEnd}|hyperpage}{22}
+\indexentry{GetYEnd@{GetYEnd}!AAC::Chunk@{AAC::Chunk}|hyperpage}{22}
+\indexentry{AAC::Chunk@{AAC::Chunk}!GetYStart@{GetYStart}|hyperpage}{22}
+\indexentry{GetYStart@{GetYStart}!AAC::Chunk@{AAC::Chunk}|hyperpage}{22}
+\indexentry{AAC::Chunk@{AAC::Chunk}!SetChunk@{SetChunk}|hyperpage}{22}
+\indexentry{SetChunk@{SetChunk}!AAC::Chunk@{AAC::Chunk}|hyperpage}{22}
+\indexentry{AAC::ChunkConverter@{AAC::ChunkConverter}|hyperpage}{23}
+\indexentry{AAC::ChunkConverter@{AAC::ChunkConverter}!convert@{convert}|hyperpage}{24}
+\indexentry{convert@{convert}!AAC::ChunkConverter@{AAC::ChunkConverter}|hyperpage}{24}
+\indexentry{AAC::Converter@{AAC::Converter}|hyperpage}{24}
+\indexentry{AAC::Converter@{AAC::Converter}!Converter@{Converter}|hyperpage}{24}
+\indexentry{Converter@{Converter}!AAC::Converter@{AAC::Converter}|hyperpage}{24}
+\indexentry{AAC::Converter@{AAC::Converter}!CreateArt@{CreateArt}|hyperpage}{25}
+\indexentry{CreateArt@{CreateArt}!AAC::Converter@{AAC::Converter}|hyperpage}{25}
+\indexentry{AAC::error\_category@{AAC::error\_category}|hyperpage}{25}
+\indexentry{AAC::error\_category@{AAC::error\_category}!message@{message}|hyperpage}{26}
+\indexentry{message@{message}!AAC::error\_category@{AAC::error\_category}|hyperpage}{26}
+\indexentry{AAC::error\_category@{AAC::error\_category}!name@{name}|hyperpage}{27}
+\indexentry{name@{name}!AAC::error\_category@{AAC::error\_category}|hyperpage}{27}
+\indexentry{AAC::Image@{AAC::Image}|hyperpage}{27}
+\indexentry{AAC::Image@{AAC::Image}!Image@{Image}|hyperpage}{28}
+\indexentry{Image@{Image}!AAC::Image@{AAC::Image}|hyperpage}{28}
+\indexentry{AAC::Image@{AAC::Image}!````~Image@{$\sim$Image}|hyperpage}{28}
+\indexentry{````~Image@{$\sim$Image}!AAC::Image@{AAC::Image}|hyperpage}{28}
+\indexentry{AAC::Image@{AAC::Image}!GetMatrix@{GetMatrix}|hyperpage}{28}
+\indexentry{GetMatrix@{GetMatrix}!AAC::Image@{AAC::Image}|hyperpage}{28}
+\indexentry{AAC::Image@{AAC::Image}!pixel\_type@{pixel\_type}|hyperpage}{29}
+\indexentry{pixel\_type@{pixel\_type}!AAC::Image@{AAC::Image}|hyperpage}{29}
+\indexentry{AAC::Image@{AAC::Image}!size\_x@{size\_x}|hyperpage}{29}
+\indexentry{size\_x@{size\_x}!AAC::Image@{AAC::Image}|hyperpage}{29}
+\indexentry{AAC::Image@{AAC::Image}!size\_y@{size\_y}|hyperpage}{29}
+\indexentry{size\_y@{size\_y}!AAC::Image@{AAC::Image}|hyperpage}{29}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{29}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!Matrix@{Matrix}|hyperpage}{30}
+\indexentry{Matrix@{Matrix}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{30}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!````~Matrix@{$\sim$Matrix}|hyperpage}{30}
+\indexentry{````~Matrix@{$\sim$Matrix}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{30}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!GetElement@{GetElement}|hyperpage}{30}
+\indexentry{GetElement@{GetElement}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{30}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!GetElementReference@{GetElementReference}|hyperpage}{30}
+\indexentry{GetElementReference@{GetElementReference}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{30}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!GetXSize@{GetXSize}|hyperpage}{30}
+\indexentry{GetXSize@{GetXSize}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{30}
+\indexentry{AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}!GetYSize@{GetYSize}|hyperpage}{31}
+\indexentry{GetYSize@{GetYSize}!AAC::Matrix$<$ T $>$@{AAC::Matrix$<$ T $>$}|hyperpage}{31}
+\indexentry{AAC::Pixel$<$ E $>$@{AAC::Pixel$<$ E $>$}|hyperpage}{31}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::EMPTY $>$@{AAC::Pixel$<$ Pixel\_Type::EMPTY $>$}|hyperpage}{31}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::EMPTY $>$@{AAC::Pixel$<$ Pixel\_Type::EMPTY $>$}!Pixel@{Pixel}|hyperpage}{32}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::EMPTY $>$@{AAC::Pixel$<$ Pixel\_Type::EMPTY $>$}|hyperpage}{32}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}|hyperpage}{32}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}!Pixel@{Pixel}|hyperpage}{32}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}|hyperpage}{32}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}!Pixel@{Pixel}|hyperpage}{32}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}|hyperpage}{32}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}!GetPixelValues@{GetPixelValues}|hyperpage}{33}
+\indexentry{GetPixelValues@{GetPixelValues}!AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}|hyperpage}{33}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}!SetPixelValues@{SetPixelValues}|hyperpage}{33}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC::Pixel$<$ Pixel\_Type::G $>$@{AAC::Pixel$<$ Pixel\_Type::G $>$}|hyperpage}{33}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}|hyperpage}{33}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}!Pixel@{Pixel}|hyperpage}{33}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}|hyperpage}{33}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}!Pixel@{Pixel}|hyperpage}{34}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}|hyperpage}{34}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}!GetPixelValues@{GetPixelValues}|hyperpage}{34}
+\indexentry{GetPixelValues@{GetPixelValues}!AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}|hyperpage}{34}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}!SetPixelValues@{SetPixelValues}|hyperpage}{34}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC::Pixel$<$ Pixel\_Type::GA $>$@{AAC::Pixel$<$ Pixel\_Type::GA $>$}|hyperpage}{34}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}|hyperpage}{34}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}!Pixel@{Pixel}|hyperpage}{35}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}|hyperpage}{35}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}!Pixel@{Pixel}|hyperpage}{35}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}|hyperpage}{35}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}!GetPixelValues@{GetPixelValues}|hyperpage}{35}
+\indexentry{GetPixelValues@{GetPixelValues}!AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}|hyperpage}{35}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}!SetPixelValues@{SetPixelValues}|hyperpage}{35}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC::Pixel$<$ Pixel\_Type::RGB $>$@{AAC::Pixel$<$ Pixel\_Type::RGB $>$}|hyperpage}{35}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}|hyperpage}{35}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}!Pixel@{Pixel}|hyperpage}{36}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}|hyperpage}{36}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}!Pixel@{Pixel}|hyperpage}{36}
+\indexentry{Pixel@{Pixel}!AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}|hyperpage}{36}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}!GetPixelValues@{GetPixelValues}|hyperpage}{36}
+\indexentry{GetPixelValues@{GetPixelValues}!AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}|hyperpage}{36}
+\indexentry{AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}!SetPixelValues@{SetPixelValues}|hyperpage}{36}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC::Pixel$<$ Pixel\_Type::RGBA $>$@{AAC::Pixel$<$ Pixel\_Type::RGBA $>$}|hyperpage}{36}
+\indexentry{AAC::Pixel\_EMPTY@{AAC::Pixel\_EMPTY}|hyperpage}{37}
+\indexentry{AAC::Pixel\_G@{AAC::Pixel\_G}|hyperpage}{37}
+\indexentry{AAC::Pixel\_G@{AAC::Pixel\_G}!grey@{grey}|hyperpage}{37}
+\indexentry{grey@{grey}!AAC::Pixel\_G@{AAC::Pixel\_G}|hyperpage}{37}
+\indexentry{AAC::Pixel\_GA@{AAC::Pixel\_GA}|hyperpage}{37}
+\indexentry{AAC::Pixel\_GA@{AAC::Pixel\_GA}!alpha@{alpha}|hyperpage}{38}
+\indexentry{alpha@{alpha}!AAC::Pixel\_GA@{AAC::Pixel\_GA}|hyperpage}{38}
+\indexentry{AAC::Pixel\_GA@{AAC::Pixel\_GA}!grey@{grey}|hyperpage}{38}
+\indexentry{grey@{grey}!AAC::Pixel\_GA@{AAC::Pixel\_GA}|hyperpage}{38}
+\indexentry{AAC::Pixel\_RGB@{AAC::Pixel\_RGB}|hyperpage}{38}
+\indexentry{AAC::Pixel\_RGB@{AAC::Pixel\_RGB}!blue@{blue}|hyperpage}{39}
+\indexentry{blue@{blue}!AAC::Pixel\_RGB@{AAC::Pixel\_RGB}|hyperpage}{39}
+\indexentry{AAC::Pixel\_RGB@{AAC::Pixel\_RGB}!green@{green}|hyperpage}{39}
+\indexentry{green@{green}!AAC::Pixel\_RGB@{AAC::Pixel\_RGB}|hyperpage}{39}
+\indexentry{AAC::Pixel\_RGB@{AAC::Pixel\_RGB}!red@{red}|hyperpage}{39}
+\indexentry{red@{red}!AAC::Pixel\_RGB@{AAC::Pixel\_RGB}|hyperpage}{39}
+\indexentry{AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}|hyperpage}{39}
+\indexentry{AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}!alpha@{alpha}|hyperpage}{40}
+\indexentry{alpha@{alpha}!AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}|hyperpage}{40}
+\indexentry{AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}!blue@{blue}|hyperpage}{40}
+\indexentry{blue@{blue}!AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}|hyperpage}{40}
+\indexentry{AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}!green@{green}|hyperpage}{40}
+\indexentry{green@{green}!AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}|hyperpage}{40}
+\indexentry{AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}!red@{red}|hyperpage}{40}
+\indexentry{red@{red}!AAC::Pixel\_RGBA@{AAC::Pixel\_RGBA}|hyperpage}{40}
+\indexentry{/home/piotr/stdia/AAC/AAC.cpp@{/home/piotr/stdia/AAC/AAC.cpp}|hyperpage}{41}
+\indexentry{AAC.cpp@{AAC.cpp}!CUSTOM\_FOPEN\_LOAD@{CUSTOM\_FOPEN\_LOAD}|hyperpage}{41}
+\indexentry{CUSTOM\_FOPEN\_LOAD@{CUSTOM\_FOPEN\_LOAD}!AAC.cpp@{AAC.cpp}|hyperpage}{41}
+\indexentry{AAC.cpp@{AAC.cpp}!STB\_IMAGE\_IMPLEMENTATION@{STB\_IMAGE\_IMPLEMENTATION}|hyperpage}{42}
+\indexentry{STB\_IMAGE\_IMPLEMENTATION@{STB\_IMAGE\_IMPLEMENTATION}!AAC.cpp@{AAC.cpp}|hyperpage}{42}
+\indexentry{AAC.cpp@{AAC.cpp}!STBI\_FAILURE\_USERMSG@{STBI\_FAILURE\_USERMSG}|hyperpage}{42}
+\indexentry{STBI\_FAILURE\_USERMSG@{STBI\_FAILURE\_USERMSG}!AAC.cpp@{AAC.cpp}|hyperpage}{42}
+\indexentry{/home/piotr/stdia/AAC/AAC.h@{/home/piotr/stdia/AAC/AAC.h}|hyperpage}{42}
+\indexentry{AAC.h@{AAC.h}!MAX\_SIZE@{MAX\_SIZE}|hyperpage}{44}
+\indexentry{MAX\_SIZE@{MAX\_SIZE}!AAC.h@{AAC.h}|hyperpage}{44}
+\indexentry{/home/piotr/stdia/AAC/headers/enums.h@{/home/piotr/stdia/AAC/headers/enums.h}|hyperpage}{44}
+\indexentry{/home/piotr/stdia/AAC/headers/structs.h@{/home/piotr/stdia/AAC/headers/structs.h}|hyperpage}{44}
+\indexentry{/home/piotr/stdia/AAC/README.md@{/home/piotr/stdia/AAC/README.md}|hyperpage}{45}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_brightness\_converter.cpp@{/home/piotr/stdia/AAC/sources/AAC\_brightness\_converter.cpp}|hyperpage}{45}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_chunk.cpp@{/home/piotr/stdia/AAC/sources/AAC\_chunk.cpp}|hyperpage}{45}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_chunk\_converter.cpp@{/home/piotr/stdia/AAC/sources/AAC\_chunk\_converter.cpp}|hyperpage}{46}
+\indexentry{AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}!BRAILE\_CHUNKX\_DIVISOR@{BRAILE\_CHUNKX\_DIVISOR}|hyperpage}{46}
+\indexentry{BRAILE\_CHUNKX\_DIVISOR@{BRAILE\_CHUNKX\_DIVISOR}!AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}|hyperpage}{46}
+\indexentry{AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}!BRAILE\_CHUNKY\_DIVISOR@{BRAILE\_CHUNKY\_DIVISOR}|hyperpage}{47}
+\indexentry{BRAILE\_CHUNKY\_DIVISOR@{BRAILE\_CHUNKY\_DIVISOR}!AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}|hyperpage}{47}
+\indexentry{AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}!get\_char\_index@{get\_char\_index}|hyperpage}{47}
+\indexentry{get\_char\_index@{get\_char\_index}!AAC\_chunk\_converter.cpp@{AAC\_chunk\_converter.cpp}|hyperpage}{47}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_converter.cpp@{/home/piotr/stdia/AAC/sources/AAC\_converter.cpp}|hyperpage}{47}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_error.cpp@{/home/piotr/stdia/AAC/sources/AAC\_error.cpp}|hyperpage}{48}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_image.cpp@{/home/piotr/stdia/AAC/sources/AAC\_image.cpp}|hyperpage}{48}
+\indexentry{AAC\_image.cpp@{AAC\_image.cpp}!RefractorDataG@{RefractorDataG}|hyperpage}{49}
+\indexentry{RefractorDataG@{RefractorDataG}!AAC\_image.cpp@{AAC\_image.cpp}|hyperpage}{49}
+\indexentry{AAC\_image.cpp@{AAC\_image.cpp}!RefractorDataGA@{RefractorDataGA}|hyperpage}{50}
+\indexentry{RefractorDataGA@{RefractorDataGA}!AAC\_image.cpp@{AAC\_image.cpp}|hyperpage}{50}
+\indexentry{AAC\_image.cpp@{AAC\_image.cpp}!RefractorDataRGB@{RefractorDataRGB}|hyperpage}{50}
+\indexentry{RefractorDataRGB@{RefractorDataRGB}!AAC\_image.cpp@{AAC\_image.cpp}|hyperpage}{50}
+\indexentry{AAC\_image.cpp@{AAC\_image.cpp}!RefractorDataRGBA@{RefractorDataRGBA}|hyperpage}{51}
+\indexentry{RefractorDataRGBA@{RefractorDataRGBA}!AAC\_image.cpp@{AAC\_image.cpp}|hyperpage}{51}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_matrix.tpp@{/home/piotr/stdia/AAC/sources/AAC\_matrix.tpp}|hyperpage}{52}
+\indexentry{/home/piotr/stdia/AAC/sources/AAC\_pixel.cpp@{/home/piotr/stdia/AAC/sources/AAC\_pixel.cpp}|hyperpage}{52}
+\indexentry{AAC\_pixel.cpp@{AAC\_pixel.cpp}!SetPixelValues@{SetPixelValues}|hyperpage}{53}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC\_pixel.cpp@{AAC\_pixel.cpp}|hyperpage}{53}
+\indexentry{AAC\_pixel.cpp@{AAC\_pixel.cpp}!SetPixelValues@{SetPixelValues}|hyperpage}{53}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC\_pixel.cpp@{AAC\_pixel.cpp}|hyperpage}{53}
+\indexentry{AAC\_pixel.cpp@{AAC\_pixel.cpp}!SetPixelValues@{SetPixelValues}|hyperpage}{53}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC\_pixel.cpp@{AAC\_pixel.cpp}|hyperpage}{53}
+\indexentry{AAC\_pixel.cpp@{AAC\_pixel.cpp}!SetPixelValues@{SetPixelValues}|hyperpage}{54}
+\indexentry{SetPixelValues@{SetPixelValues}!AAC\_pixel.cpp@{AAC\_pixel.cpp}|hyperpage}{54}
+\indexentry{AAC\_pixel.cpp@{AAC\_pixel.cpp}!\_pixel\_values@{\_pixel\_values}|hyperpage}{54}
+\indexentry{\_pixel\_values@{\_pixel\_values}!AAC\_pixel.cpp@{AAC\_pixel.cpp}|hyperpage}{54}

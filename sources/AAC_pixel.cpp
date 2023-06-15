@@ -1,5 +1,10 @@
 #include "../AAC.h"
 
+/**
+ * @file AAC_pixel.cpp
+ * @brief Contains the implementation of the AAC::Pixel class.
+ */
+
 /* -------------------------------- GREY TYPE ------------------------------- */
 
 /**

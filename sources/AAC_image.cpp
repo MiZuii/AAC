@@ -1,6 +1,11 @@
 #include "../AAC.h"
 
 /**
+ * @file AAC_image.cpp
+ * @brief Contains the implementation of the AAC::Image class.
+ */
+
+/**
  * @brief Refactors the input data into a matrix of Pixel<G> elements.
  * @param size_x The size of the matrix in the x-axis.
  * @param size_y The size of the matrix in the y-axis.

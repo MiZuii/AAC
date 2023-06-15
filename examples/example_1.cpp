@@ -9,12 +9,12 @@ using namespace AAC;
 
 int main(int argc, char *argv[]) {
 
-    /* Simples usage of the library */
+    /* Simple usage of the library */
 
     /* Open an image from your file system with the global function OpenImage.
     This is the only function that is supposed to properly open the images in the
     AAC library althou you can work around it if you know what you're doing.*/
-    Image *img = OpenImage("../example2.jpg");
+    Image *img = OpenImage("../example1.jpg");
 
     /* Create two objects. One that is a derived class from a BrightnessConverter class and
     one that is a derived class from a ChunkConverter class. This are the only two objects
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     Converter converter = Converter(&bc, &cc);
 
     /* Use methode CreateArt of the Converter object to create ascii art representation of
-    you image. You need to pass an image and chunk size(which will decide about you output
+    your image. You need to pass an image and chunk size(which will decide about you output
     art size, the bigger the chunk the smaller the art) */
 
     std::cout << converter.CreateArt(img, 5) << std::endl;
