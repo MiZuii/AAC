@@ -1,10 +1,26 @@
 #include "../AAC.h"
 
-AAC::Converter::Converter(AAC::BrightnessConverter* brightness_conv, AAC::ChunkConverter* chunk_conv) : _brightness_conv(brightness_conv), _chunk_conv(chunk_conv) {}
+/**
+ * @brief Constructs a Converter object with the specified brightness converter and chunk converter.
+ *
+ * @param brightness_conv The brightness converter.
+ * @param chunk_conv The chunk converter.
+ */
+AAC::Converter::Converter(AAC::BrightnessConverter* brightness_conv, AAC::ChunkConverter* chunk_conv) :
+    _brightness_conv(brightness_conv), _chunk_conv(chunk_conv) {}
 
+/**
+ * @brief Generates chunks from the image using the specified chunk size and brightness matrix.
+ *
+ * @param img The image to generate chunks from.
+ * @param chunk_size The size of each chunk.
+ * @param brightness_matrix The shared pointer to the brightness matrix.
+ * @return The matrix of generated chunks.
+ * @throw std::error_code if the brightness matrix or image is null.
+ */
 AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t chunk_size, std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix) {
 
-    if( NULL == brightness_matrix || NULL == img ) {
+    if (NULL == brightness_matrix || NULL == img) {
         AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
         throw AAC::get_error_code();
     }
@@ -18,10 +34,8 @@ AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t 
 
     AAC::Matrix<AAC::Chunk>* arr = new AAC::Matrix<AAC::Chunk>(x_nof_chunks, y_nof_chunks);
 
-    for (size_t i = 0; i < y_nof_chunks; i++)
-    {
-        for (size_t j = 0; j < x_nof_chunks; j++)
-        {
+    for (size_t i = 0; i < y_nof_chunks; i++) {
+        for (size_t j = 0; j < x_nof_chunks; j++) {
             arr->GetElementReference(j, i).SetChunk(lcols_to_cut + j * chunk_size,
                                                    lcols_to_cut + (j + 1) * chunk_size,
                                                    urows_to_cut + i * y_chunk_size,
@@ -33,9 +47,17 @@ AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t 
     return arr;
 }
 
+/**
+ * @brief Creates ASCII art from the image using the specified chunk size.
+ *
+ * @param img The image to create ASCII art from.
+ * @param chunk_size The size of each chunk.
+ * @return The generated ASCII art.
+ * @throw std::error_code if the image is null.
+ */
 std::string AAC::Converter::CreateArt(AAC::Image* img, size_t chunk_size) {
 
-    if( NULL == img ) {
+    if (NULL == img) {
         AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
         throw AAC::get_error_code();
     }
