@@ -14,13 +14,13 @@ int main(int argc, char *argv[]) {
     /* Open an image from your file system with the global function OpenImage.
     This is the only function that is supposed to properly open the images in the
     AAC library althou you can work around it if you know what you're doing.*/
-    Image *img = OpenImage("../example1.jpg");
+    Image *img = OpenImage("../example1.png");
 
     /* Create two objects. One that is a derived class from a BrightnessConverter class and
     one that is a derived class from a ChunkConverter class. This are the only two objects
     that can alter you output image ass only they are performing the image transformations. */
-    BC_Simple bc(1, 1, 1, 1);
-    CC_Simple cc(" .-=*#@");
+    BC_Simple bc(1.6, 1.6, 1.6, 0);
+    CC_Simple cc(".-=*#@");
 
     /* Supplying the Converter constructor with these two objects will create and object
     that is used to convert the img instance to a string */

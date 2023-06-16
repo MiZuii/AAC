@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     /* Simple usage of the library 2 */
 
     /* Open image just like in example 1 */
-    Image *img = OpenImage("../example2.jpg");
+    Image *img = OpenImage("../example2.png");
 
     /* In this example create is show that you can combine different brightness converters
     and chunk converters. All the converters need to deriviate from one base class soo for
@@ -26,7 +26,11 @@ int main(int argc, char *argv[]) {
     different chunk sizes. The Braile converter for example needs at least 2 chunks. If
     supplied with lower chunk size it will throw an error. */
 
-    std::cout << converter.CreateArt(img, 5) << std::endl;
+    std::cout << converter.CreateArt(img, 13) << std::endl;
+
+    /* There is also important thing to say about the generated image. We can see that
+    the edges are a bit cut. This is because the library prioritizes cutting the edges
+    to force the resolution ratio. It does this to not affect the middle part of the image. */
 
     delete img;
     return 0;

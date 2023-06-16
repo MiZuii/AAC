@@ -11,14 +11,14 @@ int main(int argc, char *argv[]) {
     /* Simple usage of the library 3 */
 
     /* Open image */
-    Image *img = OpenImage("../example1.jpg");
+    Image *img = OpenImage("../example1.png");
 
     /* All of the converters has it's own specific parameters. For example
     the Simple Chunk Converter CC_Simple has it's alphabet as an argument.
     We can use that to tweak the image from example 1 soo the background on 
     the image is black. All the parameters are explained in documentation. */
-    BC_Simple bc(1, 1, 1, 1);
-    CC_Simple cc("   ..-==**##@@");
+    BC_Simple bc(1.6, 1.6, 1.6, 0);
+    CC_Simple cc("   .-==**##@@");
 
     /* Now go through the same steps of creating art as in the previous examples. */
     Converter converter = Converter(&bc, &cc);
