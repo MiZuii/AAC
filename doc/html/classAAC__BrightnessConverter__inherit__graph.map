@@ -1,4 +1,0 @@
-<map id="AAC_BrightnessConverter" name="AAC_BrightnessConverter">
-<area shape="rect" id="node1" title="Specifies group off classes converting AAC_Image to brightness matrix." alt="" coords="5,5,195,32"/>
-<area shape="rect" id="node2" href="$classAAC__BC__Simple.html" title="Simplest possible brightness converter." alt="" coords="37,80,163,107"/>
-</map>
