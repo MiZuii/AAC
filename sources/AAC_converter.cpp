@@ -41,7 +41,7 @@ AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t 
 
     for (size_t i = 0; i < y_nof_chunks; i++) {
         for (size_t j = 0; j < x_nof_chunks; j++) {
-            arr->GetElementReference(j, i).SetChunk(lcols_to_cut + j * chunk_size,
+            (*arr)[i][j].SetChunk(lcols_to_cut + j * chunk_size,
                                                    lcols_to_cut + (j + 1) * chunk_size,
                                                    urows_to_cut + i * y_chunk_size,
                                                    urows_to_cut + (i + 1) * y_chunk_size,

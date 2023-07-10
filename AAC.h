@@ -12,8 +12,7 @@
 #include <string>
 #include <system_error>
 #include <thread>
-#include "enums.h"
-#include "structs.h"
+#include <vector>
 
 #define MAX_SIZE 4000
 
@@ -27,6 +26,63 @@
  * 
  */
 namespace AAC {
+
+/* -------------------------------------------------------------------------- */
+/*                                   STRUCTS                                  */
+/* -------------------------------------------------------------------------- */
+
+struct Pixel_G
+{
+    uint8_t grey;
+};
+
+struct Pixel_GA
+{
+    uint8_t grey;
+    uint8_t alpha;
+};
+
+struct Pixel_RGB
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+};
+
+struct Pixel_RGBA
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+    uint8_t alpha;
+};
+
+struct Pixel_EMPTY {};
+
+/* -------------------------------------------------------------------------- */
+/*                                    ENUMS                                   */
+/* -------------------------------------------------------------------------- */
+
+enum class error_codes {
+  ALOCATION_ERROR,
+  INVALID_PIXEL,
+  INVALID_PATH,
+  INVALID_ARGUMENTS,
+  IMAGE_OPEN_FAIL,
+  IMAGE_ALLOCATION_ERROR,
+  BRIGHTNESS_CALCULATION_FAIL,
+  MATRIX_ALLOCATION_ERROR,
+  MATRIX_INDEX_OUT_OF_BOUNDS,
+  CHUNK_SIZE_ERROR,
+};
+
+enum class Pixel_Type {
+  EMPTY,
+  G,
+  GA,
+  RGB,
+  RGBA,
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
@@ -99,16 +155,16 @@ class Matrix
 private:
     const unsigned int size_x;
     const unsigned int size_y;
-    T **_matrix;
+    std::vector<std::vector<T>> _matrix;
 
 public:
 
-    Matrix(unsigned int size_x, unsigned int size_y);
+    Matrix(const unsigned int size_x, const unsigned int size_y);
     ~Matrix();
-    T GetElement(unsigned int x, unsigned int y) const;
-    T& GetElementReference(unsigned int x, unsigned int y);
     unsigned int GetXSize() const;
     unsigned int GetYSize() const;
+    bool isShapeOf(Matrix& other) const;
+    std::vector<T>& operator[](unsigned int index);
 };
 
 #include "sources/AAC_matrix.tpp"

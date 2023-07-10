@@ -48,31 +48,31 @@ std::shared_ptr<AAC::Matrix<uint8_t>> AAC::BC_Simple::convert(AAC::Image* img) {
             {
                 AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *pixels_g = reinterpret_cast<AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *>(raw_pixels_matrix);
 
-                brightness_matrix->GetElementReference(x, y) = _negate*255 + (_negate ? -1 : 1) * (pixels_g->GetElementReference(x, y).GetPixelValues().grey*(_red_weight + _green_weight + _blue_weight)/3);
+                (*brightness_matrix)[y][x] = _negate*255 + (_negate ? -1 : 1) * ((*pixels_g)[y][x].GetPixelValues().grey*(_red_weight + _green_weight + _blue_weight)/3);
                 break;
             }
             case AAC::Pixel_Type::GA:
             {
                 AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *pixels_ga = reinterpret_cast<AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *>(raw_pixels_matrix);
-                struct AAC::Pixel_GA ga = pixels_ga->GetElementReference(x, y).GetPixelValues();
+                struct AAC::Pixel_GA ga = (*pixels_ga)[y][x].GetPixelValues();
 
-                brightness_matrix->GetElementReference(x, y) = _negate*255 + (_negate ? -1 : 1) * ((ga.grey + ga.alpha)*(_red_weight + _green_weight + _blue_weight)/3 / 2);
+                (*brightness_matrix)[y][x] = _negate*255 + (_negate ? -1 : 1) * ((ga.grey + ga.alpha)*(_red_weight + _green_weight + _blue_weight)/3 / 2);
                 break;
             }
             case AAC::Pixel_Type::RGB:
             {
                 AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *pixels_rgb = reinterpret_cast<AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *>(raw_pixels_matrix);
-                struct AAC::Pixel_RGB rgb = pixels_rgb->GetElementReference(x, y).GetPixelValues();
+                struct AAC::Pixel_RGB rgb = (*pixels_rgb)[y][x].GetPixelValues();
 
-                brightness_matrix->GetElementReference(x, y) = _negate*255 + (_negate ? -1 : 1) * (rgb.red*_red_weight / 3 + rgb.green*_green_weight / 3 + rgb.blue*_blue_weight / 3);
+                (*brightness_matrix)[y][x] = _negate*255 + (_negate ? -1 : 1) * (rgb.red*_red_weight / 3 + rgb.green*_green_weight / 3 + rgb.blue*_blue_weight / 3);
                 break;
             }
             case AAC::Pixel_Type::RGBA:
             {
                 AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *pixels_rgba = reinterpret_cast<AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *>(raw_pixels_matrix);
-                struct AAC::Pixel_RGBA rgba = pixels_rgba->GetElementReference(x, y).GetPixelValues();
+                struct AAC::Pixel_RGBA rgba = (*pixels_rgba)[y][x].GetPixelValues();
 
-                brightness_matrix->GetElementReference(x, y) = _negate*255 + (_negate ? -1 : 1) * (rgba.red*(_red_weight / 6) + rgba.green*(_green_weight / 6) + rgba.blue*(_blue_weight / 6) + rgba.alpha / 2);
+                (*brightness_matrix)[y][x] = _negate*255 + (_negate ? -1 : 1) * (rgba.red*(_red_weight / 6) + rgba.green*(_green_weight / 6) + rgba.blue*(_blue_weight / 6) + rgba.alpha / 2);
                 break;
             }
             default:

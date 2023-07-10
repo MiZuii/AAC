@@ -20,7 +20,7 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *RefractorDataG(unsigned int size_x,
     {
         for (unsigned int x = 0; x < size_x; x++)
         {
-            arr->GetElementReference(x, y).SetPixelValues(data[y * size_x + x]);
+            (*arr)[y][x].SetPixelValues(data[y * size_x + x]);
         }
     }
 
@@ -43,7 +43,7 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *RefractorDataGA(unsigned int size_
     {
         for (unsigned int x = 0; x < size_x; x++)
         {
-            arr->GetElementReference(x, y).SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1]);
+            (*arr)[y][x].SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1]);
         }
     }
 
@@ -66,7 +66,7 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *RefractorDataRGB(unsigned int siz
     {
         for (unsigned int x = 0; x < size_x; x++)
         {
-            arr->GetElementReference(x, y).SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1], data[(y * size_x + x) * n + 2]);
+            (*arr)[y][x].SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1], data[(y * size_x + x) * n + 2]);
         }
     }
 
@@ -90,7 +90,7 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *RefractorDataRGBA(unsigned int s
         for (unsigned int x = 0; x < size_x; x++)
         {
             size_t tmp = (y * size_x + x) * n;
-            arr->GetElementReference(x, y).SetPixelValues(data[tmp], data[tmp + 1], data[tmp + 2], data[tmp + 3]);
+            (*arr)[y][x].SetPixelValues(data[tmp], data[tmp + 1], data[tmp + 2], data[tmp + 3]);
         }
     }
 
