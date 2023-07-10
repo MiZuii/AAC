@@ -155,10 +155,10 @@ class Matrix
 private:
     const unsigned int size_x;
     const unsigned int size_y;
-    std::vector<std::vector<T>> _matrix;
 
 public:
 
+    std::vector<std::vector<T>> _matrix;
     Matrix(const unsigned int size_x, const unsigned int size_y);
     ~Matrix();
     unsigned int GetXSize() const;

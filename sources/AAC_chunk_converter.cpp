@@ -3,6 +3,7 @@
 #include <locale>
 #include <codecvt>
 #include <string>
+#include <typeinfo>
 
 /**
  * @file AAC_chunk_converter.cpp
