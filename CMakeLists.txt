@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.16.3)
 project(AAC LANGUAGES CXX)
 message(" + Project dir: ${AAC_SOURCE_DIR}")
 
-set(LIBRARY_NAME "AAClib")
+set(LIBRARY_NAME "AAC")
+set(LIBRARY_NAME_SHARED "AAClib")
 set(AAC_VERSION 1.0)
 
 # for verbose make output
@@ -74,9 +75,12 @@ endforeach()
 include_directories(headers/)
 
 add_library(${LIBRARY_NAME} STATIC)
+add_library(${LIBRARY_NAME_SHARED} SHARED)
 
 target_sources(${LIBRARY_NAME} PRIVATE ${LIBRARY_SOURCES})
 target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -pedantic)
+target_sources(${LIBRARY_NAME_SHARED} PRIVATE ${LIBRARY_SOURCES})
+target_compile_options(${LIBRARY_NAME_SHARED} PRIVATE -Wall -Wextra -pedantic)
 
 # -------------------------------------------------------------------------- #
 #                               EXAMPLES TARGET                              #

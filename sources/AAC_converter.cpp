@@ -25,27 +25,27 @@ AAC::Converter::Converter(AAC::BrightnessConverter* brightness_conv, AAC::ChunkC
  */
 AAC::Matrix<AAC::Chunk>* AAC::Converter::generateChunks(AAC::Image *img, size_t chunk_size, std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix) {
 
-    if (NULL == brightness_matrix || NULL == img) {
+    if (NULL == brightness_matrix) {
         AAC::set_error_code(AAC::make_error_code(AAC::error_codes::INVALID_ARGUMENTS));
         throw AAC::get_error_code();
     }
 
     size_t x_nof_chunks = img->size_x / chunk_size;
-    size_t lcols_to_cut = (img->size_x - chunk_size * x_nof_chunks) / 2;
+    size_t lcols_to_cut = (img->size_x % chunk_size) / 2;
 
     size_t y_chunk_size = (size_t)((float)chunk_size / _ratio);
     size_t y_nof_chunks = img->size_y / y_chunk_size;
-    size_t urows_to_cut = (img->size_y - y_chunk_size * y_nof_chunks) / 2;
+    size_t urows_to_cut = (img->size_y % y_chunk_size) / 2;
 
     AAC::Matrix<AAC::Chunk>* arr = new AAC::Matrix<AAC::Chunk>(x_nof_chunks, y_nof_chunks);
 
     for (size_t i = 0; i < y_nof_chunks; i++) {
         for (size_t j = 0; j < x_nof_chunks; j++) {
-            arr->GetElementReference(j, i).SetChunk(lcols_to_cut + j * chunk_size,
-                                                   lcols_to_cut + (j + 1) * chunk_size,
-                                                   urows_to_cut + i * y_chunk_size,
-                                                   urows_to_cut + (i + 1) * y_chunk_size,
-                                                   brightness_matrix);
+            (*arr)[i][j].SetChunk(lcols_to_cut + j * chunk_size,
+                                  lcols_to_cut + (j + 1) * chunk_size,
+                                  urows_to_cut + i * y_chunk_size,
+                                  urows_to_cut + (i + 1) * y_chunk_size,
+                                  brightness_matrix);
         }
     }
 

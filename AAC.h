@@ -12,13 +12,18 @@
 #include <string>
 #include <system_error>
 #include <thread>
-#include "enums.h"
-#include "structs.h"
+#include <vector>
 
 #define MAX_SIZE 4000
 
 #ifndef AAC_H
 #define AAC_H
+
+/**
+ * @brief AAC Matrix size type (nonnamespace)
+ * 
+ */
+typedef unsigned long msize_t;
 
 /**
  * @namespace AAC
@@ -27,6 +32,63 @@
  * 
  */
 namespace AAC {
+
+/* -------------------------------------------------------------------------- */
+/*                                   STRUCTS                                  */
+/* -------------------------------------------------------------------------- */
+
+struct Pixel_G
+{
+    uint8_t grey;
+};
+
+struct Pixel_GA
+{
+    uint8_t grey;
+    uint8_t alpha;
+};
+
+struct Pixel_RGB
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+};
+
+struct Pixel_RGBA
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+    uint8_t alpha;
+};
+
+struct Pixel_EMPTY {};
+
+/* -------------------------------------------------------------------------- */
+/*                                    ENUMS                                   */
+/* -------------------------------------------------------------------------- */
+
+enum class error_codes {
+  ALOCATION_ERROR,
+  INVALID_PIXEL,
+  INVALID_PATH,
+  INVALID_ARGUMENTS,
+  IMAGE_OPEN_FAIL,
+  IMAGE_ALLOCATION_ERROR,
+  BRIGHTNESS_CALCULATION_FAIL,
+  MATRIX_ALLOCATION_ERROR,
+  MATRIX_INDEX_OUT_OF_BOUNDS,
+  CHUNK_SIZE_ERROR,
+};
+
+enum class Pixel_Type {
+  EMPTY,
+  G,
+  GA,
+  RGB,
+  RGBA,
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 ERROR CODES                                */
@@ -97,18 +159,18 @@ template<typename T>
 class Matrix
 {
 private:
-    const unsigned int size_x;
-    const unsigned int size_y;
-    T **_matrix;
+    const msize_t size_x;
+    const msize_t size_y;
 
 public:
 
-    Matrix(unsigned int size_x, unsigned int size_y);
+    std::vector<std::vector<T>> _matrix;
+    Matrix(const msize_t size_x, const msize_t size_y);
     ~Matrix();
-    T GetElement(unsigned int x, unsigned int y) const;
-    T& GetElementReference(unsigned int x, unsigned int y);
-    unsigned int GetXSize() const;
-    unsigned int GetYSize() const;
+    msize_t GetXSize() const;
+    msize_t GetYSize() const;
+    bool isShapeOf(Matrix& other) const;
+    std::vector<T>& operator[](msize_t index);
 };
 
 #include "sources/AAC_matrix.tpp"
@@ -227,15 +289,15 @@ class Image
 {
 private:
     const std::string _path;
-    const unsigned int _n;
+    const uint8_t _n;
     void* _pixels_matrix;
 
 public:
     const Pixel_Type pixel_type;
-    const unsigned int size_x;
-    const unsigned int size_y;
+    const msize_t size_x;
+    const msize_t size_y;
 
-    Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data);
+    Image(std::string path, msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data);
     ~Image();
     void* GetMatrix();
 };
@@ -259,23 +321,23 @@ Image* OpenImage(std::string path);
 class Chunk
 {
 private:
-    unsigned int _X_start_index; // inclusive
-    unsigned int _X_end_index; // exclusive
-    unsigned int _Y_start_index; // inclusive
-    unsigned int _Y_end_index; // exclusive
+    msize_t _X_start_index; // inclusive
+    msize_t _X_end_index; // exclusive
+    msize_t _Y_start_index; // inclusive
+    msize_t _Y_end_index; // exclusive
 
     // pointer to external image brightness array(do not free on destroy)
     std::shared_ptr<Matrix<uint8_t>> _data;
 
 public:
     Chunk();
-    Chunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
-    void SetChunk(unsigned int X_start_index, unsigned int X_end_index, unsigned int Y_start_index, unsigned int Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
+    Chunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
+    void SetChunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<Matrix<uint8_t>> data);
     std::shared_ptr<Matrix<uint8_t>> GetData() const;
-    unsigned int GetXStart() const;
-    unsigned int GetXEnd() const;
-    unsigned int GetYStart() const;
-    unsigned int GetYEnd() const;
+    msize_t GetXStart() const;
+    msize_t GetXEnd() const;
+    msize_t GetYStart() const;
+    msize_t GetYEnd() const;
 };
 
 /* -------------------------------------------------------------------------- */
