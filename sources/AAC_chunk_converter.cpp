@@ -59,16 +59,16 @@ std::string AAC::CC_Simple::convert(AAC::Matrix<AAC::Chunk>* chunks) {
     std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix = (*chunks)[0][0].GetData();
 
     // iterate through chunks and generate result
-    for (size_t y = 0; y < chunks->GetYSize(); y++) {
-        for (size_t x = 0; x < chunks->GetXSize(); x++) {
+    for (msize_t y = 0; y < chunks->GetYSize(); y++) {
+        for (msize_t x = 0; x < chunks->GetXSize(); x++) {
 
             AAC::Chunk cchunk = (*chunks)[y][x];
 
             unsigned long sum = 0;
             unsigned long quantity = (cchunk.GetYEnd() - cchunk.GetYStart()) * (cchunk.GetYEnd() - cchunk.GetYStart());
 
-            for (size_t cy = cchunk.GetYStart(); cy < cchunk.GetYEnd(); cy++) {
-                for (size_t cx = cchunk.GetXStart(); cx < cchunk.GetXEnd(); cx++) {
+            for (msize_t cy = cchunk.GetYStart(); cy < cchunk.GetYEnd(); cy++) {
+                for (msize_t cx = cchunk.GetXStart(); cx < cchunk.GetXEnd(); cx++) {
                     sum += (*brightness_matrix)[cy][cx];
                 }
             }
@@ -80,8 +80,8 @@ std::string AAC::CC_Simple::convert(AAC::Matrix<AAC::Chunk>* chunks) {
     std::string result = "";
 
     // convert to final string
-    for (size_t y = 0; y < art_result.GetYSize(); y++) {
-        for (size_t x = 0; x < art_result.GetXSize(); x++) {
+    for (msize_t y = 0; y < art_result.GetYSize(); y++) {
+        for (msize_t x = 0; x < art_result.GetXSize(); x++) {
             result.push_back(art_result[y][x]);
         }
         result += '\n';
@@ -133,13 +133,13 @@ std::string AAC::CC_Braile::convert(AAC::Matrix<AAC::Chunk>* chunks) {
 
     // calculate columns and rows divide
     AAC::Chunk tchunk = (*chunks)[0][0];
-    unsigned int column_sizes[BRAILE_CHUNKX_DIVISOR + 1];
-    unsigned int row_sizes[BRAILE_CHUNKY_DIVISOR + 1];
+    msize_t column_sizes[BRAILE_CHUNKX_DIVISOR + 1];
+    msize_t row_sizes[BRAILE_CHUNKY_DIVISOR + 1];
 
-    unsigned int column_size = (tchunk.GetXEnd() - tchunk.GetXStart()) / BRAILE_CHUNKX_DIVISOR;
+    msize_t column_size = (tchunk.GetXEnd() - tchunk.GetXStart()) / BRAILE_CHUNKX_DIVISOR;
     uint8_t column_oversize = (tchunk.GetXEnd() - tchunk.GetXStart()) % BRAILE_CHUNKX_DIVISOR;
 
-    unsigned int row_size = (tchunk.GetYEnd() - tchunk.GetYStart()) / BRAILE_CHUNKY_DIVISOR;
+    msize_t row_size = (tchunk.GetYEnd() - tchunk.GetYStart()) / BRAILE_CHUNKY_DIVISOR;
     uint8_t row_oversize = (tchunk.GetYEnd() - tchunk.GetYStart()) % BRAILE_CHUNKY_DIVISOR;
 
     // apply sizes and refractor into prefix sum
@@ -154,8 +154,8 @@ std::string AAC::CC_Braile::convert(AAC::Matrix<AAC::Chunk>* chunks) {
     row_sizes[4] = 4 * row_size + (row_oversize > 1) + (row_oversize > 0) + (row_oversize > 2);
 
     // iterate through chunks and generate result
-    for (size_t y = 1; y < chunks->GetYSize() - 1; y++) {
-        for (size_t x = 1; x < chunks->GetXSize() - 1; x++) {
+    for (msize_t y = 1; y < chunks->GetYSize() - 1; y++) {
+        for (msize_t x = 1; x < chunks->GetXSize() - 1; x++) {
 
             AAC::Chunk cchunk = (*chunks)[y][x];
 
@@ -192,8 +192,8 @@ std::string AAC::CC_Braile::convert(AAC::Matrix<AAC::Chunk>* chunks) {
     std::wstring result = L"";
 
     // conver to final string
-    for(size_t y = 0; y < art_result.GetYSize(); y++) {
-        for(size_t x = 0; x < art_result.GetXSize(); x++) {
+    for(msize_t y = 0; y < art_result.GetYSize(); y++) {
+        for(msize_t x = 0; x < art_result.GetXSize(); x++) {
 
             result.push_back(art_result[y][x]);
         }

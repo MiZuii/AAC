@@ -12,13 +12,13 @@
  * @param data The input data.
  * @return A pointer to the matrix of Pixel<G> elements.
  */
-AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *RefractorDataG(unsigned int size_x, unsigned int size_y, unsigned char *data)
+AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *RefractorDataG(msize_t size_x, msize_t size_y, unsigned char *data)
 {
     AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *arr = new AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>>(size_x, size_y);
 
-    for (unsigned int y = 0; y < size_y; y++)
+    for (msize_t y = 0; y < size_y; y++)
     {
-        for (unsigned int x = 0; x < size_x; x++)
+        for (msize_t x = 0; x < size_x; x++)
         {
             (*arr)[y][x].SetPixelValues(data[y * size_x + x]);
         }
@@ -35,13 +35,13 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::G>> *RefractorDataG(unsigned int size_x,
  * @param data The input data.
  * @return A pointer to the matrix of Pixel<GA> elements.
  */
-AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *RefractorDataGA(unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data)
+AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *RefractorDataGA(msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data)
 {
     AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *arr = new AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>>(size_x, size_y);
 
-    for (unsigned int y = 0; y < size_y; y++)
+    for (msize_t y = 0; y < size_y; y++)
     {
-        for (unsigned int x = 0; x < size_x; x++)
+        for (msize_t x = 0; x < size_x; x++)
         {
             (*arr)[y][x].SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1]);
         }
@@ -58,13 +58,13 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::GA>> *RefractorDataGA(unsigned int size_
  * @param data The input data.
  * @return A pointer to the matrix of Pixel<RGB> elements.
  */
-AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *RefractorDataRGB(unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data)
+AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *RefractorDataRGB(msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data)
 {
     AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *arr = new AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>>(size_x, size_y);
 
-    for (unsigned int y = 0; y < size_y; y++)
+    for (msize_t y = 0; y < size_y; y++)
     {
-        for (unsigned int x = 0; x < size_x; x++)
+        for (msize_t x = 0; x < size_x; x++)
         {
             (*arr)[y][x].SetPixelValues(data[(y * size_x + x) * n], data[(y * size_x + x) * n + 1], data[(y * size_x + x) * n + 2]);
         }
@@ -81,13 +81,13 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGB>> *RefractorDataRGB(unsigned int siz
  * @param data The input data.
  * @return A pointer to the matrix of Pixel<RGBA> elements.
  */
-AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *RefractorDataRGBA(unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data)
+AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *RefractorDataRGBA(msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data)
 {
     AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *arr = new AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>>(size_x, size_y);
 
-    for (unsigned int y = 0; y < size_y; y++)
+    for (msize_t y = 0; y < size_y; y++)
     {
-        for (unsigned int x = 0; x < size_x; x++)
+        for (msize_t x = 0; x < size_x; x++)
         {
             size_t tmp = (y * size_x + x) * n;
             (*arr)[y][x].SetPixelValues(data[tmp], data[tmp + 1], data[tmp + 2], data[tmp + 3]);
@@ -105,7 +105,7 @@ AAC::Matrix<AAC::Pixel<AAC::Pixel_Type::RGBA>> *RefractorDataRGBA(unsigned int s
  * @param n The number of color components per pixel.
  * @param data The image data.
  */
-AAC::Image::Image(std::string path, unsigned int size_x, unsigned int size_y, unsigned int n, unsigned char *data) : _path(path), _n(n), pixel_type(static_cast<AAC::Pixel_Type>(n)), size_x(size_x), size_y(size_y)
+AAC::Image::Image(std::string path, msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data) : _path(path), _n(n), pixel_type(static_cast<AAC::Pixel_Type>(n)), size_x(size_x), size_y(size_y)
 {
     // check arguments validity
     if (size_x > MAX_SIZE || size_y > MAX_SIZE || n < 1 || n > 4 || !data)

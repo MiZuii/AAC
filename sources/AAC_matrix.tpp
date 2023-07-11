@@ -9,11 +9,11 @@ template <typename T>
  * @param size_x The size in the x-axis.
  * @param size_y The size in the y-axis.
  */
-AAC::Matrix<T>::Matrix(const unsigned int size_x, const unsigned int size_y) : size_x(size_x), size_y(size_y)
+AAC::Matrix<T>::Matrix(const msize_t size_x, const msize_t size_y) : size_x(size_x), size_y(size_y)
 {
     _matrix = std::vector<std::vector<T>>(size_y);
 
-    for( unsigned int row; row < size_y; row++ ) {
+    for( msize_t row = 0; row < size_y; row++ ) {
         _matrix[row] = std::vector<T>(size_x);
     }
 }
@@ -32,7 +32,7 @@ template <typename T>
  * @brief Retrieves the size in the x-axis of the matrix.
  * @return The size in the x-axis.
  */
-unsigned int AAC::Matrix<T>::GetXSize() const {
+msize_t AAC::Matrix<T>::GetXSize() const {
     return size_x;
 }
 
@@ -41,7 +41,7 @@ template <typename T>
  * @brief Retrieves the size in the y-axis of the matrix.
  * @return The size in the y-axis.
  */
-unsigned int AAC::Matrix<T>::GetYSize() const {
+msize_t AAC::Matrix<T>::GetYSize() const {
     return size_y;
 }
 
@@ -50,7 +50,7 @@ template <typename T>
  * @brief Retrieves the array element as reference.
  * @return The array element reference.
  */
-std::vector<T>& AAC::Matrix<T>::operator[](unsigned int index) {
+std::vector<T>& AAC::Matrix<T>::operator[](msize_t index) {
     try
     {
         return _matrix[index];

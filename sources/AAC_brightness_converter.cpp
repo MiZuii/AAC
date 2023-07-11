@@ -38,9 +38,9 @@ std::shared_ptr<AAC::Matrix<uint8_t>> AAC::BC_Simple::convert(AAC::Image* img) {
     std::shared_ptr<AAC::Matrix<uint8_t>> brightness_matrix(new AAC::Matrix<uint8_t>(img->size_x, img->size_y));
     void *raw_pixels_matrix = img->GetMatrix();
 
-    for (unsigned int y = 0; y < img->size_y; y++)
+    for (msize_t y = 0; y < img->size_y; y++)
     {
-        for (unsigned int x = 0; x < img->size_x; x++)
+        for (msize_t x = 0; x < img->size_x; x++)
         {
             switch (img->pixel_type)
             {
