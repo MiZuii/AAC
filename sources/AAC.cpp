@@ -8,7 +8,7 @@
  * @brief Global functions and static variables for AAC.h
  */
 
-#include "AAC.h"
+#include <AAC.h>
 #include <iostream>
 #include <string>
 

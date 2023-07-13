@@ -159,21 +159,24 @@ template<typename T>
 class Matrix
 {
 private:
-    const msize_t size_x;
-    const msize_t size_y;
+    msize_t size_x;
+    msize_t size_y;
+    std::vector<std::vector<T>> _matrix;
 
 public:
 
-    std::vector<std::vector<T>> _matrix;
     Matrix(const msize_t size_x, const msize_t size_y);
+    Matrix();
     ~Matrix();
     msize_t GetXSize() const;
     msize_t GetYSize() const;
-    bool isShapeOf(Matrix& other) const;
+    bool isShapeOf(Matrix<T>& other) const;
     std::vector<T>& operator[](msize_t index);
+    Matrix<T>& operator=(Matrix<T>& other);
+    Matrix<T>& operator=(Matrix<T>&& other);
 };
 
-#include "sources/AAC_matrix.tpp"
+#include "../sources/AAC_matrix.tpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 PIXEL CLASS                                */

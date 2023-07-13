@@ -1,4 +1,4 @@
-#include "../AAC.h"
+#include <AAC.h>
 
 /**
  * @file AAC_BC_Simple.cpp

@@ -5,6 +5,12 @@
 
 template <typename T>
 /**
+ * @brief Constructs a Matrix object with size (0, 0).
+ */
+AAC::Matrix<T>::Matrix() : size_x(0), size_y(0) { }
+
+template <typename T>
+/**
  * @brief Constructs a Matrix object with the specified size.
  * @param size_x The size in the x-axis.
  * @param size_y The size in the y-axis.
@@ -51,15 +57,7 @@ template <typename T>
  * @return The array element reference.
  */
 std::vector<T>& AAC::Matrix<T>::operator[](msize_t index) {
-    try
-    {
-        return _matrix[index];
-    }
-    catch(const std::out_of_range& exp)
-    {
-        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
-        throw AAC::get_error_code();
-    }
+    return _matrix[index];
 }
 
 template <typename T>
@@ -69,4 +67,26 @@ template <typename T>
  */
 bool AAC::Matrix<T>::isShapeOf(Matrix<T>& other) const {
     return( this->GetXSize() == other->GetXSize() && this->GetYSize() == other->GetYSize() );
+}
+
+template <typename T>
+/**
+ * @brief Assignment operator for Matrix.
+ */
+AAC::Matrix<T>& AAC::Matrix<T>::operator=(AAC::Matrix<T>& other) {
+    other.size_x = this->size_x;
+    other.size_y = this->size_y;
+    other._matrix = this->_matrix;
+    return *this;
+}
+
+template <typename T>
+/**
+ * @brief Move operator for Matrix.
+ */
+AAC::Matrix<T>& AAC::Matrix<T>::operator=(AAC::Matrix<T>&& other) {
+    other.size_x = this->size_x;
+    other.size_y = this->size_y;
+    other._matrix = std::move(this->_matrix);
+    return *this;
 }

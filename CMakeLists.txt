@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(AAC_LIBRARY "AAC")
-set(AAC_VERSION 1.0)
+set(AAC_VERSION 0.1)
 
 # for verbose make output
 # set(CMAKE_VERBOSE_MAKEFILE TRUE)
@@ -48,9 +48,13 @@ file(GLOB LIBRARY_HEADERS *.h headers/*.h)
 file(GLOB STBI_LIBRARY headers/stb_image.h)
 file(GLOB EXAMPLE_PROGRAMS examples/*.cpp)
 file(GLOB ADDITIONAL_LATEX_FILES doxygen/*.sty)
+file(GLOB AAC_LIB_HEADER include/AAC.h)
+set(AAC_INCLUDE_DIR include/)
 
 set(HEADERS_FILTERED ${LIBRARY_HEADERS})
 list(REMOVE_ITEM HEADERS_FILTERED ${STBI_LIBRARY})
+
+
 
 # doxygen variables prep
 string(REPLACE ";" " " DOXYGEN_DIRS_STR "${LIBRARY_SOURCES} ${HEADERS_FILTERED} ${MAIN_README}")
@@ -86,11 +90,23 @@ endforeach()
 
 # include globaly
 include_directories(headers/)
+include_directories(${AAC_INCLUDE_DIR})
+include(GNUInstallDirs)
 
 add_library(${AAC_LIBRARY} SHARED)
-
 target_sources(${AAC_LIBRARY} PRIVATE ${LIBRARY_SOURCES})
+
+set_target_properties(${AAC_LIBRARY} PROPERTIES 
+    VERSION ${AAC_VERSION}
+    PUBLIC_HEADER ${AAC_LIB_HEADER}
+)
+
 target_compile_options(${AAC_LIBRARY} PRIVATE -Wall -Wextra -pedantic)
+
+install(TARGETS ${AAC_LIBRARY}
+    LIBRARY DESTINATION ${AAC_INCLUDE_DIR}
+    PUBLIC_HEADER DESTINATION ${AAC_INCLUDE_DIR}
+)
 
 # -------------------------------------------------------------------------- #
 #                               EXAMPLES TARGET                              #
