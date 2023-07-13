@@ -3,9 +3,3 @@ build
 doxygen/Doxyfile
 doc
 examples/bin
-
-# local
-test.cpp
-test
-test.o
-libAAClib.a

@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.16.3)
 project(AAC LANGUAGES CXX)
 message(" + Project dir: ${AAC_SOURCE_DIR}")
 
-set(LIBRARY_NAME "AAC")
-set(LIBRARY_NAME_SHARED "AAClib")
+# ensuring googletest
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(AAC_LIBRARY "AAC")
 set(AAC_VERSION 1.0)
 
 # for verbose make output
@@ -25,6 +28,16 @@ else ()
     message(" + Doxygen not found")
 endif ()
 
+# -------------------------------------------------------------------------- #
+#                                 SUBMODULES                                 #
+# -------------------------------------------------------------------------- #
+
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+    execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    message(" + Git submodules up to date")
+endif()
 
 # -------------------------------------------------------------------------- #
 #                             SOURCE FILES SETUP                             #
@@ -74,13 +87,10 @@ endforeach()
 # include globaly
 include_directories(headers/)
 
-add_library(${LIBRARY_NAME} STATIC)
-add_library(${LIBRARY_NAME_SHARED} SHARED)
+add_library(${AAC_LIBRARY} SHARED)
 
-target_sources(${LIBRARY_NAME} PRIVATE ${LIBRARY_SOURCES})
-target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -pedantic)
-target_sources(${LIBRARY_NAME_SHARED} PRIVATE ${LIBRARY_SOURCES})
-target_compile_options(${LIBRARY_NAME_SHARED} PRIVATE -Wall -Wextra -pedantic)
+target_sources(${AAC_LIBRARY} PRIVATE ${LIBRARY_SOURCES})
+target_compile_options(${AAC_LIBRARY} PRIVATE -Wall -Wextra -pedantic)
 
 # -------------------------------------------------------------------------- #
 #                               EXAMPLES TARGET                              #
@@ -116,4 +126,10 @@ add_custom_target(clean_doc
     COMMAND rm -rf doc/html/* doc/latex/*
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
 
+# -------------------------------------------------------------------------- #
+#                                    TESTS                                   #
+# -------------------------------------------------------------------------- #
 
+enable_testing()
+include(GoogleTest)
+add_subdirectory(${CMAKE_SOURCE_DIR}/tests)
