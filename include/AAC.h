@@ -26,6 +26,12 @@
 typedef unsigned long msize_t;
 
 /**
+ * @brief AAC Matrix squared size type (nonnamespace)
+ * 
+ */
+typedef unsigned long long mmsize_t;
+
+/**
  * @namespace AAC
  * 
  * @brief Main library namespace
@@ -161,12 +167,14 @@ class Matrix
 private:
     msize_t size_x;
     msize_t size_y;
+    mmsize_t quantity;
     std::vector<std::vector<T>> _matrix;
 
 public:
 
     Matrix(const msize_t size_x, const msize_t size_y);
     Matrix();
+    Matrix(Matrix<T>& other);
     ~Matrix();
     msize_t GetXSize() const;
     msize_t GetYSize() const;

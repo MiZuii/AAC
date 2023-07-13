@@ -7,7 +7,7 @@ template <typename T>
 /**
  * @brief Constructs a Matrix object with size (0, 0).
  */
-AAC::Matrix<T>::Matrix() : size_x(0), size_y(0) { }
+AAC::Matrix<T>::Matrix() : size_x(0), size_y(0), quantity(0) { }
 
 template <typename T>
 /**
@@ -15,13 +15,23 @@ template <typename T>
  * @param size_x The size in the x-axis.
  * @param size_y The size in the y-axis.
  */
-AAC::Matrix<T>::Matrix(const msize_t size_x, const msize_t size_y) : size_x(size_x), size_y(size_y)
+AAC::Matrix<T>::Matrix(const msize_t size_x, const msize_t size_y) : size_x(size_x), size_y(size_y), quantity(size_x*size_y)
 {
     _matrix = std::vector<std::vector<T>>(size_y);
 
     for( msize_t row = 0; row < size_y; row++ ) {
         _matrix[row] = std::vector<T>(size_x);
     }
+}
+
+template <typename T>
+/**
+ * @brief Copy constructor of Matrix.
+ * @param other The matrix to construct from.
+ */
+AAC::Matrix<T>::Matrix(AAC::Matrix<T>& other) : size_x(other.size_x), size_y(other.size_y), quantity(other.quantity)
+{
+    _matrix = other._matrix;
 }
 
 template <typename T>
@@ -57,6 +67,10 @@ template <typename T>
  * @return The array element reference.
  */
 std::vector<T>& AAC::Matrix<T>::operator[](msize_t index) {
+    if( 0 == quantity ) {
+        AAC::set_error_code(AAC::make_error_code(AAC::error_codes::MATRIX_INDEX_OUT_OF_BOUNDS));
+        throw AAC::get_error_code();
+    }
     return _matrix[index];
 }
 
@@ -77,6 +91,7 @@ AAC::Matrix<T>& AAC::Matrix<T>::operator=(AAC::Matrix<T>& other) {
     other.size_x = this->size_x;
     other.size_y = this->size_y;
     other._matrix = this->_matrix;
+    other.quantity = this->quantity;
     return *this;
 }
 
@@ -87,6 +102,7 @@ template <typename T>
 AAC::Matrix<T>& AAC::Matrix<T>::operator=(AAC::Matrix<T>&& other) {
     other.size_x = this->size_x;
     other.size_y = this->size_y;
+    other.quantity = this->quantity;
     other._matrix = std::move(this->_matrix);
     return *this;
 }

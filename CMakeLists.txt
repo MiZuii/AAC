@@ -5,6 +5,7 @@ message(" + Project dir: ${AAC_SOURCE_DIR}")
 # ensuring googletest
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -pedantic")
 
 set(AAC_LIBRARY "AAC")
 set(AAC_VERSION 0.1)
@@ -65,24 +66,24 @@ string(REPLACE ";" " " LATEX_EXT_FILES "${ADDITIONAL_LATEX_FILES}")
 set(LATEX_EXTRA_FILES ${LATEX_EXT_FILES})
 
 
-message(" + Project headers and source files:")
-foreach(source IN LISTS LIBRARY_SOURCES)
-    message(" +  - ${source}")
-endforeach()
+# message(" + Project headers and source files:")
+# foreach(source IN LISTS LIBRARY_SOURCES)
+#     message(" +  - ${source}")
+# endforeach()
 
-foreach(header IN LISTS HEADERS_FILTERED)
-    message(" +  - ${header}")
-endforeach()
+# foreach(header IN LISTS HEADERS_FILTERED)
+#     message(" +  - ${header}")
+# endforeach()
 
-message(" + Additional latex files found:")
-foreach(latex_file IN LISTS ADDITIONAL_LATEX_FILES)
-    message(" +  - ${latex_file}")
-endforeach()
+# message(" + Additional latex files found:")
+# foreach(latex_file IN LISTS ADDITIONAL_LATEX_FILES)
+#     message(" +  - ${latex_file}")
+# endforeach()
 
-message(" + Example programs found:")
-foreach(example_program IN LISTS EXAMPLE_PROGRAMS)
-    message(" +  - ${example_program}")
-endforeach()
+# message(" + Example programs found:")
+# foreach(example_program IN LISTS EXAMPLE_PROGRAMS)
+#     message(" +  - ${example_program}")
+# endforeach()
 
 # -------------------------------------------------------------------------- #
 #                            LIBRARY TARGET SETUP                            #
@@ -100,8 +101,6 @@ set_target_properties(${AAC_LIBRARY} PROPERTIES
     VERSION ${AAC_VERSION}
     PUBLIC_HEADER ${AAC_LIB_HEADER}
 )
-
-target_compile_options(${AAC_LIBRARY} PRIVATE -Wall -Wextra -pedantic)
 
 install(TARGETS ${AAC_LIBRARY}
     LIBRARY DESTINATION ${AAC_INCLUDE_DIR}

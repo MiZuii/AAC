@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-
-#include "../AAC.h"
+#include <AAC.h>
 
 using namespace AAC;
 
