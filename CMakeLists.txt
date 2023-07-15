@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -pedantic")
 
-set(AAC_LIBRARY "AAC")
+set(AAC_LIBRARY "aac")
 set(AAC_VERSION 0.1)
 
 # for verbose make output
@@ -44,46 +44,23 @@ endif()
 #                             SOURCE FILES SETUP                             #
 # -------------------------------------------------------------------------- #
 file(GLOB MAIN_README README.md)
-file(GLOB LIBRARY_SOURCES *.cpp sources/*.cpp sources/*.tpp)
-file(GLOB LIBRARY_HEADERS *.h headers/*.h)
+file(GLOB_RECURSE LIBRARY_SOURCES sources/*.cpp sources/*.tpp )
 file(GLOB STBI_LIBRARY headers/stb_image.h)
 file(GLOB EXAMPLE_PROGRAMS examples/*.cpp)
 file(GLOB ADDITIONAL_LATEX_FILES doxygen/*.sty)
-file(GLOB AAC_LIB_HEADER include/AAC.h)
+file(GLOB AAC_LIB_HEADER include/aac.h)
+file(GLOB INCLUDE_DIR_HEADERS include/*.h)
 set(AAC_INCLUDE_DIR include/)
-
-set(HEADERS_FILTERED ${LIBRARY_HEADERS})
-list(REMOVE_ITEM HEADERS_FILTERED ${STBI_LIBRARY})
-
 
 
 # doxygen variables prep
-string(REPLACE ";" " " DOXYGEN_DIRS_STR "${LIBRARY_SOURCES} ${HEADERS_FILTERED} ${MAIN_README}")
+string(REPLACE ";" " " DOXYGEN_DIRS_STR "${LIBRARY_SOURCES} ${MAIN_README} ${AAC_LIB_HEADER}")
 set(DOXYGEN_INPUT ${DOXYGEN_DIRS_STR})
 string(REPLACE ";" " " DOXYGEN_STYLES_STR "${DOCUMENTATION_STYLESHEET}")
 set(LATEX_EXTRA_STYLESHEET ${DOXYGEN_STYLES_STR})
 string(REPLACE ";" " " LATEX_EXT_FILES "${ADDITIONAL_LATEX_FILES}")
 set(LATEX_EXTRA_FILES ${LATEX_EXT_FILES})
 
-
-# message(" + Project headers and source files:")
-# foreach(source IN LISTS LIBRARY_SOURCES)
-#     message(" +  - ${source}")
-# endforeach()
-
-# foreach(header IN LISTS HEADERS_FILTERED)
-#     message(" +  - ${header}")
-# endforeach()
-
-# message(" + Additional latex files found:")
-# foreach(latex_file IN LISTS ADDITIONAL_LATEX_FILES)
-#     message(" +  - ${latex_file}")
-# endforeach()
-
-# message(" + Example programs found:")
-# foreach(example_program IN LISTS EXAMPLE_PROGRAMS)
-#     message(" +  - ${example_program}")
-# endforeach()
 
 # -------------------------------------------------------------------------- #
 #                            LIBRARY TARGET SETUP                            #

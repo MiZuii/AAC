@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-#include <AAC.h>
+#include <aac.h>
 
 /* Remember to use library namespace */
 using namespace AAC;
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
     /* Simple usage of the library */
 

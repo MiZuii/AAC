@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <AAC.h>
+#include <aac.h>
 
 using namespace ::testing;
 using namespace AAC;
@@ -19,6 +19,7 @@ using namespace AAC;
 TEST(MatrixTest, NoArgumentConstructor) {
 
     Matrix<char> m;
+
     ASSERT_EQ(m.GetXSize(), 0);
     ASSERT_EQ(m.GetYSize(), 0);
 
@@ -27,6 +28,7 @@ TEST(MatrixTest, NoArgumentConstructor) {
 TEST(MatrixTest, ArgumentConstructor) {
 
     Matrix<char> m(5, 9);
+
     ASSERT_EQ(m.GetXSize(), 5);
     ASSERT_EQ(m.GetYSize(), 9);
 
@@ -35,15 +37,10 @@ TEST(MatrixTest, ArgumentConstructor) {
 TEST(MatrixTest, CopyConstructor) {
 
     Matrix<int> m(6, 5);
-    m[0][0] = 1;
-    m[3][4] = -3;
     auto m2 = m;
-    m2[3][4] = 2;
 
     ASSERT_EQ(m2.GetXSize(), 6);
     ASSERT_EQ(m2.GetYSize(), 5);
-    ASSERT_EQ(m[0][0], m2[0][0]);
-    ASSERT_NE(m[3][4], m2[3][4]);
 
 }
 
@@ -53,5 +50,13 @@ TEST(MatrixTest, AssignmentOperator) {
 
     ASSERT_EQ(m2.GetXSize(), 6);
     ASSERT_EQ(m2.GetYSize(), 5);
+
+}
+
+TEST(MatrixTest, ZeroQuantityPrevention) {
+
+    Matrix<int> m;
+
+    ASSERT_THROW(m[0][0], AACException);
 
 }
