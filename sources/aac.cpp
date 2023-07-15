@@ -3,12 +3,12 @@
 //
 
 /**
- * @file AAC.cpp
+ * @file aac.cpp
  * 
  * @brief Global functions and static variables for AAC.h
  */
 
-#include "AAC.h"
+#include <aac.h>
 #include <iostream>
 #include <string>
 
@@ -16,9 +16,10 @@
 #define CUSTOM_FOPEN_LOAD
 #define STBI_FAILURE_USERMSG
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <stb_image.h>
 
 using namespace std;
+namespace AAC {
 
 /* --------------------------- GLOBAL IMAGE OPENER -------------------------- */
 
@@ -29,18 +30,17 @@ using namespace std;
  * @param path Path of the image to open
  * @return Image* An pointer to Image instance of the given image
  */
-AAC::Image *AAC::OpenImage(std::string path) {
+Image *OpenImage(std::string path) {
 
     int x, y, n;
     unsigned char *data = stbi_load(path.c_str(), &x, &y, &n, 0);
 
     if (!data)
     {
-        AAC::set_error_code(make_error_code(AAC::error_codes::INVALID_PIXEL));
-        throw AAC::get_error_code();
+        throw AACException(error_codes::IMAGE_OPEN_FAIL);
     }
     else {
-        AAC::Image* opened_image = new AAC::Image(path, x, y, n, data);
+        Image* opened_image = new Image(x, y, n, data);
         free(data);
         return opened_image;
     }
@@ -52,4 +52,6 @@ AAC::Image *AAC::OpenImage(std::string path) {
  * @brief Ratio of font width to height used for proper chunks division
  * 
  */
-const float AAC::Converter::_ratio = 0.45;
+const float Converter::_ratio = 0.45;
+
+} // namespace AAC

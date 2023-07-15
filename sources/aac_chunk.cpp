@@ -1,9 +1,11 @@
-#include "../AAC.h"
+#include <aac.h>
 
 /**
- * @file AAC_chunk.cpp
- * @brief Contains the implementation of the AAC::Chunk class.
+ * @file aac_chunk.cpp
+ * @brief Contains the implementation of the Chunk class.
  */
+
+using namespace AAC;
 
 /**
  * @brief Constructs a Chunk object with the specified parameters.
@@ -14,13 +16,13 @@
  * @param Y_end_index The ending index of the Y-axis.
  * @param data The shared pointer to the data matrix.
  */
-AAC::Chunk::Chunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<AAC::Matrix<uint8_t>> data) :
+Chunk::Chunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<Matrix<uint8_t>> data) :
     _X_start_index(X_start_index), _X_end_index(X_end_index), _Y_start_index(Y_start_index), _Y_end_index(Y_end_index), _data(data) {}
 
 /**
  * @brief Constructs a Chunk object with default values.
  */
-AAC::Chunk::Chunk() : AAC::Chunk(0, 0, 0, 0, NULL) {}
+Chunk::Chunk() : Chunk(0, 0, 0, 0, NULL) {}
 
 /**
  * @brief Sets the parameters of the Chunk object.
@@ -31,7 +33,7 @@ AAC::Chunk::Chunk() : AAC::Chunk(0, 0, 0, 0, NULL) {}
  * @param Y_end_index The ending index of the Y-axis.
  * @param data The shared pointer to the data matrix.
  */
-void AAC::Chunk::SetChunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<AAC::Matrix<uint8_t>> data) {
+void Chunk::SetChunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_start_index, msize_t Y_end_index, std::shared_ptr<Matrix<uint8_t>> data) {
     _X_start_index = X_start_index;
     _X_end_index = X_end_index;
     _Y_start_index = Y_start_index;
@@ -44,7 +46,7 @@ void AAC::Chunk::SetChunk(msize_t X_start_index, msize_t X_end_index, msize_t Y_
  *
  * @return The shared pointer to the data matrix.
  */
-std::shared_ptr<AAC::Matrix<uint8_t>> AAC::Chunk::GetData() const {
+std::shared_ptr<Matrix<uint8_t>> Chunk::GetData() const {
     return _data;
 }
 
@@ -53,7 +55,7 @@ std::shared_ptr<AAC::Matrix<uint8_t>> AAC::Chunk::GetData() const {
  *
  * @return The starting index of the X-axis.
  */
-msize_t AAC::Chunk::GetXStart() const {
+msize_t Chunk::GetXStart() const {
     return _X_start_index;
 }
 
@@ -62,7 +64,7 @@ msize_t AAC::Chunk::GetXStart() const {
  *
  * @return The starting index of the Y-axis.
  */
-msize_t AAC::Chunk::GetYStart() const {
+msize_t Chunk::GetYStart() const {
     return _Y_start_index;
 }
 
@@ -71,7 +73,7 @@ msize_t AAC::Chunk::GetYStart() const {
  *
  * @return The ending index of the X-axis.
  */
-msize_t AAC::Chunk::GetXEnd() const {
+msize_t Chunk::GetXEnd() const {
     return _X_end_index;
 }
 
@@ -80,6 +82,6 @@ msize_t AAC::Chunk::GetXEnd() const {
  *
  * @return The ending index of the Y-axis.
  */
-msize_t AAC::Chunk::GetYEnd() const {
+msize_t Chunk::GetYEnd() const {
     return _Y_end_index;
 }

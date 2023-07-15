@@ -2,11 +2,11 @@
 #include <string>
 #include <cstdio>
 
-#include "../AAC.h"
+#include <aac.h>
 
 using namespace AAC;
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
     /* Simple usage of the library 3 */
 

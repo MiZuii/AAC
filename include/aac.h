@@ -3,7 +3,7 @@
 //
 
 /**
- * @file AAC.h
+ * @file aac.h
  *
  * @brief Main library header file
  */
@@ -24,6 +24,12 @@
  * 
  */
 typedef unsigned long msize_t;
+
+/**
+ * @brief AAC Matrix squared size type (nonnamespace)
+ * 
+ */
+typedef unsigned long long mmsize_t;
 
 /**
  * @namespace AAC
@@ -91,59 +97,30 @@ enum class Pixel_Type {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                                 ERROR CODES                                */
+/*                                 EXCEPTIONS                                 */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @brief Variable containing library defined error code
- * 
+ * @class AACException
+ *
+ * @brief Class providing exceptions management and messages.
+ *
  */
-static thread_local std::error_code error_code;
-void set_error_code(std::error_code ec);
-std::error_code get_error_code();
-void clear_error_code();
 
-/**
- * @class error_category
- *
- * @brief Class provideing error messages for AAC library
- *
- */
-class error_category : public std::error_category
-{
+class AACException : public std::exception {
+
+private:
+    error_codes error_code;
+    const char * message(error_codes ec) const;
+    
 public:
-    virtual const char* name() const noexcept override {return "error_category";}
-
-    virtual std::string message(int ec) const override {
-    switch (static_cast<error_codes>(ec)){
-        case error_codes::ALOCATION_ERROR:
-            return "[AAC] Alocation error";
-        case error_codes::INVALID_PIXEL:
-            return "[AAC] Invalid pixel type";
-        case error_codes::INVALID_PATH:
-            return "[AAC] Invalid path";
-        case error_codes::INVALID_ARGUMENTS:
-            return "[AAC] Invalid arguments";
-        case error_codes::IMAGE_OPEN_FAIL:
-            return "[AAC] Failed to open image";
-        case error_codes::IMAGE_ALLOCATION_ERROR:
-            return "[AAC] Failed to allocate memory for piexels array";
-        case error_codes::BRIGHTNESS_CALCULATION_FAIL:
-            return "[AAC] Failed to calculate image brightness array";
-        case error_codes::MATRIX_ALLOCATION_ERROR:
-            return "[AAC] Failed to allocate space for Matrix";
-        case error_codes::MATRIX_INDEX_OUT_OF_BOUNDS:
-            return "[AAC] Index out of range";
-        case error_codes::CHUNK_SIZE_ERROR:
-            return "[AAC] To small chunks for conversion";
-        default:
-            return "[AAC] Unknown error";
-        }
+    AACException(error_codes error_code) : error_code(error_code) { }
+    virtual ~AACException() noexcept {}
+    
+    const char* what () const noexcept override {
+        return message(error_code);
     }
 };
-
-const error_category category{};
-std::error_code make_error_code(error_codes ec);
 
 /* -------------------------------------------------------------------------- */
 /*                                MATRIX CLASS                                */
@@ -159,21 +136,26 @@ template<typename T>
 class Matrix
 {
 private:
-    const msize_t size_x;
-    const msize_t size_y;
+    msize_t size_x;
+    msize_t size_y;
+    mmsize_t quantity;
+    std::vector<std::vector<T>> _matrix;
 
 public:
 
-    std::vector<std::vector<T>> _matrix;
     Matrix(const msize_t size_x, const msize_t size_y);
+    Matrix();
+    Matrix(Matrix<T>& other);
     ~Matrix();
     msize_t GetXSize() const;
     msize_t GetYSize() const;
-    bool isShapeOf(Matrix& other) const;
+    bool isShapeOf(Matrix<T>& other) const;
     std::vector<T>& operator[](msize_t index);
+    Matrix<T>& operator=(Matrix<T>& other);
+    Matrix<T>& operator=(Matrix<T>&& other);
 };
 
-#include "sources/AAC_matrix.tpp"
+#include "../sources/aac_matrix.tpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 PIXEL CLASS                                */
@@ -288,16 +270,19 @@ public:
 class Image
 {
 private:
-    const std::string _path;
-    const uint8_t _n;
+    uint8_t _n;
     void* _pixels_matrix;
+    Pixel_Type _pixel_type;
+    msize_t _size_x;
+    msize_t _size_y;
 
 public:
-    const Pixel_Type pixel_type;
-    const msize_t size_x;
-    const msize_t size_y;
 
-    Image(std::string path, msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data);
+    Image(msize_t size_x, msize_t size_y, uint8_t n, unsigned char *data);
+    Image(std::string path);
+    msize_t GetSizeX() const;
+    msize_t GetSizeY() const;
+    Pixel_Type GetPixelType() const;
     ~Image();
     void* GetMatrix();
 };
@@ -326,7 +311,7 @@ private:
     msize_t _Y_start_index; // inclusive
     msize_t _Y_end_index; // exclusive
 
-    // pointer to external image brightness array(do not free on destroy)
+    // pointer to external image brightness array
     std::shared_ptr<Matrix<uint8_t>> _data;
 
 public:

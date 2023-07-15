@@ -1,9 +1,11 @@
-#include "../AAC.h"
+#include <aac.h>
 
 /**
- * @file AAC_pixel.cpp
- * @brief Contains the implementation of the AAC::Pixel class.
+ * @file aac_pixel.cpp
+ * @brief Contains the implementation of the Pixel class.
  */
+
+using namespace AAC;
 
 /* -------------------------------- GREY TYPE ------------------------------- */
 
@@ -11,7 +13,7 @@
  * @brief Constructs a Pixel object with the specified grey value.
  * @param grey The grey value.
  */
-AAC::Pixel<AAC::Pixel_Type::G>::Pixel(uint8_t grey)
+Pixel<Pixel_Type::G>::Pixel(uint8_t grey)
 {
     _pixel_values.grey = grey;
 }
@@ -19,13 +21,13 @@ AAC::Pixel<AAC::Pixel_Type::G>::Pixel(uint8_t grey)
 /**
  * @brief Default constructor for a Pixel object with a grey value of 0.
  */
-AAC::Pixel<AAC::Pixel_Type::G>::Pixel() : AAC::Pixel<AAC::Pixel_Type::G>(0) {}
+Pixel<Pixel_Type::G>::Pixel() : Pixel<Pixel_Type::G>(0) {}
 
 /**
  * @brief Retrieves the pixel values.
  * @return The pixel values.
  */
-struct AAC::Pixel_G AAC::Pixel<AAC::Pixel_Type::G>::GetPixelValues()
+struct Pixel_G Pixel<Pixel_Type::G>::GetPixelValues()
 {
     return _pixel_values;
 }
@@ -34,7 +36,7 @@ struct AAC::Pixel_G AAC::Pixel<AAC::Pixel_Type::G>::GetPixelValues()
  * @brief Sets the pixel values to the specified grey value.
  * @param grey The grey value.
  */
-void AAC::Pixel<AAC::Pixel_Type::G>::SetPixelValues(uint8_t grey)
+void Pixel<Pixel_Type::G>::SetPixelValues(uint8_t grey)
 {
     _pixel_values.grey = grey;
 }
@@ -46,7 +48,7 @@ void AAC::Pixel<AAC::Pixel_Type::G>::SetPixelValues(uint8_t grey)
  * @param grey The grey value.
  * @param alpha The alpha value.
  */
-AAC::Pixel<AAC::Pixel_Type::GA>::Pixel(uint8_t grey, uint8_t alpha)
+Pixel<Pixel_Type::GA>::Pixel(uint8_t grey, uint8_t alpha)
 {
     _pixel_values.grey = grey;
     _pixel_values.alpha = alpha;
@@ -55,13 +57,13 @@ AAC::Pixel<AAC::Pixel_Type::GA>::Pixel(uint8_t grey, uint8_t alpha)
 /**
  * @brief Default constructor for a Pixel object with grey and alpha values of 0.
  */
-AAC::Pixel<AAC::Pixel_Type::GA>::Pixel() : AAC::Pixel<AAC::Pixel_Type::GA>(0, 0) {}
+Pixel<Pixel_Type::GA>::Pixel() : Pixel<Pixel_Type::GA>(0, 0) {}
 
 /**
  * @brief Retrieves the pixel values.
  * @return The pixel values.
  */
-struct AAC::Pixel_GA AAC::Pixel<AAC::Pixel_Type::GA>::GetPixelValues()
+struct Pixel_GA Pixel<Pixel_Type::GA>::GetPixelValues()
 {
     return _pixel_values;
 }
@@ -71,7 +73,7 @@ struct AAC::Pixel_GA AAC::Pixel<AAC::Pixel_Type::GA>::GetPixelValues()
  * @param grey The grey value.
  * @param alpha The alpha value.
  */
-void AAC::Pixel<AAC::Pixel_Type::GA>::SetPixelValues(uint8_t grey, uint8_t alpha)
+void Pixel<Pixel_Type::GA>::SetPixelValues(uint8_t grey, uint8_t alpha)
 {
     _pixel_values.grey = grey;
     _pixel_values.alpha = alpha;
@@ -85,7 +87,7 @@ void AAC::Pixel<AAC::Pixel_Type::GA>::SetPixelValues(uint8_t grey, uint8_t alpha
  * @param green The green value.
  * @param blue The blue value.
  */
-AAC::Pixel<AAC::Pixel_Type::RGB>::Pixel(uint8_t red, uint8_t green, uint8_t blue)
+Pixel<Pixel_Type::RGB>::Pixel(uint8_t red, uint8_t green, uint8_t blue)
 {
     _pixel_values.red = red;
     _pixel_values.green = green;
@@ -95,13 +97,13 @@ AAC::Pixel<AAC::Pixel_Type::RGB>::Pixel(uint8_t red, uint8_t green, uint8_t blue
 /**
  * @brief Default constructor for a Pixel object with red, green, and blue values of 0.
  */
-AAC::Pixel<AAC::Pixel_Type::RGB>::Pixel() : AAC::Pixel<AAC::Pixel_Type::RGB>(0, 0, 0) {}
+Pixel<Pixel_Type::RGB>::Pixel() : Pixel<Pixel_Type::RGB>(0, 0, 0) {}
 
 /**
  * @brief Retrieves the pixel values.
  * @return The pixel values.
  */
-struct AAC::Pixel_RGB AAC::Pixel<AAC::Pixel_Type::RGB>::GetPixelValues()
+struct Pixel_RGB Pixel<Pixel_Type::RGB>::GetPixelValues()
 {
     return _pixel_values;
 }
@@ -112,7 +114,7 @@ struct AAC::Pixel_RGB AAC::Pixel<AAC::Pixel_Type::RGB>::GetPixelValues()
  * @param green The green value.
  * @param blue The blue value.
  */
-void AAC::Pixel<AAC::Pixel_Type::RGB>::SetPixelValues(uint8_t red, uint8_t green, uint8_t blue)
+void Pixel<Pixel_Type::RGB>::SetPixelValues(uint8_t red, uint8_t green, uint8_t blue)
 {
     _pixel_values.red = red;
     _pixel_values.green = green;
@@ -128,7 +130,7 @@ void AAC::Pixel<AAC::Pixel_Type::RGB>::SetPixelValues(uint8_t red, uint8_t green
  * @param blue The blue value.
  * @param alpha The alpha value.
  */
-AAC::Pixel<AAC::Pixel_Type::RGBA>::Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+Pixel<Pixel_Type::RGBA>::Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
     _pixel_values.red = red;
     _pixel_values.green = green;
@@ -139,13 +141,13 @@ AAC::Pixel<AAC::Pixel_Type::RGBA>::Pixel(uint8_t red, uint8_t green, uint8_t blu
 /**
  * @brief Default constructor for a Pixel object with red, green, blue, and alpha values of 0.
  */
-AAC::Pixel<AAC::Pixel_Type::RGBA>::Pixel() : AAC::Pixel<AAC::Pixel_Type::RGBA>(0, 0, 0, 0) {}
+Pixel<Pixel_Type::RGBA>::Pixel() : Pixel<Pixel_Type::RGBA>(0, 0, 0, 0) {}
 
 /**
  * @brief Retrieves the pixel values.
  * @return The pixel values.
  */
-struct AAC::Pixel_RGBA AAC::Pixel<AAC::Pixel_Type::RGBA>::GetPixelValues()
+struct Pixel_RGBA Pixel<Pixel_Type::RGBA>::GetPixelValues()
 {
     return _pixel_values;
 }
@@ -157,7 +159,7 @@ struct AAC::Pixel_RGBA AAC::Pixel<AAC::Pixel_Type::RGBA>::GetPixelValues()
  * @param blue The blue value.
  * @param alpha The alpha value.
  */
-void AAC::Pixel<AAC::Pixel_Type::RGBA>::SetPixelValues(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+void Pixel<Pixel_Type::RGBA>::SetPixelValues(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
     _pixel_values.red = red;
     _pixel_values.green = green;
@@ -170,7 +172,7 @@ void AAC::Pixel<AAC::Pixel_Type::RGBA>::SetPixelValues(uint8_t red, uint8_t gree
 /**
  * @brief Default constructor for an empty Pixel object.
  */
-AAC::Pixel<AAC::Pixel_Type::EMPTY>::Pixel()
+Pixel<Pixel_Type::EMPTY>::Pixel()
 {
     // empty for now
 }
