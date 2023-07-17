@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(AAC LANGUAGES CXX)
+project(AAC LANGUAGES CXX C)
 message(" + Project dir: ${AAC_SOURCE_DIR}")
 
 # ensuring googletest
@@ -44,13 +44,19 @@ endif()
 #                             SOURCE FILES SETUP                             #
 # -------------------------------------------------------------------------- #
 file(GLOB MAIN_README README.md)
-file(GLOB_RECURSE LIBRARY_SOURCES sources/*.cpp sources/*.tpp )
+file(GLOB_RECURSE LIBRARY_SOURCES sources/*.cpp sources/*.tpp sources/*.c )
+file(GLOB_RECURSE LIBRARY_SOURCES_C sources/*.c)
 file(GLOB STBI_LIBRARY headers/stb_image.h)
+file(GLOB LIBRARY_HEADERS_RAW headers/*.h)
 file(GLOB EXAMPLE_PROGRAMS examples/*.cpp)
 file(GLOB ADDITIONAL_LATEX_FILES doxygen/*.sty)
 file(GLOB AAC_LIB_HEADER include/aac.h)
 file(GLOB INCLUDE_DIR_HEADERS include/*.h)
 set(AAC_INCLUDE_DIR include/)
+set(AAC_HEADERS_DIR headers/)
+
+set(LIBRARY_HEADERS ${LIBRARY_HEADERS_RAW})
+list(REMOVE_ITEM LIBRARY_HEADERS ${STBI_LIBRARY})
 
 
 # doxygen variables prep
@@ -72,7 +78,7 @@ include_directories(${AAC_INCLUDE_DIR})
 include(GNUInstallDirs)
 
 add_library(${AAC_LIBRARY} SHARED)
-target_sources(${AAC_LIBRARY} PRIVATE ${LIBRARY_SOURCES})
+target_sources(${AAC_LIBRARY} PRIVATE ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 
 set_target_properties(${AAC_LIBRARY} PROPERTIES 
     VERSION ${AAC_VERSION}

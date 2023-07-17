@@ -1,7 +1,3 @@
-//
-// Created by Pedro on 13.03.2023.
-//
-
 /**
  * @file aac.h
  *
@@ -406,6 +402,20 @@ private:
 
 public:
     CC_Braile(uint8_t break_point_brightness);
+    std::string convert(Matrix<Chunk>* chunks) override;
+
+};
+
+/**
+ * @class CC_SimpleF
+ *
+ * @brief Converter reading specified font and matching chars using it.
+ *
+ */
+class CC_SimpleF : public ChunkConverter
+{
+public:
+    CC_SimpleF() = default;
     std::string convert(Matrix<Chunk>* chunks) override;
 
 };

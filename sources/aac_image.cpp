@@ -188,6 +188,8 @@ Image::~Image() {
     case Pixel_Type::RGBA:
         delete reinterpret_cast<Matrix<Pixel<Pixel_Type::RGBA>> *>(_pixels_matrix);
         break;
+    default:
+        break;
     }
 }
 

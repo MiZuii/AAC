@@ -4,7 +4,8 @@ project(tests)
 add_subdirectory(googletest)
 
 # Gather all test suites
-file(GLOB_RECURSE TEST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
+file(GLOB_RECURSE TEST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*tests/*.hpp)
+file(GLOB_RECURSE TEST_HEADERS_C ${CMAKE_CURRENT_SOURCE_DIR}/*tests/*.h)
 
 
 # Create global test runner
@@ -25,6 +26,11 @@ endforeach()
 foreach(TEST_HEADER ${TEST_HEADERS})
     get_filename_component(TEST_HEADER_DIR ${TEST_HEADER} DIRECTORY)
     target_precompile_headers(${PROJECT_NAME} PRIVATE ${TEST_HEADER})
+    add_subdirectory(${TEST_HEADER_DIR})
+endforeach()
+
+foreach(TEST_HEADER ${TEST_HEADERS_C})
+    get_filename_component(TEST_HEADER_DIR ${TEST_HEADER} DIRECTORY)
     add_subdirectory(${TEST_HEADER_DIR})
 endforeach()
 
