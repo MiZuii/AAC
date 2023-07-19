@@ -2,9 +2,9 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "3-workflow"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" , "3-workflow"]
 
 jobs:
   build:
