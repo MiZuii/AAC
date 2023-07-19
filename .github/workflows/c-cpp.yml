@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Conf environment
-      run: sudo apt-get install doxygen; sudo apt install graphviz; sudo apt-get install texlive-latex-extra
+      run: sudo apt-get update; sudo apt-get install -y doxygen; sudo apt install -y graphviz; sudo apt-get install -y texlive-latex-extra
     - uses: actions/checkout@v3
 
     - name: Configure CMake
