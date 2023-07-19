@@ -41,6 +41,15 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
     message(" + Git submodules up to date")
 endif()
 
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        release-1.11.0
+)
+FetchContent_MakeAvailable(googletest)
+message(" + Googletest fetched")
+
 # -------------------------------------------------------------------------- #
 #                             SOURCE FILES SETUP                             #
 # -------------------------------------------------------------------------- #
