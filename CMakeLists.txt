@@ -25,6 +25,7 @@ if (DOXYGEN)
     set(DOXYGEN_FILES_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
     set(DOXYGEN_GENERATE_HTML YES)
     set(DOXYGEN_GENERATE_MAN YES)
+    
 else ()
     message(" + Doxygen not found")
 endif ()
