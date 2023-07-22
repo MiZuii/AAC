@@ -7,10 +7,10 @@ file(GLOB TEST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 file(GLOB TEST_RESOURCES test_resource_*)
 
 # Create local test runner
-include_directories(${AAC_HEADERS_DIR})
+include_directories(${AAC_HEADERS_DIR} .)
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp ${LIBRARY_SOURCES_C})
 target_link_libraries(${PROJECT_NAME} gtest gmock gtest_main ${AAC_LIBRARY})
-target_precompile_headers(${PROJECT_NAME} PRIVATE ${TEST_HEADERS})
+# target_precompile_headers(${PROJECT_NAME} PRIVATE ${TEST_HEADERS})
 
 # compile resources definitions
 foreach(TEST_RESOURCE ${TEST_RESOURCES})

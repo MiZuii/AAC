@@ -1,13 +1,13 @@
 #include <stdint.h>
 
-typedef uint16_t Fixed;
+typedef uint32_t Fixed;
 typedef int64_t longDateTime;
 typedef int16_t FWord;
 
 // free macros
 #define FREE_TT_LOCA_TABLE(table) \
-    free(table.offsets_16);       \
-    free(table.offsets_32)
+    if( NULL == table.offsets_16 ) { free(table.offsets_32); } \
+    else { free(table.offsets_16); }
 
 #define FREE_TT_GLYF_TABLE_RAW(table) free(table)
 
@@ -96,16 +96,14 @@ typedef struct _TT_CMAP_SUBTABLE {
 
 typedef struct _TT_CMAP_FORMAT_0_SUBTABLE {
     uint16_t format;
-    uint16_t lendgth;
+    uint16_t length;
     uint16_t language;
     uint8_t glyphIndexArray[UINT8_MAX+1];
 }TT_CMAP_FORMAT_0_SUBTABLE;
 
-#define TT_CMAP_FORMAT_0_SUBTABLE_SIZE sizeof(TT_CMAP_FORMAT_0_SUBTABLE)
-
 typedef struct _TT_CMAP_FORMAT_4_SUBTABLE {
     uint16_t format;
-    uint16_t lendgth;
+    uint16_t length;
     uint16_t language;
     uint16_t segCountX2;
     uint16_t searchRange;
@@ -119,18 +117,14 @@ typedef struct _TT_CMAP_FORMAT_4_SUBTABLE {
     uint16_t glyphIndexArray[UINT16_MAX+1];
 }TT_CMAP_FORMAT_4_SUBTABLE;
 
-#define TT_CMAP_FORMAT_4_SUBTABLE_SIZE(segCount) sizeof(uint16_t)*(8 + UINT16_MAX + 1 + segCount*4)
-
 typedef struct _TT_CMAP_FORMAT_6_SUBTABLE {
     uint16_t format;
-    uint16_t lendgth;
+    uint16_t length;
     uint16_t language;
     uint16_t firstCode;
     uint16_t entryCount;
     uint16_t *glyphIndexArray; //glyphIndexArray[entryCount]
 }TT_CMAP_FORMAT_6_SUBTABLE;
-
-#define TT_CMAP_FORMAT_6_SUBTABLE_SIZE(entryCount) sizeof(uint16_t)*(5 + entryCount)
 
 typedef struct _TT_CMAP_FORMAT_12_SUBTABLE {
     uint16_t format;
@@ -140,8 +134,6 @@ typedef struct _TT_CMAP_FORMAT_12_SUBTABLE {
     uint32_t nGroups;
 }TT_CMAP_FORMAT_12_SUBTABLE;
 
-#define TT_CMAP_FORMAT_12_SUBTABLE_SIZE sizeof(TT_CMAP_FORMAT_12_SUBTABLE)
-
 typedef struct _TT_CMAP_FORMAT_12_SUBSUBTABLE {
     uint32_t startCharCode;
     uint32_t endCharCode;
@@ -149,4 +141,13 @@ typedef struct _TT_CMAP_FORMAT_12_SUBSUBTABLE {
 }TT_CMAP_FORMAT_12_SUBSUBTABLE;
 // end 'cmap'
 
-#define TT_CMAP_FORMAT_12_SUBSUBTABLE_SIZE sizeof(TT_CMAP_FORMAT_12_SUBSUBTABLE)
+typedef struct _TT_CMAP_FORMAT_12_SUBTABLE_EDITED {
+    uint16_t format;
+    uint16_t reserved;
+    uint32_t length;
+    uint32_t language;
+    uint32_t nGroups;
+    uint32_t *startCharCode; // startCharCode[nGroups]
+    uint32_t *endCharCode; // endCharCode[nGroups]
+    uint32_t *startGlyphCode; // startGlyphCode[nGroups]
+}TT_CMAP_FORMAT_12_SUBTABLE_EDITED;

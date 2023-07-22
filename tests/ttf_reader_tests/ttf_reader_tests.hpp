@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
+
 #include <aac.h>
-#include <ttf_reader.h>
+
+extern "C" {
+    #include <ttf_reader.h>
+}
 
 using namespace ::testing;
 using namespace AAC;
@@ -31,6 +35,8 @@ TEST_F(TTFReaderTests, SimpleTest) {
     ttf_data dat;
 
     ret = create_ttf_data(&dat, MAKE_STR(TEST_RESOURCE_3));
+
+    std::cerr << "." << dat.head_table.magicNumber << "." << std::endl;
 
     ASSERT_EQ(ret, 0);
 
