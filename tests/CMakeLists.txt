@@ -9,6 +9,7 @@ file(GLOB_RECURSE TEST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
 # Create global test runner
 add_executable(${PROJECT_NAME} test_runner.cpp)
+gtest_discover_tests(${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} PRIVATE gtest gmock gtest_main ${AAC_LIBRARY})
 
 # Find tested resources

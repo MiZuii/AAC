@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <system_error>
+#include <memory>
 #include <thread>
 #include <vector>
 
