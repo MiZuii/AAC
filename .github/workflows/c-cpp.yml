@@ -17,6 +17,9 @@ jobs:
     - name: Conf environment
       run: sudo apt-get update; sudo apt-get install -y doxygen; sudo apt install -y graphviz; sudo apt-get install -y texlive-latex-extra
     - uses: actions/checkout@v3
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
