@@ -69,10 +69,10 @@ typedef struct _ttf_data {
 
 
 int create_ttf_data(ttf_data *data, const char *ttf_file_path);
-int alphabet_inclusion_check(ttf_data *data, const char *alphabet);
-int16_t get_index_f0(ttf_data *data, char chr);
-int32_t get_index_f4(ttf_data *data, char chr);
-int get_index_f6(ttf_data *data, char chr);
-int get_index_f12(ttf_data *data, char chr);
+int alphabet_inclusion_check(const ttf_data *data, const char *alphabet);
+int16_t get_index_f0(const ttf_data *data, const char chr);
+int32_t get_index_f4(const ttf_data *data, const char chr);
+int32_t get_index_f6(const ttf_data *data, const char chr);
+int64_t get_index_f12(const ttf_data *data, const char chr);
 
 #endif // TTF_READER

@@ -3,3 +3,10 @@ build
 doxygen/Doxyfile
 doc
 examples/bin
+
+# github ssh key
+gitkey
+gitkey.pub
+
+# local trash
+local

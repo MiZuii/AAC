@@ -1,6 +1,5 @@
 #include <ttf_reader.h>
 #include "ttfr_parse.h"
-#include "ttfr_check.h"
 
 /**
  * @brief Create a ttf data object
@@ -118,9 +117,9 @@ int create_ttf_data(ttf_data *data, const char *ttf_file_path) {
  * @param chr The char to locate.
  * @return The index. Negative on failure.
  */
-int16_t get_index_f0(ttf_data *data, char chr) {
+int16_t get_index_f0(const ttf_data *data, const char chr) {
     int16_t char_conv = (int16_t)chr;
-    if( char_conv > UINT8_MAX || char_conv < 0 ) {
+    if( char_conv < 0 ) {
         return MISSING_GLYPH;
     }
     return ((TT_CMAP_FORMAT_0_SUBTABLE*)data->cmap_table_format)->glyphIndexArray[char_conv];
@@ -133,9 +132,9 @@ int16_t get_index_f0(ttf_data *data, char chr) {
  * @param chr The char to locate.
  * @return The index. Negative on failure.
  */
-int32_t get_index_f4(ttf_data *data, char chr) {
+int32_t get_index_f4(const ttf_data *data, const char chr) {
     int32_t char_conv = (int32_t)chr;
-    if( char_conv > UINT16_MAX || char_conv < 0 ) {
+    if( char_conv < 0 ) {
         return MISSING_GLYPH;
     }
     TT_CMAP_FORMAT_4_SUBTABLE *cmap_table = (TT_CMAP_FORMAT_4_SUBTABLE*)data->cmap_table_format;
@@ -167,12 +166,50 @@ int32_t get_index_f4(ttf_data *data, char chr) {
  * @param chr The char to locate.
  * @return The index. Negative on failure.
  */
-int32_t get_index_f0(ttf_data *data, char chr) {
+int32_t get_index_f6(const ttf_data *data, const char chr) {
     int32_t char_conv = (int32_t)chr;
-    if( char_conv > UINT16_MAX || char_conv < 0 ) {
+    if( char_conv < 0 ) {
         return MISSING_GLYPH;
     }
-    return ((TT_CMAP_FORMAT_0_SUBTABLE*)data->cmap_table_format)->glyphIndexArray[char_conv];
+
+    TT_CMAP_FORMAT_6_SUBTABLE *cmap_table = (TT_CMAP_FORMAT_6_SUBTABLE*)data->cmap_table_format;
+
+    if( char_conv < cmap_table->firstCode || char_conv > cmap_table->firstCode + cmap_table->entryCount ) {
+        return MISSING_GLYPH;
+    }
+    return cmap_table->glyphIndexArray[char_conv-cmap_table->firstCode];
+}
+
+/**
+ * @brief Get the index for locating glyf from format 12 cmap subtable.
+ * 
+ * @param data Font data.
+ * @param chr The char to locate.
+ * @return The index. Negative on failure.
+ */
+int64_t get_index_f12(const ttf_data *data, const char chr) {
+    int64_t char_conv = (int64_t)chr;
+    if( char_conv < 0 ) {
+        return MISSING_GLYPH;
+    }
+
+    TT_CMAP_FORMAT_12_SUBTABLE_EDITED *cmap_table = (TT_CMAP_FORMAT_12_SUBTABLE_EDITED*)data->cmap_table_format;
+
+    uint32_t groupi;
+    for(groupi = 0; groupi < cmap_table->nGroups; groupi++) {
+        if( cmap_table->endCharCode[groupi] >= char_conv ) {
+            if( cmap_table->startCharCode[groupi] > char_conv ) {
+                return MISSING_GLYPH;
+            }
+            break;
+        }
+    }
+
+    if( groupi >= cmap_table->nGroups ) {
+        return MISSING_GLYPH;
+    }
+
+    return cmap_table->startGlyphCode[groupi] + cmap_table->startCharCode[groupi];
 }
 
 /**
@@ -182,7 +219,7 @@ int32_t get_index_f0(ttf_data *data, char chr) {
  * @param alphabet The alphabet.
  * @return int 0 on success, negative integer on failure.
  */
-int alphabet_inclusion_check(ttf_data *data, const char *alphabet) {
+int alphabet_inclusion_check(const ttf_data *data, const char *alphabet) {
 
     size_t alphabet_len = strlen(alphabet);
 
@@ -190,28 +227,28 @@ int alphabet_inclusion_check(ttf_data *data, const char *alphabet) {
     {
     case CMAP_FORMAT_0:
         for(size_t chari = 0; chari < alphabet_len; chari++) {
-            if( ttf_includes_f0(data, alphabet[chari]) < 0 ) {
+            if( get_index_f0(data, alphabet[chari]) <= 0 ) {
                 return FAILURE;
             }
         }
         break;
     case CMAP_FORMAT_4:
         for(size_t chari = 0; chari < alphabet_len; chari++) {
-            if( ttf_includes_f4(data, alphabet[chari]) < 0 ) {
+            if( get_index_f4(data, alphabet[chari]) <= 0 ) {
                 return FAILURE;
             }
         }
         break;
     case CMAP_FORMAT_6:
         for(size_t chari = 0; chari < alphabet_len; chari++) {
-            if( ttf_includes_f6(data, alphabet[chari]) < 0 ) {
+            if( get_index_f6(data, alphabet[chari]) <= 0 ) {
                 return FAILURE;
             }
         }
         break;
     case CMAP_FORMAT_12:
         for(size_t chari = 0; chari < alphabet_len; chari++) {
-            if( ttf_includes_f12(data, alphabet[chari]) < 0 ) {
+            if( get_index_f12(data, alphabet[chari]) <= 0 ) {
                 return FAILURE;
             }
         }
